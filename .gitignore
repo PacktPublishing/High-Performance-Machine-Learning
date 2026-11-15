@@ -1,7 +1,8 @@
-# Private chapter drafts (manuscripts, figures source, fundraising,
-# contracts, schedules). Public release artifacts live at the repo root
-# under chapterNN/ — never inside chapters/.
+# Manuscript drafts, figure sources, contracts and schedules live outside the
+# repo (in the sibling manuscript/ folder). This entry stays as a safety net so a
+# stray chapters/ folder is never committed. Public code lives under chapterNN/.
 chapters/
+manuscript/
 
 # macOS / editor cruft
 .DS_Store

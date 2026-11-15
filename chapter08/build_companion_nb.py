@@ -55,7 +55,7 @@ sys.path.insert(0, str(HERE))
 import paged_kv, spec_math, pd_size, tiled_attention   # kv_calc needs transformers; its formula is reproduced below
 RES = HERE / "results"
 print("modules loaded:", [m.__name__ for m in (paged_kv, spec_math, pd_size, tiled_attention)])
-print("results dir:", RES, "|", len(sorted(RES.glob("*.json"))), "result files")
+print("results dir:", RES.relative_to(HERE.parent), "|", len(sorted(RES.glob("*.json"))), "result files")
 """)
 
 # ---------------------------------------------------------------------------- KV calc

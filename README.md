@@ -46,12 +46,14 @@ FP16 is used throughout because the T4 has no BF16 Tensor Core path. Chapter 6 i
 │   └── chapter05_companion.ipynb
 ├── chapter06/                    Triton kernels (pinned PyTorch 2.6 + Triton 3.2)
 ├── chapter07/                    distributed training (analytical cells + measured 2x A10G runs)
+├── chapter08/                    inference serving (analytical scripts + vLLM case study on Modal)
+├── chapter09/                    quantization and sparsity (teaching scripts + llm-compressor/vLLM case study on Modal)
 ├── case_study/                   multi-GPU re-measurement, principles, reference results
 ├── tools/drift_check/            monthly check that the code and numbers still hold
 └── ...                           one folder per chapter as the book is released
 ```
 
-Each chapter folder has its own README and a Colab-ready notebook. Notebook section headings name the chapter section they accompany, so you can read with the notebook open beside you. Each README states the tested stack: Python 3.11, PyTorch 2.14.1 (CUDA 13.0), transformers 5.20.2 and sentence-transformers 6.2.0 for Chapters 1–5 and 7, and PyTorch 2.6 + Triton 3.2 for Chapter 6.
+Each chapter folder has its own README, and Chapters 1 to 8 have a Colab-ready notebook (the Chapter 9 notebook is coming). Notebook section headings name the chapter section they accompany, so you can read with the notebook open beside you. Each README states the tested stack: Python 3.11, PyTorch 2.14.1 (CUDA 13.0), transformers 5.20.2 and sentence-transformers 6.2.0 for Chapters 1–5 and 7, and PyTorch 2.6 + Triton 3.2 for Chapter 6. Chapters 8 and 9 run their case studies on Modal with vLLM 0.32.0, and Chapter 9 builds its checkpoints with llm-compressor 0.14 in a separate image; their teaching scripts run on a CPU.
 
 ## Quick start
 
@@ -88,8 +90,8 @@ Install PyTorch for your CUDA version first (https://pytorch.org/get-started/loc
 | 5  | GPU Architecture and Hardware-Aware Decisions      | `chapter05/`          | bandwidth vs compute, coalescing, the Roofline model       |
 | 6  | Practical High-Performance Kernels with Triton     | `chapter06/`          | Triton kernels: fused softmax, LayerNorm/RMSNorm, tiled matmul, autotuning |
 | 7  | Scaling Out: Choosing a Distributed Training Strategy | `chapter07/`       | memory wall, all-reduce cost, pipeline bubbles, DDP and FSDP measured |
-| 8  | Inference Serving and KV Cache Management          | _coming_              | continuous batching, PagedAttention, speculative decoding  |
-| 9  | Model Compression: Quantization, Distillation, LoRA| _coming_              | post-training quantization end-to-end                      |
+| 8  | High-Performance Inference and Serving             | `chapter08/`          | KV cache sizing, paged KV, speculative decoding, load sweeps and goodput on three GPUs |
+| 9  | Model Compression: Quantization and Sparsity       | `chapter09/`          | FP8, INT8 and INT4 quantization, 2:4 sparsity, speed and quality on three GPUs |
 | 10 | Adaptation: PEFT, RLHF, Preference Optimization    | _coming_              | parameter-efficient fine-tuning under a budget             |
 | 11 | The Accelerator Landscape and Portability          | _coming_              | NVIDIA / AMD / Intel / TPU / Trainium trade-offs           |
 | 12 | Production Maturity, Observability, Stewardship    | _coming_              | the capstone, tying everything to the case study           |
@@ -109,7 +111,7 @@ The default branch keeps moving with PyTorch, Triton and new GPUs. [`CHANGES_SIN
 
 ## What's *not* in this repository
 
-Manuscript drafts, figure source files, and other working materials live in a local `chapters/` folder that is gitignored. Only finished, runnable code lands at the top level. If you fork the repo and find that folder missing, that is on purpose.
+Manuscript drafts, figure source files and other working materials are kept outside this repository. Only finished, runnable code lands here.
 
 ## Citing this book
 
