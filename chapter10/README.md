@@ -32,7 +32,7 @@ Llama-3.2-1B and re-bases the same LoRA recipe onto the next generator, Qwen3-VL
 
 | Item | Value |
 |---|---|
-| Hardware | NVIDIA H100 80GB HBM3 (SXM, 700 W), driver 590.48.01. One GPU per run, two for Llama-3.1-8B full fine-tuning (FSDP) |
+| Hardware | NVIDIA H100 80GB HBM3 (SXM, 700 W), driver 590.48.01, on a GPU cluster with 8 H100 GPUs per node (NVLink 4 through NVSwitch). One GPU per run, two for Llama-3.1-8B full fine-tuning (FSDP) |
 | Serving and evaluation | vLLM 0.33.0, torch 2.14.0+cu130, transformers 5.20.2, lm-evaluation-harness 0.4.13 |
 | Training | torch 2.14.0, transformers 5.23.0, peft 0.21.2, trl 1.17.1, bitsandbytes 0.50.2, accelerate 1.16.0 |
 | Models | google/gemma-2b-it, meta-llama/Llama-3.1-8B-Instruct, meta-llama/Llama-3.2-1B-Instruct (student), Qwen/Qwen3-VL-8B-Instruct (re-base) |
@@ -74,7 +74,7 @@ modal run chapter10/modal_app.py::evaluate --model gemma-2b --run gemma-2b-lora-
 # merge, serve_bench, distill, spectrum, collect: see RUN_PROMPT_ch10.md
 ```
 
-The run on 2026-11-20 used the same scripts with the Modal volume replaced by a local directory (`CH10_VOL`). `train_peft.py` (`--max-examples`, `--max-steps`), `eval_quality.py` (`--limit`, `--forget-tasks`) and
+The run on 2026-11-20 used the same scripts on a GPU cluster (batch jobs, one job per run), with the Modal volume replaced by a shared directory (`CH10_VOL`). `train_peft.py` (`--max-examples`, `--max-steps`), `eval_quality.py` (`--limit`, `--forget-tasks`) and
 `distill.py` (`--max-examples`) take size flags for short test runs.
 
 ## Results
