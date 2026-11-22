@@ -1,0 +1,97 @@
+{
+ "model": "llama-3.1-8b",
+ "run": null,
+ "mode": "base",
+ "adapters": 1,
+ "gpu": "H100",
+ "tpot_ms": 6.465551030487404,
+ "capacity_rps": 64.0,
+ "ttft_p90_ms": 53.46049298532307,
+ "sweep": {
+  "4.0": {
+   "goodput_share": 1.0,
+   "ttft_p90_ms": 36.59042390063405
+  },
+  "8.0": {
+   "goodput_share": 1.0,
+   "ttft_p90_ms": 32.521035987883806
+  },
+  "16.0": {
+   "goodput_share": 1.0,
+   "ttft_p90_ms": 30.759487999603152
+  },
+  "24.0": {
+   "goodput_share": 1.0,
+   "ttft_p90_ms": 28.70428701862693
+  },
+  "32.0": {
+   "goodput_share": 1.0,
+   "ttft_p90_ms": 34.78897106833756
+  },
+  "48.0": {
+   "goodput_share": 1.0,
+   "ttft_p90_ms": 41.66288604028523
+  },
+  "64.0": {
+   "goodput_share": 1.0,
+   "ttft_p90_ms": 53.46049298532307
+  },
+  "80.0": {
+   "goodput_share": 0.6555327868852459,
+   "ttft_p90_ms": 817.8705719765276
+  },
+  "96.0": {
+   "goodput_share": 0.6667809981135311,
+   "ttft_p90_ms": 591.1656669341028
+  },
+  "128.0": {
+   "goodput_share": 0.6753431753431753,
+   "ttft_p90_ms": 572.0615468453616
+  },
+  "160.0": {
+   "goodput_share": 0.6272528388373789,
+   "ttft_p90_ms": 551.7076321411878
+  },
+  "192.0": {
+   "goodput_share": 0.6462366524871951,
+   "ttft_p90_ms": 551.7748219426721
+  }
+ },
+ "vllm": "0.33.0\n",
+ "env": {
+  "utc": "2026-11-20T05:21:58Z",
+  "gpus_nvidia_smi": [
+   "NVIDIA H100 80GB HBM3, 81559 MiB, 590.48.01, 700.00 W, 00000000:9B:00.0"
+  ],
+  "python": "3.11.18",
+  "packages": {
+   "vllm": "0.33.0",
+   "torch": "2.14.0",
+   "transformers": "5.20.2",
+   "datasets": "5.2.0",
+   "lm_eval": "0.4.13",
+   "huggingface_hub": "2.4.0",
+   "openai": "3.56.0",
+   "flashinfer-python": "0.7.2.post1"
+  },
+  "torch_cuda": "13.0",
+  "cudnn": 92400,
+  "nccl": "2.30.7",
+  "ch10_cmd": [
+   "raw",
+   "--stamp",
+   "results/serve/llama-3.1-8b-base-1-H100.json",
+   "--",
+   "python",
+   "serve_bench.py",
+   "--model",
+   "llama-3.1-8b",
+   "--mode",
+   "base",
+   "--rates",
+   "4,8,16,24,32,48,64,80,96,128,160,192"
+  ],
+  "returncode": 0,
+  "wall_s": 1407.5
+ }
+}

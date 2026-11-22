@@ -1,0 +1,79 @@
+{
+ "model": "llama-3.1-8b",
+ "run": "llama-3.1-8b-lora-r16-s0-H100",
+ "mode": "unmerged",
+ "adapters": 16,
+ "gpu": "H100",
+ "tpot_ms": 8.22819030508981,
+ "capacity_rps": 24.0,
+ "ttft_p90_ms": 185.63546193763614,
+ "sweep": {
+  "4.0": {
+   "goodput_share": 1.0,
+   "ttft_p90_ms": 86.38489013537765
+  },
+  "8.0": {
+   "goodput_share": 1.0,
+   "ttft_p90_ms": 86.03775827214122
+  },
+  "16.0": {
+   "goodput_share": 1.0,
+   "ttft_p90_ms": 101.74973169341683
+  },
+  "24.0": {
+   "goodput_share": 1.0,
+   "ttft_p90_ms": 185.63546193763614
+  },
+  "32.0": {
+   "goodput_share": 0.0827300930713547,
+   "ttft_p90_ms": 3789.2664461396635
+  },
+  "48.0": {
+   "goodput_share": 0.002050580997949419,
+   "ttft_p90_ms": 28726.155103649944
+  },
+  "64.0": {
+   "goodput_share": 0.005559767500631791,
+   "ttft_p90_ms": 46861.77285620943
+  }
+ },
+ "vllm": "0.33.0\n",
+ "env": {
+  "utc": "2026-11-20T04:54:40Z",
+  "gpus_nvidia_smi": [
+   "NVIDIA H100 80GB HBM3, 81559 MiB, 590.48.01, 700.00 W, 00000000:DB:00.0"
+  ],
+  "python": "3.11.18",
+  "packages": {
+   "vllm": "0.33.0",
+   "torch": "2.14.0",
+   "transformers": "5.20.2",
+   "datasets": "5.2.0",
+   "lm_eval": "0.4.13",
+   "huggingface_hub": "2.4.0",
+   "openai": "3.56.0",
+   "flashinfer-python": "0.7.2.post1"
+  },
+  "torch_cuda": "13.0",
+  "cudnn": 92400,
+  "nccl": "2.30.7",
+  "ch10_cmd": [
+   "raw",
+   "--stamp",
+   "results/serve/llama-3.1-8b-unmerged-16-H100.json",
+   "--",
+   "python",
+   "serve_bench.py",
+   "--model",
+   "llama-3.1-8b",
+   "--run",
+   "llama-3.1-8b-lora-r16-s0-H100",
+   "--mode",
+   "unmerged",
+   "--adapters",
+   "16"
+  ],
+  "returncode": 0,
+  "wall_s": 831.2
+ }
+}

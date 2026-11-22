@@ -1,0 +1,56 @@
+{
+ "gpu": "H100",
+ "llama-3.1-8b": {
+  "load": true,
+  "text": "OK.",
+  "lora": "OK."
+ },
+ "gemma-2b": {
+  "load": true,
+  "text": "Sure, I am ready to say OK",
+  "lora": "Sure, I am ready to say OK"
+ },
+ "llama-3.2-1b": {
+  "load": true,
+  "text": "OK.",
+  "lora": "OK."
+ },
+ "qwen3-vl-8b": {
+  "load": true,
+  "text": "OK.",
+  "lora": "OK."
+ },
+ "gemma-4-e2b": {
+  "load": true,
+  "text": "OK",
+  "lora": "OK"
+ },
+ "fp8_kv": "OK.",
+ "env": {
+  "utc": "2026-11-20T00:50:50Z",
+  "gpus_nvidia_smi": [
+   "NVIDIA H100 80GB HBM3, 81559 MiB, 590.48.01, 700.00 W, 00000000:19:00.0"
+  ],
+  "python": "3.11.18",
+  "packages": {
+   "vllm": "0.33.0",
+   "torch": "2.14.0",
+   "transformers": "5.20.2",
+   "datasets": "5.2.0",
+   "lm_eval": "0.4.13",
+   "huggingface_hub": "2.4.0",
+   "openai": "3.56.0",
+   "flashinfer-python": "0.7.2.post1"
+  },
+  "torch_cuda": "13.0",
+  "cudnn": 92400,
+  "nccl": "2.30.7",
+  "ch10_cmd": [
+   "smoke_gpu",
+   "--stamp",
+   "results/smoke_H100.json"
+  ],
+  "returncode": 0,
+  "wall_s": 1175.3
+ }
+}
