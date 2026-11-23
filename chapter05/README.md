@@ -23,3 +23,27 @@ Tested stack (Chapters 1–5 and 7): Python 3.11, PyTorch 2.14.1 (CUDA 13.0), tr
 ## Run it
 
 Open the notebook in Google Colab, set Runtime > Change runtime type > T4 GPU, and run top to bottom. A GPU runtime is required.
+
+## T4 hardware specifications
+
+The values Chapter 5 uses for occupancy, Roofline and Tensor Core reasoning (NVIDIA T4, Turing, compute capability 7.5). Product figures are theoretical limits; sustained performance is lower and must be measured on the actual system.
+
+| Property | T4 value | Why it matters |
+|---|---|---|
+| Streaming multiprocessors | 40 | Determines how many blocks can execute concurrently across the device |
+| CUDA cores | 2,560 total; 64 FP32 cores per SM | Defines the FP32 scalar/vector arithmetic resource and the per-SM pipeline width |
+| Tensor Cores | 320 total; 8 per SM | Accelerate supported FP16 and integer matrix operations |
+| Warp schedulers | 4 per SM | Each scheduler manages a static subset of resident warps and can issue one instruction per cycle |
+| Maximum resident warps | 32 per SM | The denominator for theoretical and achieved occupancy on Turing |
+| Maximum threads and blocks | 1,024 threads and 16 blocks per SM | The other two residency limits in the occupancy calculation |
+| Register file | 64K 32-bit registers per SM | Register allocation per thread can limit resident blocks and occupancy |
+| Registers per thread | Up to 255 | Kernels that need more spill to local memory |
+| Unified L1/shared structure | 96 KB total; supported 64/32 or 32/64 KB carveouts | Shared-memory use and cache carveout affect locality and block residency |
+| Shared memory | Up to 64 KB per SM; large per-block allocations require opt-in | Allocated per resident block and can cap concurrent blocks |
+| L2 cache | 4 MB, shared by all SMs | Last on-chip level before device memory; small relative to model weights |
+| Device memory | 16 GB GDDR6 | Holds model weights, activations, workspace, and KV cache |
+| Peak device-memory bandwidth | 320+ GB/s | Provides the theoretical device-memory Roofline slope |
+| FP32 peak | 8.1 TFLOP/s | Relevant compute roof for FP32 CUDA-core work |
+| FP16 mixed-precision peak | 65 TFLOP/s | Relevant only for Tensor-Core-eligible FP16 operations and appropriate shapes |
+| PCIe | Generation 3 x16 | Host-device transfer ceiling; actual throughput depends on payload and pinning |
+| Boost clock | 1,590 MHz | Basis of the published peaks; sustained clocks are lower under the 70 W power limit |

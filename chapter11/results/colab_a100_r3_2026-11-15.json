@@ -1,0 +1,163 @@
+{
+ "source": "Colab Pro A100-SXM4-80GB, 2026-11-15 20:32-20:46 UTC, gpu_reference_v2.py, median/min/max of 3 repeats",
+ "rows": {
+  "a100_gemma2b_eager": {
+   "dtype": "bfloat16",
+   "compile_s": null,
+   "prefill_ms": {
+    "median": 27.584,
+    "min": 27.46,
+    "max": 27.663,
+    "n": 3
+   },
+   "ttft_generate_ms": {
+    "median": 27.452,
+    "min": 27.375,
+    "max": 27.535,
+    "n": 3
+   },
+   "tpot_b1_ms": {
+    "median": 25.171,
+    "min": 24.984,
+    "max": 25.237,
+    "n": 3
+   },
+   "tpot_b16_ms": {
+    "median": 25.237,
+    "min": 25.067,
+    "max": 25.526,
+    "n": 3
+   },
+   "peak_mem_gb": 6.12
+  },
+  "a100_gemma2b_compile": {
+   "dtype": "bfloat16",
+   "compile_s": 44.04,
+   "prefill_ms": {
+    "median": 18.851,
+    "min": 18.505,
+    "max": 19.218,
+    "n": 3
+   },
+   "ttft_generate_ms": {
+    "median": 20.873,
+    "min": 20.863,
+    "max": 21.017,
+    "n": 3
+   },
+   "tpot_b1_ms": {
+    "median": 8.191,
+    "min": 8.072,
+    "max": 8.215,
+    "n": 3
+   },
+   "tpot_b16_ms": {
+    "median": 8.465,
+    "min": 8.431,
+    "max": 8.634,
+    "n": 3
+   },
+   "peak_mem_gb": 6.32
+  },
+  "a100_gemma2b_vllm": {
+   "ttft_ms": {
+    "median": 12.186,
+    "min": 12.149,
+    "max": 12.196,
+    "n": 3
+   },
+   "tpot_b1_ms": {
+    "median": 4.291,
+    "min": 4.291,
+    "max": 4.292,
+    "n": 3
+   },
+   "tpot_b16_ms": {
+    "median": 4.44,
+    "min": 4.436,
+    "max": 4.462,
+    "n": 3
+   },
+   "repeats": 3
+  },
+  "a100_llama8b_eager": {
+   "dtype": "bfloat16",
+   "compile_s": null,
+   "prefill_ms": {
+    "median": 53.357,
+    "min": 53.324,
+    "max": 53.368,
+    "n": 3
+   },
+   "ttft_generate_ms": {
+    "median": 54.548,
+    "min": 54.207,
+    "max": 54.772,
+    "n": 3
+   },
+   "tpot_b1_ms": {
+    "median": 44.528,
+    "min": 43.932,
+    "max": 44.841,
+    "n": 3
+   },
+   "tpot_b16_ms": {
+    "median": 45.329,
+    "min": 45.21,
+    "max": 45.525,
+    "n": 3
+   },
+   "peak_mem_gb": 18.12
+  },
+  "a100_llama8b_compile": {
+   "dtype": "bfloat16",
+   "compile_s": 77.51,
+   "prefill_ms": {
+    "median": 44.74,
+    "min": 44.527,
+    "max": 45.26,
+    "n": 3
+   },
+   "ttft_generate_ms": {
+    "median": 52.719,
+    "min": 52.428,
+    "max": 52.742,
+    "n": 3
+   },
+   "tpot_b1_ms": {
+    "median": 15.643,
+    "min": 15.41,
+    "max": 15.74,
+    "n": 3
+   },
+   "tpot_b16_ms": {
+    "median": 24.252,
+    "min": 24.126,
+    "max": 24.273,
+    "n": 3
+   },
+   "peak_mem_gb": 19.58
+  },
+  "a100_llama8b_vllm": {
+   "ttft_ms": {
+    "median": 26.961,
+    "min": 26.823,
+    "max": 27.205,
+    "n": 3
+   },
+   "tpot_b1_ms": {
+    "median": 10.778,
+    "min": 10.776,
+    "max": 10.779,
+    "n": 3
+   },
+   "tpot_b16_ms": {
+    "median": 11.487,
+    "min": 11.409,
+    "max": 11.54,
+    "n": 3
+   },
+   "repeats": 3
+  }
+ }
+}

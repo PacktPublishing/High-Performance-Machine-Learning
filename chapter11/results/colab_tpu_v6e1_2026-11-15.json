@@ -1,0 +1,18 @@
+{
+ "source": "Colab Pro, TPU v6e-1 (44 vCPU host, 185.7 GB RAM), 2026-11-15 05:20-05:52 UTC; full zip on Drive MyDrive/HPML_ch11/results/ch11_tpu_v6e-1_20261115_0552.zip",
+ "software": {"torch": "2.14.1+cpu with torch_tpu (no __version__ attribute)", "transformers": "5.23.0", "jax": "0.11.2", "libtpu": "0.0.50", "python": "3.13.18"},
+ "prompts": "32 RAG prompts from SQuAD validation contexts, 512-token padded prompt, 128 new tokens, batch 1",
+ "tpu_torchtpu_gemma2b_default": {"dtype": "bf16", "compile_s": 12.8, "ttft_ms": 7.1, "tpot_b1_ms": 6.4},
+ "tpu_torchtpu_gemma2b_highest": {"dtype": "fp32", "ttft_ms": 51.1, "tpot_b1_ms": 39.36},
+ "tpu_torchtpu_llama8b_default": {"dtype": "bf16", "compile_s": 13.8, "ttft_ms": 16.9, "tpot_b1_ms": 14.88},
+ "parity_vs_cpu_fp32": {
+   "tpu_torchtpu_gemma2b_default": {"kl_mean": 1.1731e-4, "kl_p99": 1.8814e-3, "top1_agreement": 0.99716, "max_rel_logit_err": 0.013128},
+   "tpu_torchtpu_gemma2b_highest": {"kl_mean": 1.07e-12, "kl_p99": 1.42e-11, "top1_agreement": 1.0, "max_rel_logit_err": 1.06e-6}},
+ "cpu_fp32_reference_minutes": 20,
+ "findings": [
+   "Llama-3.1-8B tokenizer has no pad token; padding to 512 failed until pad_token = eos_token was set (fixed in script).",
+   "JAX/KerasHub path failed 3 times with 'Inconsistency between flag object and registration for flag coordination_agent_recoverable' (duplicate XLA: external/xla vs external/xla+). Colab TPU image ships TensorFlow 2.21; pip install -U keras-hub reinstalls TensorFlow deps. Needs a clean env (e.g. keras-hub --no-deps or a fresh runtime without TF).",
+   "highest vs default difference here is weight dtype (fp32 vs bf16), not the matmul-precision flag; rewrite Section 11.7 example accordingly."
+ ],
+ "pending": ["v5e-1 pass (Gemma-2B)", "JAX path in clean environment", "L4 ONNX, H100 reference"]
+}

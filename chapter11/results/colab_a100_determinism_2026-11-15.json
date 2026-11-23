@@ -1,0 +1,75 @@
+{
+ "default": {
+  "mode": "default",
+  "model": "meta-llama/Llama-3.1-8B-Instruct",
+  "startup_s": 89.6,
+  "results": {
+   "1": {
+    "distinct": 1,
+    "share_most_common": 1.0,
+    "first_div": null,
+    "probe_latency_s": 1.415,
+    "tput_tok_s": 90.4,
+    "probes": 100
+   },
+   "16": {
+    "distinct": 2,
+    "share_most_common": 0.99,
+    "first_div": 46,
+    "probe_latency_s": 1.708,
+    "tput_tok_s": 1210.1,
+    "probes": 100
+   },
+   "64": {
+    "distinct": 4,
+    "share_most_common": 0.58,
+    "first_div": 5,
+    "probe_latency_s": 2.851,
+    "tput_tok_s": 2901.7,
+    "probes": 100
+   }
+  }
+ },
+ "invariant": {
+  "mode": "invariant",
+  "model": "meta-llama/Llama-3.1-8B-Instruct",
+  "startup_s": 132.4,
+  "results": {
+   "1": {
+    "distinct": 1,
+    "share_most_common": 1.0,
+    "first_div": null,
+    "probe_latency_s": 4.189,
+    "tput_tok_s": 30.6,
+    "probes": 100
+   },
+   "16": {
+    "distinct": 1,
+    "share_most_common": 1.0,
+    "first_div": null,
+    "probe_latency_s": 4.293,
+    "tput_tok_s": 481.5,
+    "probes": 100
+   },
+   "64": {
+    "distinct": 1,
+    "share_most_common": 1.0,
+    "first_div": null,
+    "probe_latency_s": 4.466,
+    "tput_tok_s": 1852.3,
+    "probes": 100
+   }
+  }
+ },
+ "env": {
+  "python": "3.13.16",
+  "torch": "2.14.0+cu130",
+  "transformers": "5.20.2",
+  "vllm": "0.33.0",
+  "gpu": "NVIDIA A100-SXM4-80GB, driver 580.82.07",
+  "platform": "Colab Pro A100 High-RAM",
+  "time_default": "2026-11-15T21:26:07",
+  "time_invariant": "2026-11-15T21:50:39"
+ },
+ "setup": "Probe = SQuAD RAG prompt 0 with Llama chat template, temperature 0, 128 forced output tokens, 100 probes per level; C-1 background requests running continuously; prefix caching off; max-num-seqs 64; VLLM_BATCH_INVARIANT=0/1. Script: chapter11/colab/determinism_colab.py"
+}

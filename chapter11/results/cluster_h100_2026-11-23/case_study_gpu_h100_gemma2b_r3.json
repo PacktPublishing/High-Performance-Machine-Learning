@@ -1,0 +1,174 @@
+{
+ "h100_gemma2b_eager": {
+  "dtype": "bfloat16",
+  "compile_s": null,
+  "prefill_ms": {
+   "median": 12.391,
+   "min": 12.199,
+   "max": 12.52,
+   "n": 3
+  },
+  "ttft_generate_ms": {
+   "median": 13.361,
+   "min": 13.293,
+   "max": 13.421,
+   "n": 3
+  },
+  "tpot_b1_ms": {
+   "median": 11.547,
+   "min": 11.538,
+   "max": 11.56,
+   "n": 3
+  },
+  "tpot_b16_ms": {
+   "median": 11.454,
+   "min": 11.448,
+   "max": 11.479,
+   "n": 3
+  },
+  "peak_mem_gb": 6.15,
+  "env": {
+   "python": "3.11.18",
+   "time": "2026-11-23T06:54:35",
+   "torch": "2.14.0+cu130",
+   "transformers": "5.20.2",
+   "vllm": "0.33.0",
+   "nvidia-smi": "NVIDIA H100 80GB HBM3, 590.48.01",
+   "VLLM_CACHE_ROOT": "/tmp/$USER/job/vllm_cache",
+   "mode": "eager",
+   "gpu": "h100"
+  }
+ },
+ "h100_gemma2b_compile": {
+  "dtype": "bfloat16",
+  "compile_s": 28.97,
+  "prefill_ms": {
+   "median": 6.546,
+   "min": 6.081,
+   "max": 6.567,
+   "n": 3
+  },
+  "ttft_generate_ms": {
+   "median": 9.835,
+   "min": 9.75,
+   "max": 10.051,
+   "n": 3
+  },
+  "tpot_b1_ms": {
+   "median": 4.268,
+   "min": 4.257,
+   "max": 4.282,
+   "n": 3
+  },
+  "tpot_b16_ms": {
+   "median": 4.375,
+   "min": 4.375,
+   "max": 4.389,
+   "n": 3
+  },
+  "peak_mem_gb": 6.17,
+  "env": {
+   "python": "3.11.18",
+   "time": "2026-11-23T06:56:23",
+   "torch": "2.14.0+cu130",
+   "transformers": "5.20.2",
+   "vllm": "0.33.0",
+   "nvidia-smi": "NVIDIA H100 80GB HBM3, 590.48.01",
+   "VLLM_CACHE_ROOT": "/tmp/$USER/job/vllm_cache",
+   "mode": "compile",
+   "gpu": "h100"
+  }
+ },
+ "h100_gemma2b_vllm_bf16": {
+  "model": "google/gemma-2b-it",
+  "quant": "bf16",
+  "ttft_ms": {
+   "median": 6.313,
+   "min": 6.289,
+   "max": 6.777,
+   "n": 3
+  },
+  "tpot_b1_ms": {
+   "median": 2.497,
+   "min": 2.494,
+   "max": 2.497,
+   "n": 3
+  },
+  "tpot_b16_ms": {
+   "median": 2.616,
+   "min": 2.563,
+   "max": 2.619,
+   "n": 3
+  },
+  "repeats": 3,
+  "env": {
+   "python": "3.11.18",
+   "time": "2026-11-23T06:58:44",
+   "torch": "2.14.0+cu130",
+   "transformers": "5.20.2",
+   "vllm": "0.33.0",
+   "nvidia-smi": "NVIDIA H100 80GB HBM3, 590.48.01",
+   "VLLM_CACHE_ROOT": "/tmp/$USER/job/vllm_cache",
+   "gpu": "h100",
+   "quant": "bf16"
+  }
+ },
+ "h100_gemma2b_vllm_fp8": {
+  "model": "google/gemma-2b-it",
+  "quant": "fp8",
+  "ttft_ms": {
+   "median": 6.879,
+   "min": 6.551,
+   "max": 6.968,
+   "n": 3
+  },
+  "tpot_b1_ms": {
+   "median": 1.906,
+   "min": 1.903,
+   "max": 1.912,
+   "n": 3
+  },
+  "tpot_b16_ms": {
+   "median": 1.997,
+   "min": 1.997,
+   "max": 2.015,
+   "n": 3
+  },
+  "repeats": 3,
+  "agreement_ref": "vllm_bf16",
+  "top1_agreement": 0.9845,
+  "env": {
+   "python": "3.11.18",
+   "time": "2026-11-23T06:59:45",
+   "torch": "2.14.0+cu130",
+   "transformers": "5.20.2",
+   "vllm": "0.33.0",
+   "nvidia-smi": "NVIDIA H100 80GB HBM3, 590.48.01",
+   "VLLM_CACHE_ROOT": "/tmp/$USER/job/vllm_cache",
+   "gpu": "h100",
+   "quant": "fp8"
+  }
+ },
+ "env": {
+  "utc": "2026-11-23T07:06:26Z",
+  "gpus_nvidia_smi": [
+   "NVIDIA H100 80GB HBM3, 81559 MiB, 590.48.01, 700.00 W, 00000000:DB:00.0"
+  ],
+  "python": "3.11.18",
+  "packages": {
+   "vllm": "0.33.0",
+   "torch": "2.14.0",
+   "transformers": "5.20.2",
+   "datasets": "5.2.0",
+   "lm_eval": "0.4.13",
+   "huggingface_hub": "2.4.0",
+   "openai": "3.56.0",
+   "flashinfer-python": "0.7.2.post1"
+  },
+  "torch_cuda": "13.0",
+  "cudnn": 92400,
+  "nccl": "2.30.7",
+  "chapter": 11,
+  "driver": "ch11_h100.sh"
+ }
+}

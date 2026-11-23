@@ -50,6 +50,9 @@ FP16 is used throughout because the T4 has no BF16 Tensor Core path. Chapter 6 i
 ├── chapter07/                    distributed training (analytical cells + measured 2x A10G runs)
 ├── chapter08/                    inference serving (analytical scripts + vLLM case study on Modal)
 ├── chapter09/                    quantization and sparsity (teaching scripts + llm-compressor/vLLM case study on Modal)
+├── chapter10/                    model adaptation (PEFT, distillation) case study
+├── chapter11/                    accelerators and compilers case study (GPU, TPU, ONNX, JAX)
+├── chapter12/                    multimodal agentic RAG case study
 ├── case_study/                   multi-GPU re-measurement, principles, reference results
 ├── tools/drift_check/            monthly check that the code and numbers still hold
 └── ...                           one folder per chapter as the book is released
@@ -94,9 +97,9 @@ Install PyTorch for your CUDA version first (https://pytorch.org/get-started/loc
 | 7  | Scaling Out: Choosing a Distributed Training Strategy | `chapter07/`       | memory wall, all-reduce cost, pipeline bubbles, DDP and FSDP measured |
 | 8  | High-Performance Inference and Serving             | `chapter08/`          | KV cache sizing, paged KV, speculative decoding, load sweeps and goodput on three GPUs |
 | 9  | Model Compression: Quantization and Sparsity       | `chapter09/`          | FP8, INT8 and INT4 quantization, 2:4 sparsity, speed and quality on three GPUs |
-| 10 | Adaptation: PEFT, RLHF, Preference Optimization    | _coming_              | parameter-efficient fine-tuning under a budget             |
-| 11 | The Accelerator Landscape and Portability          | _coming_              | NVIDIA / AMD / Intel / TPU / Trainium trade-offs           |
-| 12 | Production Maturity, Observability, Stewardship    | _coming_              | the capstone, tying everything to the case study           |
+| 10 | Efficient Model Adaptation and Maintenance | `chapter10/` | LoRA, QLoRA and full fine-tuning: cost, quality, forgetting, serving adapters, distillation |
+| 11 | Navigating the Accelerator and Compiler Landscape | `chapter11/` | the same generators on A100, H100, TPU v5e and v6e; parity, determinism, ONNX, sharding |
+| 12 | The Mature ML System | `chapter12/` | multimodal agentic RAG: optimization ladder, routing at scale-out, GPU choice, regression gate |
 
 Packt publishes the book in chapter installments through their Early Access Program. New folders show up here as each chapter clears editorial.
 

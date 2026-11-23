@@ -49,5 +49,21 @@ case_study/reference_results/*/traces/*/chapter02_lab/rag_decode_trace.json.gz
 # Nsight Systems reports record the process environment (including tokens); never commit them
 *.nsys-rep
 
+# Chapters 10-12 case-study outputs: data, downloaded run folders, traces, raw arrays and model weights stay out of git
+chapter1[0-2]/data/
+chapter1[0-2]/results_remote/
+chapter1[0-2]/results/*_trace.jsonl
+chapter11/*/out/
+chapter11/parity/ref/
+*.npy
+*.npz
+*.safetensors
+*.gguf
+*.pt
+*.pth
+*.ckpt
+*.parquet
+*.arrow
+
 # Documentation site build output
 site/

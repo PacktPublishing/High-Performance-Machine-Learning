@@ -1,0 +1,8 @@
+[transformers] We found `hidden_act="gelu"` in this Gemma config. This is a legacy value of the official releases but it is meant to target the tanh approximation. Setting `hidden_act="gelu_pytorch_tanh"` instead.
+Generating train split:   0%|          | 0/87599 [00:00<?, ? examples/s]Generating train split: 100%|██████████| 87599/87599 [00:00<00:00, 1136714.56 examples/s]
+Generating validation split:   0%|          | 0/10570 [00:00<?, ? examples/s]Generating validation split: 100%|██████████| 10570/10570 [00:00<00:00, 1010065.46 examples/s]
+Fetching 2 files:   0%|          | 0/2 [00:00<?, ?it/s]Fetching 2 files:  50%|█████     | 1/2 [00:02<00:02,  2.20s/it]Fetching 2 files: 100%|██████████| 2/2 [00:05<00:00,  3.09s/it]Fetching 2 files: 100%|██████████| 2/2 [00:05<00:00,  2.95s/it]
+Loading weights:   0%|          | 0/164 [00:00<?, ?it/s]Loading weights: 100%|██████████| 164/164 [00:00<00:00, 12487.13it/s]
+h100_gemma2b_eager {"dtype": "bfloat16", "compile_s": null, "prefill_ms": 12.391, "ttft_generate_ms": 13.361, "tpot_b1_ms": 11.547, "tpot_b16_ms": 11.454, "peak_mem_gb": 6.15}
+Loading weights:   0%|          | 0/164 [00:00<?, ?it/s]Loading weights: 100%|██████████| 164/164 [00:00<00:00, 12408.29it/s]
+h100_gemma2b_compile {"dtype": "bfloat16", "compile_s": 28.97, "prefill_ms": 6.546, "ttft_generate_ms": 9.835, "tpot_b1_ms": 4.268, "tpot_b16_ms": 4.375, "peak_mem_gb": 6.17}

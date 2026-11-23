@@ -1,0 +1,8 @@
+{"source": "Colab Pro A100-SXM4-80GB, 2026-11-15 20:10-20:28 UTC, single measurement per cell; Drive MyDrive/HPML_ch11/results/ch11_gpu_20261115_2028.json",
+ "a100_gemma2b_eager": {"ttft_generate_ms": 26.88, "tpot_b1_ms": 24.69, "tpot_b16_ms": 25.319, "peak_mem_gb": 6.12},
+ "a100_gemma2b_compile": {"compile_s": 49.12, "ttft_generate_ms": 21.2, "tpot_b1_ms": 8.177, "tpot_b16_ms": 8.572, "peak_mem_gb": 6.32},
+ "a100_gemma2b_vllm": {"ttft_ms": 12.93, "tpot_b1_ms": 4.299, "tpot_b16_ms": 4.397},
+ "a100_llama8b_eager": {"ttft_generate_ms": 53.98, "tpot_b1_ms": 42.857, "tpot_b16_ms": 43.567, "peak_mem_gb": 18.12},
+ "a100_llama8b_compile": {"compile_s": 75.65, "ttft_generate_ms": 52.51, "tpot_b1_ms": 15.415, "tpot_b16_ms": 23.993, "peak_mem_gb": 19.58},
+ "a100_llama8b_vllm": {"ttft_ms": 26.47, "tpot_b1_ms": 10.778, "tpot_b16_ms": 11.355},
+ "parity_vs_cpu_fp32": {"a100_gemma2b_eager": {"kl_mean": 7.51e-05, "top1_agreement": 0.99858}, "a100_gemma2b_compile": {"kl_mean": 1.036e-04, "top1_agreement": 0.99716}}}

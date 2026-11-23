@@ -1,0 +1,299 @@
+{
+ "source": "Modal H100 (modal_h100_all.py)",
+ "started": "2026-11-15T22:58:40",
+ "gemma": {
+  "files": {
+   "case_study_gpu_h100_gemma2b_r3.json": {
+    "h100_gemma2b_eager": {
+     "dtype": "bfloat16",
+     "compile_s": null,
+     "prefill_ms": {
+      "median": 12.29,
+      "min": 12.239,
+      "max": 12.511,
+      "n": 3
+     },
+     "ttft_generate_ms": {
+      "median": 13.379,
+      "min": 13.211,
+      "max": 13.828,
+      "n": 3
+     },
+     "tpot_b1_ms": {
+      "median": 11.286,
+      "min": 11.273,
+      "max": 11.317,
+      "n": 3
+     },
+     "tpot_b16_ms": {
+      "median": 11.921,
+      "min": 11.72,
+      "max": 11.988,
+      "n": 3
+     },
+     "peak_mem_gb": 6.15,
+     "env": {
+      "python": "3.11.12",
+      "platform": "Linux-4.19.0-gvisor-x86_64-with-glibc2.36",
+      "time": "2026-11-16T03:59:46",
+      "torch": "2.14.0+cu130",
+      "transformers": "5.20.2",
+      "vllm": "0.33.0",
+      "nvidia-smi": "NVIDIA H100 80GB HBM3, 610.57.04",
+      "mode": "eager",
+      "gpu": "h100"
+     }
+    },
+    "h100_gemma2b_compile": {
+     "dtype": "bfloat16",
+     "compile_s": 34.21,
+     "prefill_ms": {
+      "median": 6.368,
+      "min": 6.189,
+      "max": 6.959,
+      "n": 3
+     },
+     "ttft_generate_ms": {
+      "median": 10.838,
+      "min": 10.818,
+      "max": 10.94,
+      "n": 3
+     },
+     "tpot_b1_ms": {
+      "median": 4.735,
+      "min": 4.729,
+      "max": 4.792,
+      "n": 3
+     },
+     "tpot_b16_ms": {
+      "median": 4.406,
+      "min": 4.399,
+      "max": 4.601,
+      "n": 3
+     },
+     "peak_mem_gb": 6.17,
+     "env": {
+      "python": "3.11.12",
+      "platform": "Linux-4.19.0-gvisor-x86_64-with-glibc2.36",
+      "time": "2026-11-16T04:02:03",
+      "torch": "2.14.0+cu130",
+      "transformers": "5.20.2",
+      "vllm": "0.33.0",
+      "nvidia-smi": "NVIDIA H100 80GB HBM3, 610.57.04",
+      "mode": "compile",
+      "gpu": "h100"
+     }
+    },
+    "h100_gemma2b_vllm_bf16": {
+     "error": "RuntimeError('Engine core initialization failed. See root cause above. Failed core proc(s): {}')",
+     "trace": "e 341, in __init__\n    self.llm_engine = LLMEngine.from_engine_args(\n                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.11/site-packages/vllm/v1/engine/llm_engine.py\", line 191, in from_engine_args\n    return cls(\n           ^^^^\n  File \"/usr/local/lib/python3.11/site-packages/vllm/v1/engine/llm_engine.py\", line 116, in __init__\n    self.engine_core = EngineCoreClient.make_client(\n                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.11/site-packages/vllm/v1/engine/core_client.py\", line 129, in make_client\n    return SyncMPClient(\n           ^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.11/site-packages/vllm/tracing/otel.py\", line 175, in sync_wrapper\n    return func(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.11/site-packages/vllm/v1/engine/core_client.py\", line 966, in __init__\n    super().__init__(\n  File \"/usr/local/lib/python3.11/site-packages/vllm/v1/engine/core_client.py\", line 699, in __init__\n    with launch_core_engines(\n  File \"/usr/local/lib/python3.11/contextlib.py\", line 144, in __exit__\n    next(self.gen)\n  File \"/usr/local/lib/python3.11/site-packages/vllm/v1/engine/utils.py\", line 1393, in launch_core_engines\n    wait_for_engine_startup(\n  File \"/usr/local/lib/python3.11/site-packages/vllm/v1/engine/utils.py\", line 1473, in wait_for_engine_startup\n    raise RuntimeError(\nRuntimeError: Engine core initialization failed. See root cause above. Failed core proc(s): {}\n",
+     "env": {
+      "python": "3.11.12",
+      "platform": "Linux-4.19.0-gvisor-x86_64-with-glibc2.36",
+      "time": "2026-11-16T04:02:56",
+      "torch": "2.14.0+cu130",
+      "transformers": "5.20.2",
+      "vllm": "0.33.0",
+      "nvidia-smi": "NVIDIA H100 80GB HBM3, 610.57.04"
+     }
+    },
+    "h100_gemma2b_vllm_fp8": {
+     "error": "RuntimeError('Engine core initialization failed. See root cause above. Failed core proc(s): {}')",
+     "trace": "e 341, in __init__\n    self.llm_engine = LLMEngine.from_engine_args(\n                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.11/site-packages/vllm/v1/engine/llm_engine.py\", line 191, in from_engine_args\n    return cls(\n           ^^^^\n  File \"/usr/local/lib/python3.11/site-packages/vllm/v1/engine/llm_engine.py\", line 116, in __init__\n    self.engine_core = EngineCoreClient.make_client(\n                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.11/site-packages/vllm/v1/engine/core_client.py\", line 129, in make_client\n    return SyncMPClient(\n           ^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.11/site-packages/vllm/tracing/otel.py\", line 175, in sync_wrapper\n    return func(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.11/site-packages/vllm/v1/engine/core_client.py\", line 966, in __init__\n    super().__init__(\n  File \"/usr/local/lib/python3.11/site-packages/vllm/v1/engine/core_client.py\", line 699, in __init__\n    with launch_core_engines(\n  File \"/usr/local/lib/python3.11/contextlib.py\", line 144, in __exit__\n    next(self.gen)\n  File \"/usr/local/lib/python3.11/site-packages/vllm/v1/engine/utils.py\", line 1393, in launch_core_engines\n    wait_for_engine_startup(\n  File \"/usr/local/lib/python3.11/site-packages/vllm/v1/engine/utils.py\", line 1473, in wait_for_engine_startup\n    raise RuntimeError(\nRuntimeError: Engine core initialization failed. See root cause above. Failed core proc(s): {}\n",
+     "env": {
+      "python": "3.11.12",
+      "platform": "Linux-4.19.0-gvisor-x86_64-with-glibc2.36",
+      "time": "2026-11-16T04:03:49",
+      "torch": "2.14.0+cu130",
+      "transformers": "5.20.2",
+      "vllm": "0.33.0",
+      "nvidia-smi": "NVIDIA H100 80GB HBM3, 610.57.04"
+     }
+    }
+   }
+  },
+  "log": "^^^^^^^^^^\n(EngineCore pid=479) ERROR 11-16 04:03:48 [core.py:1584]   File \"/usr/local/lib/python3.11/site-packages/flashinfer/jit/cpp_ext.py\", line 263, in generate_ninja_build_for_op\n(EngineCore pid=479) ERROR 11-16 04:03:48 [core.py:1584]     cuda_home = get_cuda_path()\n(EngineCore pid=479) ERROR 11-16 04:03:48 [core.py:1584]                 ^^^^^^^^^^^^^^^\n(EngineCore pid=479) ERROR 11-16 04:03:48 [core.py:1584]   File \"/usr/local/lib/python3.11/site-packages/flashinfer/jit/cpp_ext.py\", line 61, in get_cuda_path\n(EngineCore pid=479) ERROR 11-16 04:03:48 [core.py:1584]     raise RuntimeError(\n(EngineCore pid=479) ERROR 11-16 04:03:48 [core.py:1584] RuntimeError: Could not find nvcc and default cuda_home='/usr/local/cuda' doesn't exist\n(MainProcess pid=447) INFO 11-16 04:03:48 [utils.py:628] [shutdown] Process manager: send sigterm to process EngineCore\nh100_gemma2b_vllm_fp8 {\"error\": \"RuntimeError('Engine core initialization failed. See root cause above. Failed core proc(s): {}')\"}\ntopk_topp_sampler.py\", line 664, in flashinfer_sample\n    next_token_ids = flashinfer.sampling.top_k_top_p_sampling_from_logits(\n                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.11/site-packages/flashinfer/api_logging.py\", line 2369, in _auto_dump_wrapper\n    return _inner(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.11/site-packages/flashinfer/sampling.py\", line 1795, in top_k_top_p_sampling_from_logits\n    masked_logits = top_k_mask_logits(logits, top_k)\n                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.11/site-packages/flashinfer/api_logging.py\", line 2369, in _auto_dump_wrapper\n    return _inner(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.11/site-packages/flashinfer/sampling.py\", line 2243, in top_k_mask_logits\n    return get_sampling_module().top_k_mask_logits(\n           ^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.11/site-packages/flashinfer/sampling.py\", line 176, in get_sampling_module\n    module = gen_sampling_module().build_and_load()\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.11/site-packages/flashinfer/jit/core.py\", line 357, in build_and_load\n    self.build()\n  File \"/usr/local/lib/python3.11/site-packages/flashinfer/jit/core.py\", line 592, in build\n    self.write_ninja()\n  File \"/usr/local/lib/python3.11/site-packages/flashinfer/jit/core.py\", line 519, in write_ninja\n    content = generate_ninja_build_for_op(\n              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.11/site-packages/flashinfer/jit/cpp_ext.py\", line 263, in generate_ninja_build_for_op\n    cuda_home = get_cuda_path()\n                ^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.11/site-packages/flashinfer/jit/cpp_ext.py\", line 61, in get_cuda_path\n    raise RuntimeError(\nRuntimeError: Could not find nvcc and default cuda_home='/usr/local/cuda' doesn't exist\n"
+ },
+ "llama": {
+  "files": {
+   "case_study_gpu_h100_llama8b_r3.json": {
+    "h100_llama8b_eager": {
+     "dtype": "bfloat16",
+     "compile_s": null,
+     "prefill_ms": {
+      "median": 21.609,
+      "min": 21.435,
+      "max": 21.794,
+      "n": 3
+     },
+     "ttft_generate_ms": {
+      "median": 22.428,
+      "min": 22.308,
+      "max": 22.684,
+      "n": 3
+     },
+     "tpot_b1_ms": {
+      "median": 19.961,
+      "min": 19.933,
+      "max": 20.282,
+      "n": 3
+     },
+     "tpot_b16_ms": {
+      "median": 20.31,
+      "min": 20.167,
+      "max": 20.413,
+      "n": 3
+     },
+     "peak_mem_gb": 18.15,
+     "env": {
+      "python": "3.11.12",
+      "platform": "Linux-4.19.0-gvisor-x86_64-with-glibc2.36",
+      "time": "2026-11-16T04:00:30",
+      "torch": "2.14.0+cu130",
+      "transformers": "5.20.2",
+      "vllm": "0.33.0",
+      "nvidia-smi": "NVIDIA H100 80GB HBM3, 610.57.04",
+      "mode": "eager",
+      "gpu": "h100"
+     }
+    },
+    "h100_llama8b_compile": {
+     "dtype": "bfloat16",
+     "compile_s": 56.4,
+     "prefill_ms": {
+      "median": 15.68,
+      "min": 15.473,
+      "max": 15.706,
+      "n": 3
+     },
+     "ttft_generate_ms": {
+      "median": 20.071,
+      "min": 19.475,
+      "max": 21.881,
+      "n": 3
+     },
+     "tpot_b1_ms": {
+      "median": 9.784,
+      "min": 9.394,
+      "max": 9.854,
+      "n": 3
+     },
+     "tpot_b16_ms": {
+      "median": 13.7,
+      "min": 13.155,
+      "max": 14.077,
+      "n": 3
+     },
+     "peak_mem_gb": 19.61,
+     "env": {
+      "python": "3.11.12",
+      "platform": "Linux-4.19.0-gvisor-x86_64-with-glibc2.36",
+      "time": "2026-11-16T04:04:36",
+      "torch": "2.14.0+cu130",
+      "transformers": "5.20.2",
+      "vllm": "0.33.0",
+      "nvidia-smi": "NVIDIA H100 80GB HBM3, 610.57.04",
+      "mode": "compile",
+      "gpu": "h100"
+     }
+    },
+    "h100_llama8b_vllm_bf16": {
+     "error": "RuntimeError('Engine core initialization failed. See root cause above. Failed core proc(s): {}')",
+     "trace": "e 341, in __init__\n    self.llm_engine = LLMEngine.from_engine_args(\n                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.11/site-packages/vllm/v1/engine/llm_engine.py\", line 191, in from_engine_args\n    return cls(\n           ^^^^\n  File \"/usr/local/lib/python3.11/site-packages/vllm/v1/engine/llm_engine.py\", line 116, in __init__\n    self.engine_core = EngineCoreClient.make_client(\n                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.11/site-packages/vllm/v1/engine/core_client.py\", line 129, in make_client\n    return SyncMPClient(\n           ^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.11/site-packages/vllm/tracing/otel.py\", line 175, in sync_wrapper\n    return func(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.11/site-packages/vllm/v1/engine/core_client.py\", line 966, in __init__\n    super().__init__(\n  File \"/usr/local/lib/python3.11/site-packages/vllm/v1/engine/core_client.py\", line 699, in __init__\n    with launch_core_engines(\n  File \"/usr/local/lib/python3.11/contextlib.py\", line 144, in __exit__\n    next(self.gen)\n  File \"/usr/local/lib/python3.11/site-packages/vllm/v1/engine/utils.py\", line 1393, in launch_core_engines\n    wait_for_engine_startup(\n  File \"/usr/local/lib/python3.11/site-packages/vllm/v1/engine/utils.py\", line 1473, in wait_for_engine_startup\n    raise RuntimeError(\nRuntimeError: Engine core initialization failed. See root cause above. Failed core proc(s): {}\n",
+     "env": {
+      "python": "3.11.12",
+      "platform": "Linux-4.19.0-gvisor-x86_64-with-glibc2.36",
+      "time": "2026-11-16T04:05:38",
+      "torch": "2.14.0+cu130",
+      "transformers": "5.20.2",
+      "vllm": "0.33.0",
+      "nvidia-smi": "NVIDIA H100 80GB HBM3, 610.57.04"
+     }
+    },
+    "h100_llama8b_vllm_fp8": {
+     "error": "RuntimeError('Engine core initialization failed. See root cause above. Failed core proc(s): {}')",
+     "trace": "e 341, in __init__\n    self.llm_engine = LLMEngine.from_engine_args(\n                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.11/site-packages/vllm/v1/engine/llm_engine.py\", line 191, in from_engine_args\n    return cls(\n           ^^^^\n  File \"/usr/local/lib/python3.11/site-packages/vllm/v1/engine/llm_engine.py\", line 116, in __init__\n    self.engine_core = EngineCoreClient.make_client(\n                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.11/site-packages/vllm/v1/engine/core_client.py\", line 129, in make_client\n    return SyncMPClient(\n           ^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.11/site-packages/vllm/tracing/otel.py\", line 175, in sync_wrapper\n    return func(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.11/site-packages/vllm/v1/engine/core_client.py\", line 966, in __init__\n    super().__init__(\n  File \"/usr/local/lib/python3.11/site-packages/vllm/v1/engine/core_client.py\", line 699, in __init__\n    with launch_core_engines(\n  File \"/usr/local/lib/python3.11/contextlib.py\", line 144, in __exit__\n    next(self.gen)\n  File \"/usr/local/lib/python3.11/site-packages/vllm/v1/engine/utils.py\", line 1393, in launch_core_engines\n    wait_for_engine_startup(\n  File \"/usr/local/lib/python3.11/site-packages/vllm/v1/engine/utils.py\", line 1473, in wait_for_engine_startup\n    raise RuntimeError(\nRuntimeError: Engine core initialization failed. See root cause above. Failed core proc(s): {}\n",
+     "env": {
+      "python": "3.11.12",
+      "platform": "Linux-4.19.0-gvisor-x86_64-with-glibc2.36",
+      "time": "2026-11-16T04:06:37",
+      "torch": "2.14.0+cu130",
+      "transformers": "5.20.2",
+      "vllm": "0.33.0",
+      "nvidia-smi": "NVIDIA H100 80GB HBM3, 610.57.04"
+     }
+    }
+   }
+  },
+  "log": "^^^^^^^^^^\n(EngineCore pid=542) ERROR 11-16 04:06:37 [core.py:1584]   File \"/usr/local/lib/python3.11/site-packages/flashinfer/jit/cpp_ext.py\", line 263, in generate_ninja_build_for_op\n(EngineCore pid=542) ERROR 11-16 04:06:37 [core.py:1584]     cuda_home = get_cuda_path()\n(EngineCore pid=542) ERROR 11-16 04:06:37 [core.py:1584]                 ^^^^^^^^^^^^^^^\n(EngineCore pid=542) ERROR 11-16 04:06:37 [core.py:1584]   File \"/usr/local/lib/python3.11/site-packages/flashinfer/jit/cpp_ext.py\", line 61, in get_cuda_path\n(EngineCore pid=542) ERROR 11-16 04:06:37 [core.py:1584]     raise RuntimeError(\n(EngineCore pid=542) ERROR 11-16 04:06:37 [core.py:1584] RuntimeError: Could not find nvcc and default cuda_home='/usr/local/cuda' doesn't exist\n(MainProcess pid=508) INFO 11-16 04:06:37 [utils.py:628] [shutdown] Process manager: send sigterm to process EngineCore\nh100_llama8b_vllm_fp8 {\"error\": \"RuntimeError('Engine core initialization failed. See root cause above. Failed core proc(s): {}')\"}\ntopk_topp_sampler.py\", line 664, in flashinfer_sample\n    next_token_ids = flashinfer.sampling.top_k_top_p_sampling_from_logits(\n                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.11/site-packages/flashinfer/api_logging.py\", line 2369, in _auto_dump_wrapper\n    return _inner(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.11/site-packages/flashinfer/sampling.py\", line 1795, in top_k_top_p_sampling_from_logits\n    masked_logits = top_k_mask_logits(logits, top_k)\n                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.11/site-packages/flashinfer/api_logging.py\", line 2369, in _auto_dump_wrapper\n    return _inner(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.11/site-packages/flashinfer/sampling.py\", line 2243, in top_k_mask_logits\n    return get_sampling_module().top_k_mask_logits(\n           ^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.11/site-packages/flashinfer/sampling.py\", line 176, in get_sampling_module\n    module = gen_sampling_module().build_and_load()\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.11/site-packages/flashinfer/jit/core.py\", line 357, in build_and_load\n    self.build()\n  File \"/usr/local/lib/python3.11/site-packages/flashinfer/jit/core.py\", line 592, in build\n    self.write_ninja()\n  File \"/usr/local/lib/python3.11/site-packages/flashinfer/jit/core.py\", line 519, in write_ninja\n    content = generate_ninja_build_for_op(\n              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.11/site-packages/flashinfer/jit/cpp_ext.py\", line 263, in generate_ninja_build_for_op\n    cuda_home = get_cuda_path()\n                ^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.11/site-packages/flashinfer/jit/cpp_ext.py\", line 61, in get_cuda_path\n    raise RuntimeError(\nRuntimeError: Could not find nvcc and default cuda_home='/usr/local/cuda' doesn't exist\n"
+ },
+ "det_default": {
+  "files": {
+   "case_study_determinism_h100_default.json": {
+    "mode": "default",
+    "error": "server did not start",
+    "log_tail": "ython3.11/asyncio/runners.py\", line 118, in run\n    return self._loop.run_until_complete(task)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"uvloop/loop.pyx\", line 1515, in uvloop.loop.Loop.run_until_complete\n  File \"/usr/local/lib/python3.11/site-packages/uvloop/__init__.py\", line 48, in wrapper\n    return await main\n           ^^^^^^^^^^\n  File \"/usr/local/lib/python3.11/site-packages/vllm/entrypoints/launchers/api_server/entry.py\", line 176, in run_server\n    await run_server_worker(listen_address, sock, args, **uvicorn_kwargs)\n  File \"/usr/local/lib/python3.11/site-packages/vllm/entrypoints/launchers/api_server/entry.py\", line 190, in run_server_worker\n    async with build_async_engine_client(\n  File \"/usr/local/lib/python3.11/contextlib.py\", line 210, in __aenter__\n    return await anext(self.gen)\n           ^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.11/site-packages/vllm/entrypoints/launchers/api_server/entry.py\", line 60, in build_async_engine_client\n    async with build_async_engine_client_from_engine_args(\n  File \"/usr/local/lib/python3.11/contextlib.py\", line 210, in __aenter__\n    return await anext(self.gen)\n           ^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.11/site-packages/vllm/entrypoints/launchers/api_server/entry.py\", line 94, in build_async_engine_client_from_engine_args\n    async_llm = AsyncLLM.from_vllm_config(\n                ^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.11/site-packages/vllm/v1/engine/async_llm.py\", line 264, in from_vllm_config\n    return cls(\n           ^^^^\n  File \"/usr/local/lib/python3.11/site-packages/vllm/v1/engine/async_llm.py\", line 193, in __init__\n    self.engine_core = EngineCoreClient.make_async_mp_client(\n                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.11/site-packages/vllm/tracing/otel.py\", line 175, in sync_wrapper\n    return func(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.11/site-packages/vllm/v1/engine/core_client.py\", line 170, in make_async_mp_client\n    return AsyncMPClient(\n           ^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.11/site-packages/vllm/tracing/otel.py\", line 175, in sync_wrapper\n    return func(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.11/site-packages/vllm/v1/engine/core_client.py\", line 1163, in __init__\n    super().__init__(\n  File \"/usr/local/lib/python3.11/site-packages/vllm/v1/engine/core_client.py\", line 699, in __init__\n    with launch_core_engines(\n  File \"/usr/local/lib/python3.11/contextlib.py\", line 144, in __exit__\n    next(self.gen)\n  File \"/usr/local/lib/python3.11/site-packages/vllm/v1/engine/utils.py\", line 1393, in launch_core_engines\n    wait_for_engine_startup(\n  File \"/usr/local/lib/python3.11/site-packages/vllm/v1/engine/utils.py\", line 1473, in wait_for_engine_startup\n    raise RuntimeError(\nRuntimeError: Engine core initialization failed. See root cause above. Failed core proc(s): {}\n",
+    "env": {
+     "python": "3.11.12",
+     "platform": "Linux-4.19.0-gvisor-x86_64-with-glibc2.36",
+     "time": "2026-11-16T04:00:39",
+     "torch": "2.14.0+cu130",
+     "transformers": "5.20.2",
+     "vllm": "0.33.0",
+     "nvidia-smi": "NVIDIA H100 80GB HBM3, 610.57.04",
+     "batch_invariant": false
+    }
+   }
+  },
+  "log": "default: server failed to start; see case_study_determinism_h100_default.json\n.py\", line 264, in from_vllm_config\n    return cls(\n           ^^^^\n  File \"/usr/local/lib/python3.11/site-packages/vllm/v1/engine/async_llm.py\", line 193, in __init__\n    self.engine_core = EngineCoreClient.make_async_mp_client(\n                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.11/site-packages/vllm/tracing/otel.py\", line 175, in sync_wrapper\n    return func(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.11/site-packages/vllm/v1/engine/core_client.py\", line 170, in make_async_mp_client\n    return AsyncMPClient(\n           ^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.11/site-packages/vllm/tracing/otel.py\", line 175, in sync_wrapper\n    return func(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.11/site-packages/vllm/v1/engine/core_client.py\", line 1163, in __init__\n    super().__init__(\n  File \"/usr/local/lib/python3.11/site-packages/vllm/v1/engine/core_client.py\", line 699, in __init__\n    with launch_core_engines(\n  File \"/usr/local/lib/python3.11/contextlib.py\", line 144, in __exit__\n    next(self.gen)\n  File \"/usr/local/lib/python3.11/site-packages/vllm/v1/engine/utils.py\", line 1393, in launch_core_engines\n    wait_for_engine_startup(\n  File \"/usr/local/lib/python3.11/site-packages/vllm/v1/engine/utils.py\", line 1473, in wait_for_engine_startup\n    raise RuntimeError(\nRuntimeError: Engine core initialization failed. See root cause above. Failed core proc(s): {}\n\n\nGenerating train split:   0%|          | 0/87599 [00:00<?, ? examples/s]\nGenerating train split:  25%|\u2588\u2588\u258c       | 22000/87599 [00:00<00:00, 214437.20 examples/s]\nGenerating train split:  57%|\u2588\u2588\u2588\u2588\u2588\u258b    | 50000/87599 [00:00<00:00, 244587.62 examples/s]\nGenerating train split:  89%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2589 | 78000/87599 [00:00<00:00, 256955.11 examples/s]\nGenerating train split: 100%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588| 87599/87599 [00:00<00:00, 251727.09 examples/s]\n\nGenerating validation split:   0%|          | 0/10570 [00:00<?, ? examples/s]\nGenerating validation split: 100%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588| 10570/10570 [00:00<00:00, 228176.56 examples/s]\n"
+ },
+ "det_invariant": {
+  "files": {
+   "case_study_determinism_h100_invariant.json": {
+    "mode": "invariant",
+    "error": "server did not start",
+    "log_tail": "ython3.11/asyncio/runners.py\", line 118, in run\n    return self._loop.run_until_complete(task)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"uvloop/loop.pyx\", line 1515, in uvloop.loop.Loop.run_until_complete\n  File \"/usr/local/lib/python3.11/site-packages/uvloop/__init__.py\", line 48, in wrapper\n    return await main\n           ^^^^^^^^^^\n  File \"/usr/local/lib/python3.11/site-packages/vllm/entrypoints/launchers/api_server/entry.py\", line 176, in run_server\n    await run_server_worker(listen_address, sock, args, **uvicorn_kwargs)\n  File \"/usr/local/lib/python3.11/site-packages/vllm/entrypoints/launchers/api_server/entry.py\", line 190, in run_server_worker\n    async with build_async_engine_client(\n  File \"/usr/local/lib/python3.11/contextlib.py\", line 210, in __aenter__\n    return await anext(self.gen)\n           ^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.11/site-packages/vllm/entrypoints/launchers/api_server/entry.py\", line 60, in build_async_engine_client\n    async with build_async_engine_client_from_engine_args(\n  File \"/usr/local/lib/python3.11/contextlib.py\", line 210, in __aenter__\n    return await anext(self.gen)\n           ^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.11/site-packages/vllm/entrypoints/launchers/api_server/entry.py\", line 94, in build_async_engine_client_from_engine_args\n    async_llm = AsyncLLM.from_vllm_config(\n                ^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.11/site-packages/vllm/v1/engine/async_llm.py\", line 264, in from_vllm_config\n    return cls(\n           ^^^^\n  File \"/usr/local/lib/python3.11/site-packages/vllm/v1/engine/async_llm.py\", line 193, in __init__\n    self.engine_core = EngineCoreClient.make_async_mp_client(\n                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.11/site-packages/vllm/tracing/otel.py\", line 175, in sync_wrapper\n    return func(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.11/site-packages/vllm/v1/engine/core_client.py\", line 170, in make_async_mp_client\n    return AsyncMPClient(\n           ^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.11/site-packages/vllm/tracing/otel.py\", line 175, in sync_wrapper\n    return func(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.11/site-packages/vllm/v1/engine/core_client.py\", line 1163, in __init__\n    super().__init__(\n  File \"/usr/local/lib/python3.11/site-packages/vllm/v1/engine/core_client.py\", line 699, in __init__\n    with launch_core_engines(\n  File \"/usr/local/lib/python3.11/contextlib.py\", line 144, in __exit__\n    next(self.gen)\n  File \"/usr/local/lib/python3.11/site-packages/vllm/v1/engine/utils.py\", line 1393, in launch_core_engines\n    wait_for_engine_startup(\n  File \"/usr/local/lib/python3.11/site-packages/vllm/v1/engine/utils.py\", line 1473, in wait_for_engine_startup\n    raise RuntimeError(\nRuntimeError: Engine core initialization failed. See root cause above. Failed core proc(s): {}\n",
+    "env": {
+     "python": "3.11.12",
+     "platform": "Linux-4.19.0-gvisor-x86_64-with-glibc2.36",
+     "time": "2026-11-16T04:00:22",
+     "torch": "2.14.0+cu130",
+     "transformers": "5.20.2",
+     "vllm": "0.33.0",
+     "nvidia-smi": "NVIDIA H100 80GB HBM3, 610.57.04",
+     "batch_invariant": true
+    }
+   }
+  },
+  "log": "invariant: server failed to start; see case_study_determinism_h100_invariant.json\n.py\", line 264, in from_vllm_config\n    return cls(\n           ^^^^\n  File \"/usr/local/lib/python3.11/site-packages/vllm/v1/engine/async_llm.py\", line 193, in __init__\n    self.engine_core = EngineCoreClient.make_async_mp_client(\n                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.11/site-packages/vllm/tracing/otel.py\", line 175, in sync_wrapper\n    return func(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.11/site-packages/vllm/v1/engine/core_client.py\", line 170, in make_async_mp_client\n    return AsyncMPClient(\n           ^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.11/site-packages/vllm/tracing/otel.py\", line 175, in sync_wrapper\n    return func(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.11/site-packages/vllm/v1/engine/core_client.py\", line 1163, in __init__\n    super().__init__(\n  File \"/usr/local/lib/python3.11/site-packages/vllm/v1/engine/core_client.py\", line 699, in __init__\n    with launch_core_engines(\n  File \"/usr/local/lib/python3.11/contextlib.py\", line 144, in __exit__\n    next(self.gen)\n  File \"/usr/local/lib/python3.11/site-packages/vllm/v1/engine/utils.py\", line 1393, in launch_core_engines\n    wait_for_engine_startup(\n  File \"/usr/local/lib/python3.11/site-packages/vllm/v1/engine/utils.py\", line 1473, in wait_for_engine_startup\n    raise RuntimeError(\nRuntimeError: Engine core initialization failed. See root cause above. Failed core proc(s): {}\n\n\nGenerating train split:   0%|          | 0/87599 [00:00<?, ? examples/s]\nGenerating train split:  26%|\u2588\u2588\u258b       | 23000/87599 [00:00<00:00, 217151.70 examples/s]\nGenerating train split:  59%|\u2588\u2588\u2588\u2588\u2588\u2589    | 52000/87599 [00:00<00:00, 248902.14 examples/s]\nGenerating train split:  94%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u258e| 82000/87599 [00:00<00:00, 264271.35 examples/s]\nGenerating train split: 100%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588| 87599/87599 [00:00<00:00, 257342.46 examples/s]\n\nGenerating validation split:   0%|          | 0/10570 [00:00<?, ? examples/s]\nGenerating validation split: 100%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588| 10570/10570 [00:00<00:00, 228376.38 examples/s]\n"
+ },
+ "onnx": {
+  "torch_fp16_prefill_ms": 9.88,
+  "ort_fp16_prefill_ms": 40.64,
+  "export_s": 79.7,
+  "cpu_ops": [
+   "Add",
+   "Concat",
+   "Reshape",
+   "Slice",
+   "Squeeze"
+  ],
+  "providers": [
+   "CUDAExecutionProvider",
+   "CPUExecutionProvider"
+  ],
+  "top1_agreement_torch_vs_ort": 1.0,
+  "max_abs_logit_diff": 0.5,
+  "env": {
+   "python": "3.11.12",
+   "platform": "Linux-4.19.0-gvisor-x86_64-with-glibc2.36",
+   "time": "2026-11-16T04:00:40",
+   "torch": "2.14.1+cu130",
+   "transformers": "5.23.0",
+   "onnxruntime": "1.32.0",
+   "onnx": "1.23.2",
+   "nvidia-smi": "NVIDIA H100 80GB HBM3, 610.57.04",
+   "gpu": "H100"
+  }
+ }
+}

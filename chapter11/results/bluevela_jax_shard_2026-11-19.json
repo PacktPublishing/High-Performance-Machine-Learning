@@ -1,0 +1,26 @@
+{
+  "experiment": "chapter11 sharding_compare.py jax, y = x @ w.T, w (8192x4096) row-sharded over 8 devices",
+  "date": "2026-11-19",
+  "host": "H100 cluster CPU node",
+  "platform": "Linux-5.14.0-611.30.1.el9_7.x86_64-x86_64-with-glibc2.34",
+  "python": "3.12.16",
+  "jax": "0.12.1",
+  "jaxlib": "0.12.1",
+  "xla_flags": "--xla_force_host_platform_device_count=8",
+  "devices": [
+    "cpu:0",
+    "cpu:1",
+    "cpu:2",
+    "cpu:3",
+    "cpu:4",
+    "cpu:5",
+    "cpu:6",
+    "cpu:7"
+  ],
+  "returncode": 0,
+  "stdout": "output (16, 8192) NamedSharding(mesh=Mesh('data': 8, axis_types=(Explicit,)), spec=P(None, 'data'), memory_kind=device)\ncollectives []\ncolumn sums (4096,) 8192.0\n",
+  "stderr_tail": "An NVIDIA GPU may be present on this machine, but a CUDA-enabled jaxlib is not installed. Falling back to cpu.\n",
+  "collectives_found": [],
+  "collective_hlo_lines": [],
+  "output_sharding": "NamedSharding(mesh=Mesh('data': 8, axis_types=(Explicit,)), spec=P(None, 'data'), memory_kind=device)"
+}

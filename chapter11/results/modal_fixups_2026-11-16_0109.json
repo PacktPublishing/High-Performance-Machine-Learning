@@ -1,0 +1,27 @@
+{
+ "source": "Modal H100 (modal_ch11_fixups.py)",
+ "started": "2026-11-16T01:08:10",
+ "onnx_timing": {
+  "torch_fp16_ms_logits_on_gpu": 17.44,
+  "torch_fp16_ms_logits_to_host": 67.59,
+  "ort_fp16_ms_outputs_to_host": 56.18,
+  "ort_fp16_ms_iobinding_on_gpu": 9.51,
+  "logits_mb": 262,
+  "env": {
+   "python": "3.11.12",
+   "platform": "Linux-4.19.0-gvisor-x86_64-with-glibc2.36",
+   "time": "2026-11-16T06:09:41",
+   "torch": "2.14.1+cu130",
+   "transformers": "5.23.0",
+   "onnxruntime": "1.32.0",
+   "onnx": "1.23.2",
+   "nvidia-smi": "NVIDIA H100 80GB HBM3, 610.57.04",
+   "gpu": "H100"
+  }
+ },
+ "dtensor": {
+  "returncode": 0,
+  "stdout": "0 local shard (4096, 4096) output (16, 8192) (Shard(dim=1),) collectives 0\n1 local shard (4096, 4096) output (16, 8192) (Shard(dim=1),) collectives 0\n1 full (16, 8192) collectives {<OpOverloadPacket(op='c10d_functional.all_gather_into_tensor')>: 1}\n0 full (16, 8192) collectives {<OpOverloadPacket(op='c10d_functional.all_gather_into_tensor')>: 1}\n",
+  "stderr": ""
+ }
+}
