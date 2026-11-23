@@ -39,10 +39,10 @@ collectives of a sharded matrix multiplication.
 | `results/colab_a100_determinism_2026-11-15.json` | A100: batch invariance, default and invariant mode |
 | `results/modal_h100_2026-11-15*.json` | H100 80GB SXM (Modal): both models, all stacks, FP8, determinism |
 | `results/modal_fixups_2026-11-16_0109.json` | H100: ONNX Runtime timings with outputs on the host and on the GPU; DTensor collectives |
-| `results/cluster_h100_2026-11-23/` | H100 (second host): repeat of the GPU rows with logs |
+| `results/cluster_h100_2026-11-23/` | H100 80GB SXM, GPU cluster node (2 x Intel Xeon Platinum 8468, 16 cores): both models, eager, `torch.compile`, vLLM BF16 and FP8, median of 3, with logs. Source of the H100 rows in Tables 11.13 to 11.15; the two Modal sessions show how much the eager and compiled rows depend on the host |
 | `results/colab_tpu_v6e1_*.json`, `results/colab_tpu_v5e1_*.json` | TPU v6e and v5e (Colab): TorchTPU rows and repeats |
 | `results/colab_tpu_v5e1_jax_2026-11-16.json` | TPU v5e: JAX rows and the precision comparison |
-| `results/bluevela_jax_shard_2026-11-19.json` | JAX sharding check on 8 CPU devices: output sharding and the collectives in the compiled program |
+| `results/cluster_jax_shard_2026-11-19.json` | JAX sharding check on 8 CPU devices: output sharding and the collectives in the compiled program |
 
 Each result file records the GPU or TPU, the driver and the package versions.
 
