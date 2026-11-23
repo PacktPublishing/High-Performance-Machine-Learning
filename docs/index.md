@@ -1,6 +1,6 @@
 # High-Performance Machine Learning
 
-Companion site for *High-Performance Machine Learning* (Packt) by **Dr. Kaoutar El Maghraoui**. It collects the
+Companion site for *High-Performance Machine Learning* (Packt) by [**Dr. Kaoutar El Maghraoui**](about.md). It collects the
 supplementary material for each chapter: the chapter notes, the notebooks rendered as readable pages, the measured
 results, and links to the code in the [GitHub repository](https://github.com/kaoutar55/High-Performance-Machine-Learning).
 

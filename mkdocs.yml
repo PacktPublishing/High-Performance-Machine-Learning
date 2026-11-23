@@ -62,6 +62,7 @@ nav:
   - Home: index.md
   - Experiment map: experiment-map.md
   - Running the code: running.md
+  - About the author: about.md
   - Chapters:
       - 1. The imperative of performance: book/chapter01.md
       - 2. Performance engineering method: book/chapter02.md
