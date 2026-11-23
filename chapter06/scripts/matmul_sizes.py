@@ -103,20 +103,20 @@ def env_info(cmd):
             "gpu_power_max_limit": q[3].strip(),
             "gpu_form_factor": "SXM" if "SXM" in name else ("PCIe" if "PCIe" in name else "unknown"),
             "compute_capability": ".".join(map(str, torch.cuda.get_device_capability(0))),
-            "driver_cuda_version": subprocess.getoutput("nvidia-smi | grep -o 'CUDA Version: [0-9.]*'")
-            .replace("CUDA Version:", "").strip(),
+            "driver_cuda_version": subprocess.getoutput("nvidia-smi | grep -oE 'CUDA (UMD )?Version: [0-9.]+'")
+            .split(':')[-1].strip(),
             "torch": torch.__version__, "torch_cuda": torch.version.cuda, "triton": triton.__version__,
             "python": platform.python_version(), "host_cpu": cpu, "cpu_count_visible": os.cpu_count(),
             "triton_cache_dir": os.environ.get("TRITON_CACHE_DIR", "default ~/.triton/cache")}
 
 
-def sizes(out):
+def sizes(out, iters=200, warmup=25):
     import torch
     import triton
     ns = load_notebook_defs()
     cuda_time, matmul, matmul_tuned = ns["cuda_time"], ns["matmul"], ns["matmul_tuned"]
     res = {"env": env_info(" ".join(["python"] + sys.argv)), "rows": [], "grouping_4096": None,
-           "timing": "notebook cuda_time: CUDA events, median of 200 calls after 25 warm-up calls; "
+           "timing": f"notebook cuda_time: CUDA events, median of {iters} calls after {warmup} warm-up calls; "
                      "do_bench: triton.testing.do_bench median (warmup 25 ms, rep 200 ms)"}
     torch.manual_seed(0)
     for n in (1024, 2048, 4096):
@@ -131,7 +131,7 @@ def sizes(out):
             c = fn(); torch.cuda.synchronize()
             ok = bool(torch.allclose(c, ref, atol=ATOL, rtol=RTOL))
             err = float((c.float() - ref.float()).abs().max())
-            med, p10, p90 = cuda_time(fn, iters=200, warmup=25)
+            med, p10, p90 = cuda_time(fn, iters=iters, warmup=warmup)
             db = float(triton.testing.do_bench(fn, warmup=25, rep=200, return_mode="median"))
             row[k] = {"median_ms": med, "p10_ms": p10, "p90_ms": p90, "do_bench_median_ms": db,
                       "tflops": flops / (med * 1e-3) / 1e12, "allclose": ok, "max_abs_err": err}
@@ -145,7 +145,7 @@ def sizes(out):
         if n == 4096:
             g = {}
             for gm in (8, 1):
-                med, p10, p90 = cuda_time(lambda: matmul(a, b, GROUP_M=gm), iters=200, warmup=25)
+                med, p10, p90 = cuda_time(lambda: matmul(a, b, GROUP_M=gm), iters=iters, warmup=warmup)
                 g[f"GROUP_SIZE_M={gm}"] = {"median_ms": med, "p10_ms": p10, "p90_ms": p90,
                                            "tflops": flops / (med * 1e-3) / 1e12}
             res["grouping_4096"] = g
@@ -182,5 +182,7 @@ if __name__ == "__main__":
     ap.add_argument("what", choices=["sizes", "autotune"])
     ap.add_argument("--out", required=True)
     ap.add_argument("--prewarm", action="store_true")
+    ap.add_argument("--iters", type=int, default=200, help="timed calls per measurement (notebook default: 50)")
+    ap.add_argument("--warmup", type=int, default=25, help="warm-up calls (notebook default: 10)")
     a = ap.parse_args()
-    sizes(a.out) if a.what == "sizes" else autotune(a.out, a.prewarm)
+    sizes(a.out, a.iters, a.warmup) if a.what == "sizes" else autotune(a.out, a.prewarm)

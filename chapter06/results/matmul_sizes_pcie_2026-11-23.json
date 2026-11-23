@@ -1,0 +1,509 @@
+{
+  "date": "2026-11-23",
+  "gpu": "NVIDIA A100 80GB PCIe",
+  "pcie_requests_this_batch": 1,
+  "env": {
+    "date_utc": "2026-11-23T19:24:04+00:00",
+    "platform": "Modal",
+    "kind": "A100 PCIe",
+    "host_cpu": "model name hidden by the sandbox; GenuineIntel family 6 model 106, 3300.000 MHz, avx512f,avx512_vnni",
+    "cpu_count_visible": 17,
+    "omp_num_threads": "1",
+    "gpu_name": "NVIDIA A100 80GB PCIe",
+    "gpu_memory": "81920 MiB",
+    "driver": "620.70.06",
+    "gpu_power_max_limit": "300.00 W",
+    "gpu_form_factor": "PCIe",
+    "driver_cuda_version": "13.5 (CUDA UMD version reported by driver 620.70.06 in a separate nvidia-smi probe on a Modal A100 80GB PCIe the same day)",
+    "versions": {
+      "torch": "2.6.0+cu124",
+      "triton": "3.2.0",
+      "transformers": null,
+      "sentence_transformers": null,
+      "accelerate": null,
+      "datasets": null,
+      "faiss": null,
+      "bitsandbytes": null,
+      "torch_cuda": "12.4"
+    }
+  },
+  "original_method": "chapter06_companion_executed.ipynb cell 23 uses the notebook cuda_time with its defaults: CUDA events around each call, median of 50 calls after 10 warm-up calls. That run gave hand kernel 0.0748 ms and cuBLAS 0.0430 ms at 1,024-cubed (58%).",
+  "do_bench": "triton.testing.do_bench(fn, warmup=25, rep=200, return_mode=\"median\") (Triton 3.2.0; clears L2 between calls)",
+  "commands": [
+    "python matmul_sizes.py sizes --iters 50 --warmup 10 --out /tmp/out/sizes_notebook_timer.json",
+    "python matmul_sizes.py sizes --out /tmp/out/sizes_200.json"
+  ],
+  "notebook_timer_50_calls": {
+    "table": [
+      {
+        "size": 1024,
+        "cublas": {
+          "cuda_events_median_ms": 0.03174399957060814,
+          "do_bench_median_ms": 0.01945599913597107,
+          "tflops_cuda_events": 67.6500654312118,
+          "allclose": true
+        },
+        "triton_hand": {
+          "cuda_events_median_ms": 0.06656000018119812,
+          "do_bench_median_ms": 0.02457600086927414,
+          "tflops_cuda_events": 32.263876835244076,
+          "allclose": true,
+          "pct_of_cublas_cuda_events": 47.692306917353626,
+          "pct_of_cublas_do_bench": 79.16666035073146
+        },
+        "triton_autotuned": {
+          "cuda_events_median_ms": 0.07782399654388428,
+          "do_bench_median_ms": 0.020479999482631683,
+          "tflops_cuda_events": 27.594106488595102,
+          "allclose": true,
+          "pct_of_cublas_cuda_events": 40.78947494389853,
+          "pct_of_cublas_do_bench": 94.99999818101055
+        }
+      },
+      {
+        "size": 2048,
+        "cublas": {
+          "cuda_events_median_ms": 0.08908800035715103,
+          "do_bench_median_ms": 0.07680000364780426,
+          "tflops_cuda_events": 192.84156244529493,
+          "allclose": true
+        },
+        "triton_hand": {
+          "cuda_events_median_ms": 0.15769599378108978,
+          "do_bench_median_ms": 0.11980800330638885,
+          "tflops_cuda_events": 108.94296533524324,
+          "allclose": true,
+          "pct_of_cublas_cuda_events": 56.49350894786908,
+          "pct_of_cublas_do_bench": 64.10256537820862
+        },
+        "triton_autotuned": {
+          "cuda_events_median_ms": 0.1454080045223236,
+          "do_bench_median_ms": 0.08908800035715103,
+          "tflops_cuda_events": 118.14940477614819,
+          "allclose": true,
+          "pct_of_cublas_cuda_events": 61.267603973943466,
+          "pct_of_cublas_do_bench": 86.20690030073122
+        }
+      },
+      {
+        "size": 4096,
+        "cublas": {
+          "cuda_events_median_ms": 0.5703679919242859,
+          "do_bench_median_ms": 0.6307839751243591,
+          "tflops_cuda_events": 240.9654037708422,
+          "allclose": true
+        },
+        "triton_hand": {
+          "cuda_events_median_ms": 1.0629119873046875,
+          "do_bench_median_ms": 1.0178560018539429,
+          "tflops_cuda_events": 129.30417110123588,
+          "allclose": true,
+          "pct_of_cublas_cuda_events": 53.66088620099341,
+          "pct_of_cublas_do_bench": 61.97182842911344
+        },
+        "triton_autotuned": {
+          "cuda_events_median_ms": 0.6988800168037415,
+          "do_bench_median_ms": 0.6277120113372803,
+          "tflops_cuda_events": 196.65600699325105,
+          "allclose": true,
+          "pct_of_cublas_cuda_events": 81.61171849394226,
+          "pct_of_cublas_do_bench": 100.48939063321957
+        }
+      }
+    ],
+    "grouping_4096": {
+      "GROUP_SIZE_M=8": {
+        "median_ms": 1.0598399639129639,
+        "p10_ms": 1.0554368495941162,
+        "p90_ms": 1.0618879795074463,
+        "tflops": 129.67896866671347
+      },
+      "GROUP_SIZE_M=1": {
+        "median_ms": 1.092095971107483,
+        "p10_ms": 0.9839615821838379,
+        "p90_ms": 1.1510783433914185,
+        "tflops": 125.8487872019385
+      }
+    }
+  },
+  "cuda_events_200_calls": {
+    "table": [
+      {
+        "size": 1024,
+        "cublas": {
+          "cuda_events_median_ms": 0.03174399957060814,
+          "do_bench_median_ms": 0.01945599913597107,
+          "tflops_cuda_events": 67.6500654312118,
+          "allclose": true
+        },
+        "triton_hand": {
+          "cuda_events_median_ms": 0.06656000018119812,
+          "do_bench_median_ms": 0.02457600086927414,
+          "tflops_cuda_events": 32.263876835244076,
+          "allclose": true,
+          "pct_of_cublas_cuda_events": 47.692306917353626,
+          "pct_of_cublas_do_bench": 79.16666035073146
+        },
+        "triton_autotuned": {
+          "cuda_events_median_ms": 0.07782399654388428,
+          "do_bench_median_ms": 0.020479999482631683,
+          "tflops_cuda_events": 27.594106488595102,
+          "allclose": true,
+          "pct_of_cublas_cuda_events": 40.78947494389853,
+          "pct_of_cublas_do_bench": 94.99999818101055
+        }
+      },
+      {
+        "size": 2048,
+        "cublas": {
+          "cuda_events_median_ms": 0.08806400001049042,
+          "do_bench_median_ms": 0.07782399654388428,
+          "tflops_cuda_events": 195.08390695350528,
+          "allclose": true
+        },
+        "triton_hand": {
+          "cuda_events_median_ms": 0.16076800227165222,
+          "do_bench_median_ms": 0.11980800330638885,
+          "tflops_cuda_events": 106.86124689769365,
+          "allclose": true,
+          "pct_of_cublas_cuda_events": 54.77706929621934,
+          "pct_of_cublas_do_bench": 64.95726027990173
+        },
+        "triton_autotuned": {
+          "cuda_events_median_ms": 0.1454080045223236,
+          "do_bench_median_ms": 0.08908800035715103,
+          "tflops_cuda_events": 118.14940477614819,
+          "allclose": true,
+          "pct_of_cublas_cuda_events": 60.56337840532739,
+          "pct_of_cublas_do_bench": 87.35631760943144
+        }
+      },
+      {
+        "size": 4096,
+        "cublas": {
+          "cuda_events_median_ms": 0.6492159962654114,
+          "do_bench_median_ms": 0.6379520297050476,
+          "tflops_cuda_events": 211.6998876531262,
+          "allclose": true
+        },
+        "triton_hand": {
+          "cuda_events_median_ms": 1.0659840106964111,
+          "do_bench_median_ms": 1.0373120307922363,
+          "tflops_cuda_events": 128.9315337687013,
+          "allclose": true,
+          "pct_of_cublas_cuda_events": 60.90297694439866,
+          "pct_of_cublas_do_bench": 61.5004946214514
+        },
+        "triton_autotuned": {
+          "cuda_events_median_ms": 0.6978560090065002,
+          "do_bench_median_ms": 0.6359040141105652,
+          "tflops_cuda_events": 196.94457266000245,
+          "allclose": true,
+          "pct_of_cublas_cuda_events": 93.03007896853464,
+          "pct_of_cublas_do_bench": 100.3220636368127
+        }
+      }
+    ],
+    "grouping_4096": {
+      "GROUP_SIZE_M=8": {
+        "median_ms": 1.0644479990005493,
+        "p10_ms": 1.0617855787277222,
+        "p90_ms": 1.0671104192733765,
+        "tflops": 129.11758357481685
+      },
+      "GROUP_SIZE_M=1": {
+        "median_ms": 1.1571199893951416,
+        "p10_ms": 1.1519999504089355,
+        "p90_ms": 1.1724799871444702,
+        "tflops": 118.77675153105179
+      }
+    }
+  },
+  "note": "cuBLAS at 4,096 measured 0.570 ms in the first pass and 0.649 ms in the second on the same card; the do_bench medians (0.631, 0.638 ms) are steadier. Correctness: torch.allclose(atol=1e-1, rtol=1e-2) passes for every kernel and size.",
+  "raw": {
+    "sizes_notebook_timer": {
+      "env": {
+        "date_utc": "2026-11-23T19:23:47+00:00",
+        "command": "python /repo/chapter06/scripts/matmul_sizes.py sizes --iters 50 --warmup 10 --out /tmp/out/sizes_notebook_timer.json",
+        "gpu_name": "NVIDIA A100 80GB PCIe",
+        "gpu_memory": "81920 MiB",
+        "driver": "620.70.06",
+        "gpu_power_max_limit": "300.00 W",
+        "gpu_form_factor": "PCIe",
+        "compute_capability": "8.0",
+        "driver_cuda_version": "",
+        "torch": "2.6.0+cu124",
+        "torch_cuda": "12.4",
+        "triton": "3.2.0",
+        "python": "3.11.12",
+        "host_cpu": "model name hidden by the sandbox; GenuineIntel family 6 model 106, 3300.000 MHz, avx512f,avx512_vnni",
+        "cpu_count_visible": 17,
+        "triton_cache_dir": "default ~/.triton/cache"
+      },
+      "rows": [
+        {
+          "size": 1024,
+          "cublas": {
+            "median_ms": 0.03174399957060814,
+            "p10_ms": 0.030719999223947525,
+            "p90_ms": 0.03287039995193482,
+            "do_bench_median_ms": 0.01945599913597107,
+            "tflops": 67.6500654312118,
+            "allclose": true,
+            "max_abs_err": 0.0
+          },
+          "triton_hand": {
+            "median_ms": 0.06656000018119812,
+            "p10_ms": 0.0655359998345375,
+            "p90_ms": 0.06860800087451935,
+            "do_bench_median_ms": 0.02457600086927414,
+            "tflops": 32.263876835244076,
+            "allclose": true,
+            "max_abs_err": 0.0,
+            "pct_of_cublas": 47.692306917353626,
+            "pct_of_cublas_do_bench": 79.16666035073146
+          },
+          "triton_autotuned": {
+            "median_ms": 0.07782399654388428,
+            "p10_ms": 0.07680000364780426,
+            "p90_ms": 0.0851967990398407,
+            "do_bench_median_ms": 0.020479999482631683,
+            "tflops": 27.594106488595102,
+            "allclose": true,
+            "max_abs_err": 0.0,
+            "pct_of_cublas": 40.78947494389853,
+            "pct_of_cublas_do_bench": 94.99999818101055,
+            "best_config": "BLOCK_SIZE_M: 128, BLOCK_SIZE_N: 128, BLOCK_SIZE_K: 32, GROUP_SIZE_M: 8, num_warps: 4, num_ctas: 1, num_stages: 4, num_buffers_warp_spec: 0, num_consumer_groups: 0, reg_dec_producer: 0, reg_inc_consumer: 0, maxnreg: None"
+          }
+        },
+        {
+          "size": 2048,
+          "cublas": {
+            "median_ms": 0.08908800035715103,
+            "p10_ms": 0.08806400001049042,
+            "p90_ms": 0.09011200070381165,
+            "do_bench_median_ms": 0.07680000364780426,
+            "tflops": 192.84156244529493,
+            "allclose": true,
+            "max_abs_err": 0.0
+          },
+          "triton_hand": {
+            "median_ms": 0.15769599378108978,
+            "p10_ms": 0.15667200088500977,
+            "p90_ms": 0.16179199516773224,
+            "do_bench_median_ms": 0.11980800330638885,
+            "tflops": 108.94296533524324,
+            "allclose": true,
+            "max_abs_err": 0.0,
+            "pct_of_cublas": 56.49350894786908,
+            "pct_of_cublas_do_bench": 64.10256537820862
+          },
+          "triton_autotuned": {
+            "median_ms": 0.1454080045223236,
+            "p10_ms": 0.1454080045223236,
+            "p90_ms": 0.1506303995847702,
+            "do_bench_median_ms": 0.08908800035715103,
+            "tflops": 118.14940477614819,
+            "allclose": true,
+            "max_abs_err": 0.0,
+            "pct_of_cublas": 61.267603973943466,
+            "pct_of_cublas_do_bench": 86.20690030073122,
+            "best_config": "BLOCK_SIZE_M: 128, BLOCK_SIZE_N: 128, BLOCK_SIZE_K: 32, GROUP_SIZE_M: 8, num_warps: 4, num_ctas: 1, num_stages: 4, num_buffers_warp_spec: 0, num_consumer_groups: 0, reg_dec_producer: 0, reg_inc_consumer: 0, maxnreg: None"
+          }
+        },
+        {
+          "size": 4096,
+          "cublas": {
+            "median_ms": 0.5703679919242859,
+            "p10_ms": 0.5560320019721985,
+            "p90_ms": 0.5713919997215271,
+            "do_bench_median_ms": 0.6307839751243591,
+            "tflops": 240.9654037708422,
+            "allclose": true,
+            "max_abs_err": 0.0
+          },
+          "triton_hand": {
+            "median_ms": 1.0629119873046875,
+            "p10_ms": 1.0588159561157227,
+            "p90_ms": 1.0659840106964111,
+            "do_bench_median_ms": 1.0178560018539429,
+            "tflops": 129.30417110123588,
+            "allclose": true,
+            "max_abs_err": 0.0,
+            "pct_of_cublas": 53.66088620099341,
+            "pct_of_cublas_do_bench": 61.97182842911344
+          },
+          "triton_autotuned": {
+            "median_ms": 0.6988800168037415,
+            "p10_ms": 0.6962175965309143,
+            "p90_ms": 0.707584023475647,
+            "do_bench_median_ms": 0.6277120113372803,
+            "tflops": 196.65600699325105,
+            "allclose": true,
+            "max_abs_err": 0.0,
+            "pct_of_cublas": 81.61171849394226,
+            "pct_of_cublas_do_bench": 100.48939063321957,
+            "best_config": "BLOCK_SIZE_M: 128, BLOCK_SIZE_N: 256, BLOCK_SIZE_K: 64, GROUP_SIZE_M: 8, num_warps: 8, num_ctas: 1, num_stages: 3, num_buffers_warp_spec: 0, num_consumer_groups: 0, reg_dec_producer: 0, reg_inc_consumer: 0, maxnreg: None"
+          }
+        }
+      ],
+      "grouping_4096": {
+        "GROUP_SIZE_M=8": {
+          "median_ms": 1.0598399639129639,
+          "p10_ms": 1.0554368495941162,
+          "p90_ms": 1.0618879795074463,
+          "tflops": 129.67896866671347
+        },
+        "GROUP_SIZE_M=1": {
+          "median_ms": 1.092095971107483,
+          "p10_ms": 0.9839615821838379,
+          "p90_ms": 1.1510783433914185,
+          "tflops": 125.8487872019385
+        }
+      },
+      "timing": "notebook cuda_time: CUDA events, median of 50 calls after 10 warm-up calls; do_bench: triton.testing.do_bench median (warmup 25 ms, rep 200 ms)"
+    },
+    "sizes_200": {
+      "env": {
+        "date_utc": "2026-11-23T19:23:58+00:00",
+        "command": "python /repo/chapter06/scripts/matmul_sizes.py sizes --out /tmp/out/sizes_200.json",
+        "gpu_name": "NVIDIA A100 80GB PCIe",
+        "gpu_memory": "81920 MiB",
+        "driver": "620.70.06",
+        "gpu_power_max_limit": "300.00 W",
+        "gpu_form_factor": "PCIe",
+        "compute_capability": "8.0",
+        "driver_cuda_version": "",
+        "torch": "2.6.0+cu124",
+        "torch_cuda": "12.4",
+        "triton": "3.2.0",
+        "python": "3.11.12",
+        "host_cpu": "model name hidden by the sandbox; GenuineIntel family 6 model 106, 3300.000 MHz, avx512f,avx512_vnni",
+        "cpu_count_visible": 17,
+        "triton_cache_dir": "default ~/.triton/cache"
+      },
+      "rows": [
+        {
+          "size": 1024,
+          "cublas": {
+            "median_ms": 0.03174399957060814,
+            "p10_ms": 0.030719999223947525,
+            "p90_ms": 0.03276799991726875,
+            "do_bench_median_ms": 0.01945599913597107,
+            "tflops": 67.6500654312118,
+            "allclose": true,
+            "max_abs_err": 0.0
+          },
+          "triton_hand": {
+            "median_ms": 0.06656000018119812,
+            "p10_ms": 0.06656000018119812,
+            "p90_ms": 0.06860800087451935,
+            "do_bench_median_ms": 0.02457600086927414,
+            "tflops": 32.263876835244076,
+            "allclose": true,
+            "max_abs_err": 0.0,
+            "pct_of_cublas": 47.692306917353626,
+            "pct_of_cublas_do_bench": 79.16666035073146
+          },
+          "triton_autotuned": {
+            "median_ms": 0.07782399654388428,
+            "p10_ms": 0.07680000364780426,
+            "p90_ms": 0.0798719972372055,
+            "do_bench_median_ms": 0.020479999482631683,
+            "tflops": 27.594106488595102,
+            "allclose": true,
+            "max_abs_err": 0.0,
+            "pct_of_cublas": 40.78947494389853,
+            "pct_of_cublas_do_bench": 94.99999818101055,
+            "best_config": "BLOCK_SIZE_M: 128, BLOCK_SIZE_N: 128, BLOCK_SIZE_K: 32, GROUP_SIZE_M: 8, num_warps: 4, num_ctas: 1, num_stages: 4, num_buffers_warp_spec: 0, num_consumer_groups: 0, reg_dec_producer: 0, reg_inc_consumer: 0, maxnreg: None"
+          }
+        },
+        {
+          "size": 2048,
+          "cublas": {
+            "median_ms": 0.08806400001049042,
+            "p10_ms": 0.08806400001049042,
+            "p90_ms": 0.08908800035715103,
+            "do_bench_median_ms": 0.07782399654388428,
+            "tflops": 195.08390695350528,
+            "allclose": true,
+            "max_abs_err": 0.0
+          },
+          "triton_hand": {
+            "median_ms": 0.16076800227165222,
+            "p10_ms": 0.159743994474411,
+            "p90_ms": 0.16189439594745636,
+            "do_bench_median_ms": 0.11980800330638885,
+            "tflops": 106.86124689769365,
+            "allclose": true,
+            "max_abs_err": 0.0,
+            "pct_of_cublas": 54.77706929621934,
+            "pct_of_cublas_do_bench": 64.95726027990173
+          },
+          "triton_autotuned": {
+            "median_ms": 0.1454080045223236,
+            "p10_ms": 0.1454080045223236,
+            "p90_ms": 0.14745600521564484,
+            "do_bench_median_ms": 0.08908800035715103,
+            "tflops": 118.14940477614819,
+            "allclose": true,
+            "max_abs_err": 0.0,
+            "pct_of_cublas": 60.56337840532739,
+            "pct_of_cublas_do_bench": 87.35631760943144,
+            "best_config": "BLOCK_SIZE_M: 128, BLOCK_SIZE_N: 128, BLOCK_SIZE_K: 32, GROUP_SIZE_M: 8, num_warps: 4, num_ctas: 1, num_stages: 4, num_buffers_warp_spec: 0, num_consumer_groups: 0, reg_dec_producer: 0, reg_inc_consumer: 0, maxnreg: None"
+          }
+        },
+        {
+          "size": 4096,
+          "cublas": {
+            "median_ms": 0.6492159962654114,
+            "p10_ms": 0.5734400153160095,
+            "p90_ms": 0.6502400040626526,
+            "do_bench_median_ms": 0.6379520297050476,
+            "tflops": 211.6998876531262,
+            "allclose": true,
+            "max_abs_err": 0.0
+          },
+          "triton_hand": {
+            "median_ms": 1.0659840106964111,
+            "p10_ms": 1.0639359951019287,
+            "p90_ms": 1.0680320262908936,
+            "do_bench_median_ms": 1.0373120307922363,
+            "tflops": 128.9315337687013,
+            "allclose": true,
+            "max_abs_err": 0.0,
+            "pct_of_cublas": 60.90297694439866,
+            "pct_of_cublas_do_bench": 61.5004946214514
+          },
+          "triton_autotuned": {
+            "median_ms": 0.6978560090065002,
+            "p10_ms": 0.6922240257263184,
+            "p90_ms": 0.7271423935890198,
+            "do_bench_median_ms": 0.6359040141105652,
+            "tflops": 196.94457266000245,
+            "allclose": true,
+            "max_abs_err": 0.0,
+            "pct_of_cublas": 93.03007896853464,
+            "pct_of_cublas_do_bench": 100.3220636368127,
+            "best_config": "BLOCK_SIZE_M: 128, BLOCK_SIZE_N: 256, BLOCK_SIZE_K: 64, GROUP_SIZE_M: 8, num_warps: 8, num_ctas: 1, num_stages: 3, num_buffers_warp_spec: 0, num_consumer_groups: 0, reg_dec_producer: 0, reg_inc_consumer: 0, maxnreg: None"
+          }
+        }
+      ],
+      "grouping_4096": {
+        "GROUP_SIZE_M=8": {
+          "median_ms": 1.0644479990005493,
+          "p10_ms": 1.0617855787277222,
+          "p90_ms": 1.0671104192733765,
+          "tflops": 129.11758357481685
+        },
+        "GROUP_SIZE_M=1": {
+          "median_ms": 1.1571199893951416,
+          "p10_ms": 1.1519999504089355,
+          "p90_ms": 1.1724799871444702,
+          "tflops": 118.77675153105179
+        }
+      },
+      "timing": "notebook cuda_time: CUDA events, median of 200 calls after 25 warm-up calls; do_bench: triton.testing.do_bench median (warmup 25 ms, rep 200 ms)"
+    }
+  }
+}
