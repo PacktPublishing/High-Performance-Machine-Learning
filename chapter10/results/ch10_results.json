@@ -35,6 +35,36 @@
    "tokens_per_s": 10693.746228085733,
    "gpu_hours": 0.34512554546197255,
    "cost_usd": 1.3632459045747916
+  },
+  "Gemma-2B|QLoRA r=16|T4": {
+   "peak_mem_gb": 4.73240832,
+   "tokens_per_s": 849.2037923433129,
+   "gpu_hours": 4.346053365842653,
+   "cost_usd": 2.5641714858471647,
+   "measured_steps": 100,
+   "measured_tokens": 1638400,
+   "gpu_hours_extrapolated": true,
+   "source": "results/modal/runs/gemma-2b-qlora-r16-s0-T4"
+  },
+  "Llama-3.1-8B|LoRA r=16|A100": {
+   "peak_mem_gb": 21.439919616,
+   "tokens_per_s": 2399.5103106877204,
+   "gpu_hours": 1.5563189358678025,
+   "cost_usd": 3.890797339669506,
+   "measured_steps": 200,
+   "measured_tokens": 3276800,
+   "gpu_hours_extrapolated": true,
+   "source": "results/modal/runs/llama-3.1-8b-lora-r16-s0-A100"
+  },
+  "Llama-3.1-8B|QLoRA r=16|A100": {
+   "peak_mem_gb": 9.933097984,
+   "tokens_per_s": 2443.499364973522,
+   "gpu_hours": 1.528301331632963,
+   "cost_usd": 3.8207533290824074,
+   "measured_steps": 200,
+   "measured_tokens": 3276800,
+   "gpu_hours_extrapolated": true,
+   "source": "results/modal/runs/llama-3.1-8b-qlora-r16-s0-A100"
   }
  },
  "quality": {
@@ -263,37 +293,43 @@
    "hotpot_em": 49.2,
    "ifeval": 42.69870609981516,
    "gpu_hours": 0.1533317537440194,
-   "tpot_ms_h100": 1.481060102378251
+   "tpot_ms_h100": 1.481060102378251,
+   "tpot_ms": 2.559817132812503
   },
   "Llama-3.2-1B, sequence-level KD": {
    "hotpot_em": 51.1,
    "ifeval": 43.80776340110906,
    "gpu_hours": 0.14927941785918342,
-   "tpot_ms_h100": 1.4765581090614432
+   "tpot_ms_h100": 1.4765581090614432,
+   "tpot_ms": 2.559817132812503
   },
   "Llama-3.2-1B, token-level KD": {
    "hotpot_em": 49.5,
    "ifeval": 39.55637707948244,
    "gpu_hours": 0.3487892240948147,
-   "tpot_ms_h100": 1.475484350521583
+   "tpot_ms_h100": 1.475484350521583,
+   "tpot_ms": 2.559817132812503
   },
   "Llama-3.2-1B, on-policy KD": {
    "hotpot_em": 51.1,
    "ifeval": 46.02587800369686,
    "gpu_hours": 0.30138926797442966,
-   "tpot_ms_h100": 1.4754972035007086
+   "tpot_ms_h100": 1.4754972035007086,
+   "tpot_ms": 2.559817132812503
   },
   "Gemma-2B, sequence-level KD": {
    "hotpot_em": 52.5,
    "ifeval": 11.829944547134936,
    "gpu_hours": 0.2367314934068256,
-   "tpot_ms_h100": 2.4560173515055794
+   "tpot_ms_h100": 2.4560173515055794,
+   "tpot_ms": 4.403740546874868
   },
   "Gemma-2B, SFT on reference answers": {
    "hotpot_em": 53.1,
    "ifeval": 10.905730129390019,
    "gpu_hours": 0.2326628957192103,
-   "tpot_ms_h100": 2.446809219691204
+   "tpot_ms_h100": 2.446809219691204,
+   "tpot_ms": 4.403740546874868
   }
  },
  "rebase": {
@@ -1982,7 +2018,114 @@
   "eval_sizes": "HotpotQA 1,000; abstention 500; KL 200 prompts; GSM8K CoT 8-shot 250; IFEval 541; ARC-C 0-shot 500; MMLU 5-shot 14,042",
   "forgetting": "quality forget_avg = mean paired difference over GSM8K, IFEval, ARC-C and MMLU (5-shot, 14,042 items); rank-sweep forgetting = mean over GSM8K, IFEval and ARC-C (MMLU not run for the rank sweep)",
   "gemma_decoding": "Gemma-2B: system text in the user turn; generation stops at <end_of_turn>",
-  "tpot": "distill tpot_ms_h100 is the H100 single-request TPOT; the A100 column of the distillation table is still pending",
-  "not_measured_here": "T4 and A100 rows (training table), A100 TPOT (distillation): see BRANCH_D_MODAL_PLAN.md"
+  "tpot": "distill tpot_ms: single-request TPOT on the A100-SXM4-80GB (Modal, 2026-11-22), measured on the base model of each student's architecture; teacher not measured on the A100. tpot_ms_h100: H100",
+  "modal_rows": "T4 and A100 training rows: Modal, 2026-11-21/22, 100 (T4) and 200 (A100) optimizer steps; GPU-hours and cost extrapolated to the full run at the measured tokens/s",
+  "verdict": "Draft verdicts for the author to review"
+ },
+ "train_time_check": {
+  "_peak_tflops": {
+   "H100": 989.0,
+   "A100": 312.0,
+   "T4": 65.0
+  },
+  "_assumed_fraction_of_peak": 0.4,
+  "_flops_per_token": "6N (LoRA, QLoRA) or 8N (full FT): forward, backward, recompute",
+  "gemma-2b-lora-r16-s0-H100": {
+   "tokens": 13286466,
+   "train_hours": 0.345,
+   "lower_bound_hours_at_40pct": 0.14,
+   "measured_over_bound": 2.46,
+   "achieved_fraction_of_peak_pct": 16.3
+  },
+  "gemma-2b-qlora-r16-s0-H100": {
+   "tokens": 13286466,
+   "train_hours": 0.332,
+   "lower_bound_hours_at_40pct": 0.14,
+   "measured_over_bound": 2.36,
+   "achieved_fraction_of_peak_pct": 16.9
+  },
+  "gemma-2b-full-r16-s0-H100": {
+   "tokens": 13286466,
+   "train_hours": 0.294,
+   "lower_bound_hours_at_40pct": 0.187,
+   "measured_over_bound": 1.57,
+   "achieved_fraction_of_peak_pct": 25.5
+  },
+  "llama-3.1-8b-lora-r16-s0-H100": {
+   "tokens": 13443852,
+   "train_hours": 0.769,
+   "lower_bound_hours_at_40pct": 0.455,
+   "measured_over_bound": 1.69,
+   "achieved_fraction_of_peak_pct": 23.7
+  },
+  "llama-3.1-8b-qlora-r16-s0-H100": {
+   "tokens": 13443852,
+   "train_hours": 0.737,
+   "lower_bound_hours_at_40pct": 0.455,
+   "measured_over_bound": 1.62,
+   "achieved_fraction_of_peak_pct": 24.7
+  },
+  "llama-3.1-8b-full-s0-H100x2": {
+   "tokens": 13443852,
+   "train_hours": 0.476,
+   "lower_bound_hours_at_40pct": 0.303,
+   "measured_over_bound": 1.57,
+   "achieved_fraction_of_peak_pct": 25.5
+  },
+  "gemma-2b-qlora-r16-s0-T4": {
+   "tokens": 1638400,
+   "train_hours": 0.536,
+   "lower_bound_hours_at_40pct": 0.264,
+   "measured_over_bound": 2.03,
+   "achieved_fraction_of_peak_pct": 19.7
+  },
+  "llama-3.1-8b-lora-r16-s0-A100": {
+   "tokens": 3276800,
+   "train_hours": 0.379,
+   "lower_bound_hours_at_40pct": 0.351,
+   "measured_over_bound": 1.08,
+   "achieved_fraction_of_peak_pct": 37.1
+  },
+  "llama-3.1-8b-qlora-r16-s0-A100": {
+   "tokens": 3276800,
+   "train_hours": 0.373,
+   "lower_bound_hours_at_40pct": 0.351,
+   "measured_over_bound": 1.06,
+   "achieved_fraction_of_peak_pct": 37.7
+  }
+ },
+ "verdict": {
+  "peak_mem": {
+   "measured": "LoRA and QLoRA: static + 2.3 to 4.8 GB (Gemma-2B 8.4 and 4.7 GB; Llama-3.1-8B 21.5 and 10.0 GB); Llama-3.1-8B full FT 71.2 GB/GPU; Gemma-2B full FT 24.4 GB",
+   "verdict": "Confirmed for LoRA, QLoRA and FSDP full FT. Gemma-2B full FT is below the 16-byte estimate: the single-GPU run is pure BF16, about 8 bytes per parameter"
+  },
+  "train_time": {
+   "measured": "H100 runs at 16 to 26% of peak BF16 throughput, 1.6 to 2.5 times the 40% bound; QLoRA tokens/s vs LoRA: Gemma-2B +4%, Llama-3.1-8B +4% (H100), +2% (A100); LoRA vs full FT tokens/s per GPU: Llama-3.1-8B +24%, Gemma-2B -15%",
+   "verdict": "Above the bound: confirmed. LoRA faster than full FT: confirmed on Llama-3.1-8B (below 4/3), not on Gemma-2B. QLoRA slower than LoRA: not confirmed (2 to 4% faster)"
+  },
+  "quality": {
+   "measured": "HotpotQA EM, paired: Gemma-2B full FT vs LoRA +2.5 \u00b1 1.1, QLoRA vs LoRA -2.6 \u00b1 1.0 (3 seeds: 50.9 vs 52.6); Llama-3.1-8B QLoRA vs LoRA +0.0 \u00b1 0.8, full FT vs LoRA +3.5 \u00b1 1.2",
+   "verdict": "LoRA within 2.5 to 3.5 points of full FT. QLoRA equal to LoRA on Llama-3.1-8B; 1.6 points below on Gemma-2B (3-seed means; seed SD 0.2 and 0.9)"
+  },
+  "forgetting": {
+   "measured": "Mean forgetting (GSM8K, IFEval, ARC-C, MMLU): Gemma-2B LoRA -1.6, full FT -0.3; Llama-3.1-8B IFEval LoRA -13.1, full FT -44.7; Llama-3.1-8B LoRA -6.4, with 10% general data -10.1",
+   "verdict": "Full FT > LoRA: confirmed on Llama-3.1-8B, not on Gemma-2B. General-data mixing reduces forgetting: not confirmed (it increased)"
+  },
+  "serving": {
+   "measured": "TPOT base 6.47 ms, merged 6.45 ms, unmerged 7.86 ms (+22%)",
+   "verdict": "Confirmed"
+  },
+  "distill": {
+   "measured": "Llama-3.2-1B HotpotQA EM vs SFT, paired: on-policy +1.9 \u00b1 1.3, token-level +0.3 \u00b1 0.9, sequence-level +1.9 \u00b1 0.7; IFEval on-policy 46.0 vs SFT 42.7",
+   "verdict": "On-policy KD > SFT: confirmed on IFEval, within 1.5 standard errors on EM. Token-level KD > SFT: not confirmed. Sequence-level KD > SFT on EM"
+  },
+  "probe": {
+   "measured": "Accuracy on new facts: retrieval 79.0%, closed-book LoRA 2.5%, closed-book base 3.0% (200 questions)",
+   "verdict": "Confirmed"
+  },
+  "rebase": {
+   "measured": "Same recipe; 0.89 vs 0.77 H100-hours; EM gain +3.5 (Qwen3-VL-8B, base 59.6) vs +26.4 (Llama-3.1-8B, base 35.7)",
+   "verdict": "Confirmed (cost 16% higher)"
+  }
  }
 }

@@ -468,5 +468,496 @@
    "packages": {},
    "exp": "R2"
   }
- }
+ },
+ "by_type": {
+  "E0": {
+   "all": {
+    "acc": 56.590084643288996,
+    "se": 1.2187002175723671,
+    "n": 1654
+   },
+   "boolean": {
+    "acc": 67.10526315789474,
+    "se": 3.1115306017332807,
+    "n": 228
+   },
+   "compare-contrast": {
+    "acc": 41.776315789473685,
+    "se": 2.8286428643371706,
+    "n": 304
+   },
+   "enumerative": {
+    "acc": 46.7680608365019,
+    "se": 3.0766844094411567,
+    "n": 263
+   },
+   "extractive": {
+    "acc": 62.30529595015577,
+    "se": 1.9126483782072972,
+    "n": 642
+   },
+   "multi-hop": {
+    "acc": 57.34265734265734,
+    "se": 4.135878647862917,
+    "n": 143
+   },
+   "numerical": {
+    "acc": 52.162849872773535,
+    "se": 2.5198055583674,
+    "n": 393
+   },
+   "open-ended": {
+    "acc": 51.01010101010101,
+    "se": 2.51208176374715,
+    "n": 396
+   }
+  },
+  "E1": {
+   "all": {
+    "acc": 44.55864570737606,
+    "se": 1.2221236654302547,
+    "n": 1654
+   },
+   "boolean": {
+    "acc": 54.824561403508774,
+    "se": 3.295879676031302,
+    "n": 228
+   },
+   "compare-contrast": {
+    "acc": 36.51315789473684,
+    "se": 2.7614028483509236,
+    "n": 304
+   },
+   "enumerative": {
+    "acc": 43.72623574144487,
+    "se": 3.0587653029962887,
+    "n": 263
+   },
+   "extractive": {
+    "acc": 44.39252336448598,
+    "se": 1.9608934505146585,
+    "n": 642
+   },
+   "multi-hop": {
+    "acc": 44.75524475524475,
+    "se": 4.158143532794289,
+    "n": 143
+   },
+   "numerical": {
+    "acc": 29.516539440203562,
+    "se": 2.3008062772500515,
+    "n": 393
+   },
+   "open-ended": {
+    "acc": 46.717171717171716,
+    "se": 2.507173062196081,
+    "n": 396
+   }
+  },
+  "E2": {
+   "all": {
+    "acc": 45.214723926380366,
+    "se": 0.8716920174476627,
+    "n": 3260
+   },
+   "boolean": {
+    "acc": 56.61252900232019,
+    "se": 2.387260494512979,
+    "n": 431
+   },
+   "compare-contrast": {
+    "acc": 40.8130081300813,
+    "se": 1.9818687003272095,
+    "n": 615
+   },
+   "enumerative": {
+    "acc": 46.06525911708253,
+    "se": 2.1837463689285515,
+    "n": 521
+   },
+   "extractive": {
+    "acc": 44.6515397082658,
+    "se": 1.4151856354935943,
+    "n": 1234
+   },
+   "multi-hop": {
+    "acc": 45.86466165413534,
+    "se": 3.055193394790009,
+    "n": 266
+   },
+   "numerical": {
+    "acc": 30.440414507772022,
+    "se": 1.6561326663384321,
+    "n": 772
+   },
+   "open-ended": {
+    "acc": 45.42032622333752,
+    "se": 1.7636460565892034,
+    "n": 797
+   }
+  },
+  "E3": {
+   "all": {
+    "acc": 41.627087482763905,
+    "se": 0.6101503826941935,
+    "n": 6527
+   },
+   "boolean": {
+    "acc": 56.067961165048544,
+    "se": 1.7289580478394115,
+    "n": 824
+   },
+   "compare-contrast": {
+    "acc": 37.70992366412214,
+    "se": 1.339064850762769,
+    "n": 1310
+   },
+   "enumerative": {
+    "acc": 39.348837209302324,
+    "se": 1.4899829033531573,
+    "n": 1075
+   },
+   "extractive": {
+    "acc": 39.045183290707584,
+    "se": 1.0072186156291965,
+    "n": 2346
+   },
+   "multi-hop": {
+    "acc": 39.824561403508774,
+    "se": 2.0504430198960457,
+    "n": 570
+   },
+   "numerical": {
+    "acc": 24.814063556457064,
+    "se": 1.1231381123348927,
+    "n": 1479
+   },
+   "open-ended": {
+    "acc": 44.02852049910874,
+    "se": 1.2100641135841588,
+    "n": 1683
+   }
+  },
+  "E4": {
+   "all": {
+    "acc": 41.73433430366171,
+    "se": 0.6103743787816437,
+    "n": 6527
+   },
+   "boolean": {
+    "acc": 55.46116504854369,
+    "se": 1.7314115671735686,
+    "n": 824
+   },
+   "compare-contrast": {
+    "acc": 38.62595419847328,
+    "se": 1.3452293660964376,
+    "n": 1310
+   },
+   "enumerative": {
+    "acc": 39.906976744186046,
+    "se": 1.4935927907916344,
+    "n": 1075
+   },
+   "extractive": {
+    "acc": 39.428815004262574,
+    "se": 1.008964517727558,
+    "n": 2346
+   },
+   "multi-hop": {
+    "acc": 40.0,
+    "se": 2.051956704170308,
+    "n": 570
+   },
+   "numerical": {
+    "acc": 25.15212981744422,
+    "se": 1.1282179871364453,
+    "n": 1479
+   },
+   "open-ended": {
+    "acc": 43.731431966726085,
+    "se": 1.2091709997851667,
+    "n": 1683
+   }
+  },
+  "E5": {
+   "all": {
+    "acc": 43.40900346287034,
+    "se": 0.4347858852777403,
+    "n": 12995
+   },
+   "boolean": {
+    "acc": 58.869987849331714,
+    "se": 1.2128622432549507,
+    "n": 1646
+   },
+   "compare-contrast": {
+    "acc": 37.397157816005986,
+    "se": 0.9356978303119358,
+    "n": 2674
+   },
+   "enumerative": {
+    "acc": 42.50936329588015,
+    "se": 1.06964640316017,
+    "n": 2136
+   },
+   "extractive": {
+    "acc": 41.63793103448276,
+    "se": 0.7236872482795309,
+    "n": 4640
+   },
+   "multi-hop": {
+    "acc": 37.97250859106529,
+    "se": 1.4224934095982718,
+    "n": 1164
+   },
+   "numerical": {
+    "acc": 27.39071038251366,
+    "se": 0.8241612773792281,
+    "n": 2928
+   },
+   "open-ended": {
+    "acc": 46.96601941747573,
+    "se": 0.8693114257402768,
+    "n": 3296
+   }
+  },
+  "E6": {
+   "all": {
+    "acc": 43.53083434099153,
+    "se": 1.2190918517373386,
+    "n": 1654
+   },
+   "boolean": {
+    "acc": 55.26315789473684,
+    "se": 3.292934467581369,
+    "n": 228
+   },
+   "compare-contrast": {
+    "acc": 33.88157894736842,
+    "se": 2.7146026308324833,
+    "n": 304
+   },
+   "enumerative": {
+    "acc": 44.48669201520912,
+    "se": 3.064331432714828,
+    "n": 263
+   },
+   "extractive": {
+    "acc": 42.52336448598131,
+    "se": 1.9511558685429802,
+    "n": 642
+   },
+   "multi-hop": {
+    "acc": 39.86013986013986,
+    "se": 4.094327678053291,
+    "n": 143
+   },
+   "numerical": {
+    "acc": 27.2264631043257,
+    "se": 2.245360507763808,
+    "n": 393
+   },
+   "open-ended": {
+    "acc": 47.22222222222222,
+    "se": 2.5087140809471764,
+    "n": 396
+   }
+  },
+  "E7": {
+   "all": {
+    "acc": 42.745518614983915,
+    "se": 0.6123408483142715,
+    "n": 6527
+   },
+   "boolean": {
+    "acc": 58.00970873786408,
+    "se": 1.719337676559528,
+    "n": 824
+   },
+   "compare-contrast": {
+    "acc": 35.725190839694655,
+    "se": 1.3239513561544676,
+    "n": 1310
+   },
+   "enumerative": {
+    "acc": 43.44186046511628,
+    "se": 1.5118111134142342,
+    "n": 1075
+   },
+   "extractive": {
+    "acc": 41.005967604433074,
+    "se": 1.015461750441731,
+    "n": 2346
+   },
+   "multi-hop": {
+    "acc": 39.12280701754386,
+    "se": 2.044112930250738,
+    "n": 570
+   },
+   "numerical": {
+    "acc": 27.518593644354294,
+    "se": 1.1612944120573157,
+    "n": 1479
+   },
+   "open-ended": {
+    "acc": 46.642899584076055,
+    "se": 1.2160370936732101,
+    "n": 1683
+   }
+  }
+ },
+ "tokens_per_task": {
+  "E0": {
+   "rate": 1.0,
+   "prompt": 9237.683192261185,
+   "cached": 480.81257557436516,
+   "uncached": 8756.87061668682,
+   "output": 202.35550181378477
+  },
+  "E1": {
+   "rate": 1.0,
+   "prompt": 12309.950333131435,
+   "cached": 62.071471835251366,
+   "uncached": 12247.878861296183,
+   "output": 241.64082374318596
+  },
+  "E2": {
+   "rate": 2.0,
+   "prompt": 12038.367484662576,
+   "cached": 7336.451533742331,
+   "uncached": 4701.915950920245,
+   "output": 262.0739263803681
+  },
+  "E3": {
+   "rate": 4.0,
+   "prompt": 8378.647157959245,
+   "cached": 5923.147540983607,
+   "uncached": 2455.4996169756387,
+   "output": 263.96583422705686
+  },
+  "E4": {
+   "rate": 4.0,
+   "prompt": 8377.696951126092,
+   "cached": 5924.0128696185075,
+   "uncached": 2453.684081507585,
+   "output": 263.50038302436036
+  },
+  "E5": {
+   "rate": 8.0,
+   "prompt": 8227.020170913851,
+   "cached": 5907.019170066979,
+   "uncached": 2320.0010008468716,
+   "output": 275.048656555547
+  },
+  "E6": {
+   "rate": 1.0,
+   "prompt": 8158.559927360775,
+   "cached": 5882.547215496368,
+   "uncached": 2276.012711864407,
+   "output": 268.1688861985472
+  },
+  "E7": {
+   "rate": 4.0,
+   "prompt": 8235.138348398958,
+   "cached": 5868.305806649303,
+   "uncached": 2366.8325417496544,
+   "output": 272.51172054542667
+  }
+ },
+ "p50_by_rate": {
+  "E0": {
+   "0.5": 3.061896562576294,
+   "1.0": 4.646140098571777,
+   "2.0": 74.76801359653473
+  },
+  "E1": {
+   "0.5": 3.296992778778076,
+   "1.0": 4.430120825767517,
+   "2.0": 86.14227712154388
+  },
+  "E2": {
+   "0.5": 2.8293895721435547,
+   "1.0": 3.1261749267578125,
+   "2.0": 4.876166820526123,
+   "4.0": 276.96524930000305
+  },
+  "E3": {
+   "0.5": 2.379873514175415,
+   "1.0": 2.3210986852645874,
+   "2.0": 2.713623046875,
+   "4.0": 3.9456653594970703,
+   "8.0": 241.97993278503418
+  },
+  "E4": {
+   "0.5": 2.402336001396179,
+   "1.0": 2.370185136795044,
+   "2.0": 2.7578073740005493,
+   "4.0": 3.9447563886642456,
+   "8.0": 239.67206072807312
+  },
+  "E5": {
+   "0.5": 1.8307738304138184,
+   "1.0": 1.83339524269104,
+   "2.0": 2.0238912105560303,
+   "4.0": 2.747145414352417,
+   "8.0": 8.204482078552246
+  },
+  "E6": {
+   "0.5": 1.3989979028701782,
+   "1.0": 1.4074530601501465
+  },
+  "E7": {
+   "0.5": 1.842731237411499,
+   "1.0": 1.8878707885742188,
+   "2.0": 2.090247631072998,
+   "4.0": 3.0088298320770264,
+   "8.0": 26.427817702293396
+  }
+ },
+ "predictions": [
+  {
+   "n": 1,
+   "prediction": "Hybrid retrieval above either retriever; page-image above text by several nDCG@10 points",
+   "measured": "nDCG@10 text 48.3, page 69.5, hybrid 60.3",
+   "verdict": "Hybrid above both: not confirmed (below page-image). Page-image above text: confirmed (+21.3)"
+  },
+  {
+   "n": 2,
+   "prediction": "Agent loop raises accuracy on multi-hop and numerical questions; task time multiplied by the steps",
+   "measured": "E0 to E1 at 1 task/s: multi-hop 57.3 to 44.8%, numerical 52.2 to 29.5%, all 56.6 to 44.6%; 4.0 steps; p50 4.65 to 4.43 s",
+   "verdict": "Not confirmed: accuracy fell, most on numerical questions; task time did not rise, because E0 sends three full-resolution pages (9,238 prompt tokens) in one call"
+  },
+  {
+   "n": 3,
+   "prediction": "Stable prompt (E2): prefix hit rate above 85%; decode most of the model time per step",
+   "measured": "hit rate E1 0.5%, E2 60.9%, E3 to E7 70 to 73%",
+   "verdict": "Not confirmed (61 to 73%); the decode share of model time was not measured"
+  },
+  {
+   "n": 4,
+   "prediction": "Resolution limit (E3): the largest single reduction in prefill; accuracy cost to check",
+   "measured": "prompt tokens per task E2 12,038, E3 8,379 (-30%); uncached E1 12,248, E2 4,702, E3 2,455; accuracy 45.2 to 41.6%, numerical 30.4 to 24.8%; goodput 2 to 4 tasks/s",
+   "verdict": "Largest reduction in prompt tokens: confirmed. Largest reduction in uncached prefill: not confirmed (the stable prompt of E2 removed more). Accuracy cost 3.6 points, 5.6 on numerical questions"
+  },
+  {
+   "n": 5,
+   "prediction": "After prefill is cached, FP8 (E5) and speculative decoding (E6) reduce task time more than further prefill techniques",
+   "measured": "p50 at 1 task/s: E3 2.32, E4 2.37, E5 1.83, E6 1.41, E7 1.89 s; goodput E4 4, E5 8 tasks/s",
+   "verdict": "Confirmed: FP8 and speculative decoding each -23%; E4 and E7 0 to +3%"
+  },
+  {
+   "n": 6,
+   "prediction": "Round-robin hit rate about 1/N of a single replica's; prefix-aware routing restores it",
+   "measured": "4 replicas at 8 tasks/s: round-robin 53.1%, affinity 70.7%, prefix-aware 82.6%; single replica (E7) 71.0%",
+   "verdict": "Prefix-aware routing restores it: confirmed (above the single replica). Round-robin 1/N: not confirmed: 75% of the single-replica hit rate, consistent with every replica caching the shared system prompt"
+  },
+  {
+   "n": 7,
+   "prediction": "H100 lowest cost per task at moderate load",
+   "measured": "USD per task: H100 0.00027, L40S 0.00054, A100 0.00069",
+   "verdict": "Confirmed"
+  }
+ ],
+ "_note": "Draft verdicts for the author to review; Qwen3-VL-8B, one H100 80GB HBM3 (SXM), vLLM 0.33.0, 2026-11-21/22"
 }
