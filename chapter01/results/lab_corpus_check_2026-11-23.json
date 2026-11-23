@@ -1,0 +1,174 @@
+{
+  "date": "2026-11-23",
+  "notebook": "chapter01/chapter01_lab.ipynb (main pipeline switched to the 2,000 WikiText-2 passages)",
+  "corpus": "Salesforce/wikitext wikitext-2-raw-v1 train, paragraphs of 200-800 characters, first 2,000 (as chapter02_lab.ipynb); all-MiniLM-L6-v2 on the cpu and gpu_16gb tiers, max_seq_length 256 (mean 109 tokens, 3 passages truncated); faiss.IndexFlatIP in memory",
+  "command": "nbclient execution of the notebook top to bottom on Modal, in-notebook !pip line executed (Book tools/runs_2026-11-23b/modal_nb.py)",
+  "questions": {
+    "cell15_single_query": {
+      "old": "Who wrote Hamlet?",
+      "new": "Who wrote The Importance of Being Earnest?"
+    },
+    "cell17_waterfall_query": {
+      "old": "What is the capital of France?",
+      "new": "What is the capital of Ireland?"
+    },
+    "cell21_serial_queries": {
+      "old": [
+        "Who wrote Hamlet?",
+        "What is the capital of France?",
+        "Who painted the Mona Lisa?",
+        "What year did World War II end?",
+        "Who discovered penicillin?",
+        "What is the largest planet in the solar system?",
+        "Who composed the Ninth Symphony?",
+        "What is the boiling point of water in Celsius?"
+      ],
+      "new": [
+        "What is the chemical symbol for antimony?",
+        "Which band recorded the album South of Heaven?",
+        "Who won the Boat Race in 1900?",
+        "Who created the Flower Fairies illustrations?",
+        "Who wrote and drew The Crab with the Golden Claws?",
+        "In which country is the Krak des Chevaliers?",
+        "Which team did Michael Jordan win six NBA championships with?",
+        "Who discovered the neutrino with Clyde Cowan?"
+      ]
+    },
+    "check": "For every new question the answer string appears in the corpus and in at least one of the top-3 passages retrieved by all-MiniLM-L6-v2 + IndexFlatIP (checked on the Mac CPU before the change)."
+  },
+  "t4": {
+    "env": {
+      "date_utc": "2026-11-23T19:24:58+00:00",
+      "platform": "Modal",
+      "kind": "T4",
+      "host_cpu": "model name hidden by the sandbox; GenuineIntel family 6 model 85, 3090.030 MHz, avx512f,avx512_vnni",
+      "cpu_count_visible": 17,
+      "omp_num_threads": "1",
+      "gpu_name": "Tesla T4",
+      "gpu_memory": "15360 MiB",
+      "driver": "620.70.06",
+      "gpu_power_max_limit": "70.00 W",
+      "gpu_form_factor": "PCIe",
+      "driver_cuda_version": "13.5 (from a separate nvidia-smi probe)",
+      "versions": {
+        "torch": "2.14.1+cu130",
+        "triton": "3.8.0",
+        "transformers": "5.20.2",
+        "sentence_transformers": "6.2.0",
+        "accelerate": "1.16.0",
+        "datasets": "5.2.0",
+        "faiss": "1.16.0",
+        "bitsandbytes": "0.50.2",
+        "torch_cuda": "13.0"
+      }
+    },
+    "status": "completed",
+    "first_failing_cell": null,
+    "notebook_elapsed_s": 73.3,
+    "cell_seconds": {
+      "2": 3.1,
+      "4": 3.1,
+      "7": 0.7,
+      "8": 0.8,
+      "11": 14.5,
+      "13": 6.9,
+      "14": 27.3,
+      "15": 2.6,
+      "17": 1.6,
+      "18": 0.0,
+      "21": 4.6
+    },
+    "index_build_cell11_s": 14.5,
+    "timing_cell": {
+      "embed_s": {
+        "32": 2.64,
+        "128": 2.98
+      },
+      "embed_plus_index_s": {
+        "32": 2.64,
+        "128": 2.98
+      },
+      "output": "2000 passages, mean 109 tokens, 3 truncated at 256\nbatch  32: embed   2.64 s (  757.7 passages/s), FAISS add 1.4 ms, total   2.64 s on cuda\nbatch 128: embed   2.98 s (  670.8 passages/s), FAISS add 1.8 ms, total   2.98 s on cuda\nself-check passed: 2000 vectors of dim 384 indexed"
+    },
+    "compare_2026_11_23": {
+      "reference_s": 2.8,
+      "batch32_s": 2.64,
+      "difference_pct": -5.7,
+      "within_20pct": true
+    },
+    "answer_cell15": "Q: Who wrote The Importance of Being Earnest?\nA: To determine who wrote The Importance of Being Earnest, we can look at the information provided in the first sentence. The text states, \"The Importance of Being Earnest has been revived many times since its premiere.\" This indicates that the play was written by Oscar Wilde. Therefore, Oscar Wilde wrote The Importance of Being Earn",
+    "waterfall_cell17_tail": "oding, KV quant. (Ch. 8-9)\n----------------------------------------------------------------------------------------------------\nTotal                          779.9    LLM decode dominates                    \n\nDecode share of total: 90.8%\nself-check passed: decode is the largest stage (91% of total)",
+    "serial_cell21": "Serial run of 8 queries:\n  total wall-clock:       4.62 s\n  per-query latency:      577 ms\n  throughput:             1.73 queries/s\n  cost per query:         $0.00006  (at $0.4/hr)\n\nAt 10 M queries/day (Bing-scale):  $641/day\nAt 100 M queries/day (ChatGPT-scale): $6,413/day"
+  },
+  "cpu_2vcpu": {
+    "env": {
+      "date_utc": "2026-11-23T22:16:24+00:00",
+      "platform": "Modal",
+      "kind": "CPU, 2 vCPU",
+      "host_cpu": "model name hidden by the sandbox; AuthenticAMD family 25 model 17, 3699.949 MHz, avx512f,avx512_vnni,avx512_bf16",
+      "cpu_count_visible": 17,
+      "omp_num_threads": "2",
+      "versions": {
+        "torch": "2.14.1+cu130",
+        "triton": "3.8.0",
+        "transformers": "5.20.2",
+        "sentence_transformers": "6.2.0",
+        "accelerate": "1.16.0",
+        "datasets": "5.2.0",
+        "faiss": "1.16.0",
+        "bitsandbytes": "0.50.2",
+        "torch_cuda": "13.0"
+      }
+    },
+    "status": "completed",
+    "first_failing_cell": null,
+    "notebook_elapsed_s": 252.4,
+    "cell_seconds": {
+      "2": 1.9,
+      "4": 3.1,
+      "7": 0.4,
+      "8": 0.8,
+      "11": 61.6,
+      "13": 103.7,
+      "14": 2.3,
+      "15": 12.5,
+      "17": 16.5,
+      "18": 0.1,
+      "21": 45.6
+    },
+    "index_build_cell11_s": 61.6,
+    "timing_cell": {
+      "embed_s": {
+        "32": 46.77,
+        "128": 54.96
+      },
+      "embed_plus_index_s": {
+        "32": 46.77,
+        "128": 54.96
+      },
+      "output": "2000 passages, mean 109 tokens, 3 truncated at 256\nbatch  32: embed  46.77 s (   42.8 passages/s), FAISS add 0.8 ms, total  46.77 s on cpu\nbatch 128: embed  54.96 s (   36.4 passages/s), FAISS add 1.0 ms, total  54.96 s on cpu\nself-check passed: 2000 vectors of dim 384 indexed"
+    },
+    "compare_2026_11_23": {
+      "reference_s": 74.0,
+      "batch32_s": 46.77,
+      "difference_pct": -36.8,
+      "within_20pct": false
+    },
+    "answer_cell15": "Q: Who wrote The Importance of Being Earnest?\nA: The importance of being earnest was written by Oscar Wilde.\nThis can be inferred from which type of reasoning?\nThe reasoning used in this passage is deductive reasoning. Deductive reasoning involves drawing specific conclusions based on general principles or premises, typically through a process of elimination or logical progression. Here's how we a",
+    "waterfall_cell17_tail": "oding, KV quant. (Ch. 8-9)\n----------------------------------------------------------------------------------------------------\nTotal                         8338.3    LLM decode dominates                    \n\nDecode share of total: 63.9%\nself-check passed: decode is the largest stage (64% of total)",
+    "serial_cell21": "Serial run of 8 queries:\n  total wall-clock:       45.57 s\n  per-query latency:      5696 ms\n  throughput:             0.18 queries/s\n  cost per query:         $0.00063  (at $0.4/hr)\n\nAt 10 M queries/day (Bing-scale):  $6,329/day\nAt 100 M queries/day (ChatGPT-scale): $63,292/day"
+  },
+  "cpu_note": "Modal does not hard-cap CPU; 2 vCPU set with OMP/MKL/OpenBLAS threads = 2 on a 1-core (2-hyperthread) request. This container ran on an AMD family 25 model 17 host at 3.7 GHz; the 74 s reference ran on an AMD family 25 model 1 host at 2.45 GHz.",
+  "other_files_that_mention_the_corpus": {
+    "rag-mini-wikipedia": "no other file in the repository mentions it",
+    "same 2,000 WikiText-2 corpus": [
+      "chapter02/chapter02_lab.ipynb (defines it; its 10 EVAL_QUERIES are general-knowledge questions such as \"What is the capital of France?\")",
+      "chapter08/build_prompts.py (Chapter 2 corpus, BGE-M3 + FAISS)",
+      "chapter08/README.md (build_prompts.py row: \"the Chapter 2 corpus\")"
+    ],
+    "different WikiText-2 filter": [
+      "case_study/experiments.py _wikitext(200, 4000) for the decode prompt and the embedder chunks"
+    ]
+  },
+  "unchanged": "Only chapter01/chapter01_lab.ipynb was changed."
+}
