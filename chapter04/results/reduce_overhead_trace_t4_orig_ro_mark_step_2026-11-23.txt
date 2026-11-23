@@ -1,0 +1,355 @@
+[transformers] We found `hidden_act="gelu"` in this Gemma config. This is a legacy value of the official releases but it is meant to target the tanh approximation. Setting `hidden_act="gelu_pytorch_tanh"` instead.
+[transformers] `torch_dtype` is deprecated! Use `dtype` instead!
+
+Loading weights:   0%|          | 0/164 [00:00<?, ?it/s]
+Loading weights:   1%|          | 1/164 [00:01<03:06,  1.15s/it]
+Loading weights:  51%|█████     | 84/164 [00:01<00:00, 92.11it/s]
+Loading weights:  80%|███████▉  | 131/164 [00:01<00:00, 101.04it/s]
+Loading weights:  99%|█████████▉| 162/164 [00:01<00:00, 112.76it/s]
+Loading weights: 100%|██████████| 164/164 [00:01<00:00, 88.13it/s] 
+W1123 17:18:11.242000 515 site-packages/torch/_inductor/utils.py:1806] [0/0] Not enough SMs to use max_autotune_gemm mode
+W1123 17:18:40.616000 515 site-packages/torch/_inductor/cudagraph_utils.py:401] [__cudagraphs] skipping cudagraphs due to mutated inputs (54 instances). Found from : 
+W1123 17:18:40.616000 515 site-packages/torch/_inductor/cudagraph_utils.py:401] [__cudagraphs]    File "/usr/local/lib/python3.11/site-packages/transformers/utils/generic.py", line 943, in wrapper
+W1123 17:18:40.616000 515 site-packages/torch/_inductor/cudagraph_utils.py:401] [__cudagraphs]     output = func(self, *args, **kwargs)
+W1123 17:18:40.616000 515 site-packages/torch/_inductor/cudagraph_utils.py:401] [__cudagraphs]              ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+W1123 17:18:40.616000 515 site-packages/torch/_inductor/cudagraph_utils.py:401] [__cudagraphs]   File "/usr/local/lib/python3.11/site-packages/transformers/models/gemma/modeling_gemma.py", line 478, in forward
+W1123 17:18:40.616000 515 site-packages/torch/_inductor/cudagraph_utils.py:401] [__cudagraphs]     outputs: BaseModelOutputWithPast = self.model(
+W1123 17:18:40.616000 515 site-packages/torch/_inductor/cudagraph_utils.py:401] [__cudagraphs]                                        ^^^^^^^^^^^
+W1123 17:18:40.616000 515 site-packages/torch/_inductor/cudagraph_utils.py:401] [__cudagraphs]   File "/usr/local/lib/python3.11/site-packages/transformers/utils/generic.py", line 1081, in wrapper
+W1123 17:18:40.616000 515 site-packages/torch/_inductor/cudagraph_utils.py:401] [__cudagraphs]     output = func(self, *args, **kwargs)
+W1123 17:18:40.616000 515 site-packages/torch/_inductor/cudagraph_utils.py:401] [__cudagraphs]              ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+W1123 17:18:40.616000 515 site-packages/torch/_inductor/cudagraph_utils.py:401] [__cudagraphs]   File "/usr/local/lib/python3.11/site-packages/transformers/utils/output_capturing.py", line 287, in wrapper
+W1123 17:18:40.616000 515 site-packages/torch/_inductor/cudagraph_utils.py:401] [__cudagraphs]     outputs = func(self, *args, **kwargs)
+W1123 17:18:40.616000 515 site-packages/torch/_inductor/cudagraph_utils.py:401] [__cudagraphs]               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+W1123 17:18:40.616000 515 site-packages/torch/_inductor/cudagraph_utils.py:401] [__cudagraphs]   File "/usr/local/lib/python3.11/site-packages/transformers/models/gemma/modeling_gemma.py", line 415, in forward
+W1123 17:18:40.616000 515 site-packages/torch/_inductor/cudagraph_utils.py:401] [__cudagraphs]     hidden_states = decoder_layer(
+W1123 17:18:40.616000 515 site-packages/torch/_inductor/cudagraph_utils.py:401] [__cudagraphs]                     ^^^^^^^^^^^^^^
+W1123 17:18:40.616000 515 site-packages/torch/_inductor/cudagraph_utils.py:401] [__cudagraphs]   File "/usr/local/lib/python3.11/site-packages/transformers/modeling_layers.py", line 111, in __call__
+W1123 17:18:40.616000 515 site-packages/torch/_inductor/cudagraph_utils.py:401] [__cudagraphs]     return super().__call__(*args, **kwargs)
+W1123 17:18:40.616000 515 site-packages/torch/_inductor/cudagraph_utils.py:401] [__cudagraphs]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+W1123 17:18:40.616000 515 site-packages/torch/_inductor/cudagraph_utils.py:401] [__cudagraphs]   File "/usr/local/lib/python3.11/site-packages/transformers/models/gemma/modeling_gemma.py", line 308, in forward
+W1123 17:18:40.616000 515 site-packages/torch/_inductor/cudagraph_utils.py:401] [__cudagraphs]     hidden_states, _ = self.self_attn(
+W1123 17:18:40.616000 515 site-packages/torch/_inductor/cudagraph_utils.py:401] [__cudagraphs]                        ^^^^^^^^^^^^^^^
+W1123 17:18:40.616000 515 site-packages/torch/_inductor/cudagraph_utils.py:401] [__cudagraphs]   File "/usr/local/lib/python3.11/site-packages/transformers/models/gemma/modeling_gemma.py", line 262, in forward
+W1123 17:18:40.616000 515 site-packages/torch/_inductor/cudagraph_utils.py:401] [__cudagraphs]     key_states, value_states = past_key_values.update(key_states, value_states, self.layer_idx)
+W1123 17:18:40.616000 515 site-packages/torch/_inductor/cudagraph_utils.py:401] [__cudagraphs]                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+W1123 17:18:40.616000 515 site-packages/torch/_inductor/cudagraph_utils.py:401] [__cudagraphs]   File "/usr/local/lib/python3.11/site-packages/transformers/cache_utils.py", line 1423, in update
+W1123 17:18:40.616000 515 site-packages/torch/_inductor/cudagraph_utils.py:401] [__cudagraphs]     keys, values = self.layers[layer_idx].update(key_states, value_states, *args, **kwargs)
+W1123 17:18:40.616000 515 site-packages/torch/_inductor/cudagraph_utils.py:401] [__cudagraphs]                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+W1123 17:18:40.616000 515 site-packages/torch/_inductor/cudagraph_utils.py:401] [__cudagraphs]   File "/usr/local/lib/python3.11/site-packages/transformers/cache_utils.py", line 467, in update
+W1123 17:18:40.616000 515 site-packages/torch/_inductor/cudagraph_utils.py:401] [__cudagraphs]     self.cumulative_length.add_(kv_length)
+W1123 17:18:40.616000 515 site-packages/torch/_inductor/cudagraph_utils.py:401] [__cudagraphs] 
+[W1123 17:18:40.586202024 Module.cpp:208] symbolizing C++ stack trace for exception; if this hangs, rerun with TORCH_DISABLE_ADDR2LINE=1...
+
+Traceback (most recent call last):
+  File "/repo/chapter04/scripts/reduce_overhead_retest.py", line 157, in <module>
+    main()
+  File "/repo/chapter04/scripts/reduce_overhead_retest.py", line 120, in main
+    return child(*a.child)
+           ^^^^^^^^^^^^^^^
+  File "/repo/chapter04/scripts/reduce_overhead_retest.py", line 94, in child
+    measure("result", model, cache_implementation="static", **off)
+  File "/repo/chapter04/scripts/../../case_study/experiments.py", line 191, in measure
+    gen(m, cfg.NEW_TOKENS, **kw)()          # first call: includes any compilation
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/repo/chapter04/scripts/../../case_study/experiments.py", line 184, in <lambda>
+    return lambda: m.generate(**inputs, max_new_tokens=n, min_new_tokens=n, do_sample=False,
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/torch/utils/_contextlib.py", line 124, in decorate_context
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/transformers/generation/utils.py", line 2989, in generate
+    result = decoding_method(
+             ^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/transformers/generation/utils.py", line 3217, in _sample
+    outputs = model_forward(**model_inputs, return_dict=True)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1783, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1794, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/repo/chapter04/scripts/reduce_overhead_retest.py", line 92, in fwd
+    return compiled(*a, **k)
+           ^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/torch/_dynamo/eval_frame.py", line 1261, in compile_wrapper
+    result = fn(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/transformers/utils/generic.py", line 937, in wrapper
+    @wraps(func)
+  File "/usr/local/lib/python3.11/site-packages/torch/_dynamo/eval_frame.py", line 1548, in _fn
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/torch/_functorch/aot_autograd.py", line 1289, in forward
+    return compiled_fn(full_args)
+           ^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/torch/_functorch/_aot_autograd/runtime_wrappers.py", line 1189, in runtime_wrapper
+    result = _codegen_runtime_wrapper(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/torch/_functorch/_aot_autograd/codegen.py:codegen(runtime_wrapper_orchestration)", line 9, in _runtime_wrapper
+  File "/usr/local/lib/python3.11/site-packages/torch/_functorch/_aot_autograd/runtime_wrappers.py", line 2594, in __call__
+    return self.compiled_fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/torch/_inductor/output_code.py", line 828, in __call__
+    return self.current_callable(inputs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/torchinductor_root/a4/ca4wzchz22hr3pipgtsqpymvanfgv73xyh5ovsaeolelj5vznjkx.py", line 3242, in call
+    (buf389,) = self.partitions[0](partition0_args)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/torch/_inductor/compile_fx.py", line 2086, in run
+    return compiled_fn(new_inputs)  # type: ignore[arg-type]
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/torch/_inductor/cudagraph_trees.py", line 479, in deferred_cudagraphify
+    fn, out = cudagraphify(model, inputs, new_static_input_idxs, *args, **kwargs)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/torch/_inductor/cudagraph_trees.py", line 542, in cudagraphify
+    return manager.add_function(
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/torch/_inductor/cudagraph_trees.py", line 2782, in add_function
+    return fn, fn(inputs)
+               ^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/torch/_inductor/cudagraph_trees.py", line 2406, in run
+    out = self._run(new_inputs, function_id)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/torch/_inductor/cudagraph_trees.py", line 2499, in _run
+    return self.ids_to_funcs[function_id].model(new_inputs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/torchinductor_root/a4/ca4wzchz22hr3pipgtsqpymvanfgv73xyh5ovsaeolelj5vznjkx.py", line 2000, in partition_0
+    triton_poi_fused__to_copy__unsafe_view_add_arange_cat_index_copy_mul_neg_slice_transpose_unsqueeze_view_1.run(arg3_1, buf3, arg5_1, arg10_1, 256, stream=raw_stream0)
+  File "/usr/local/lib/python3.11/site-packages/torch/_inductor/runtime/triton_heuristics.py", line 2516, in run
+    self.autotune_to_one_config(*args, **kwargs)
+  File "/usr/local/lib/python3.11/site-packages/torch/_inductor/runtime/triton_heuristics.py", line 1883, in autotune_to_one_config
+    timings = self.benchmark_all_configs(*args, **kwargs)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/torch/_inductor/runtime/triton_heuristics.py", line 1836, in benchmark_all_configs
+    timing = self.bench(launcher, *args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/torch/_inductor/runtime/triton_heuristics.py", line 1566, in bench
+    result = benchmarker.benchmark(
+             ^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/torch/_inductor/runtime/benchmarking.py", line 193, in wrapper
+    return fn(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/torch/_inductor/runtime/benchmarking.py", line 308, in benchmark
+    return benchmark_fn(self, _callable, warmup=warmup, rep=rep, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/torch/_inductor/runtime/benchmarking.py", line 408, in _default_cuda_bench
+    return self.benchmark_gpu(f, warmup=warmup, rep=rep, **kw)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/torch/_inductor/runtime/benchmarking.py", line 193, in wrapper
+    return fn(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/torch/_inductor/runtime/benchmarking.py", line 88, in wrapper
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/torch/_inductor/runtime/benchmarking.py", line 712, in benchmark_gpu
+    _callable()
+  File "/usr/local/lib/python3.11/site-packages/torch/_inductor/runtime/benchmarking.py", line 290, in _callable
+    return fn()
+           ^^^^
+  File "/usr/local/lib/python3.11/site-packages/torch/_inductor/runtime/triton_heuristics.py", line 1502, in kernel_call
+    cloned_args, cloned_kwargs = self.maybe_clone_args(
+                                 ^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/torch/_inductor/runtime/triton_heuristics.py", line 1696, in maybe_clone_args
+    cloned_args = [
+                  ^
+  File "/usr/local/lib/python3.11/site-packages/torch/_inductor/runtime/triton_heuristics.py", line 1697, in <listcomp>
+    prepare_arg(name, arg)
+  File "/usr/local/lib/python3.11/site-packages/torch/_inductor/runtime/triton_heuristics.py", line 1692, in prepare_arg
+    return clone_preserve_strides(arg)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/torch/_inductor/utils.py", line 3740, in clone_preserve_strides
+    buffer = torch.as_strided(x, (needed_size,), (1,)).clone()
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/torch/_compile.py", line 54, in inner
+    return disable_fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/torch/_dynamo/eval_frame.py", line 1548, in _fn
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/torch/_functorch/_aot_autograd/runtime_wrappers.py", line 477, in __torch_dispatch__
+    res = func(*args, **kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/torch/_ops.py", line 916, in __call__
+    return self._op(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: Error: accessing tensor output of CUDAGraphs that has been overwritten by a subsequent run. Stack trace: File "/usr/local/lib/python3.11/site-packages/transformers/utils/generic.py", line 943, in wrapper
+    output = func(self, *args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/transformers/models/gemma/modeling_gemma.py", line 478, in forward
+    outputs: BaseModelOutputWithPast = self.model(
+                                       ^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/transformers/utils/generic.py", line 1081, in wrapper
+    output = func(self, *args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/transformers/utils/output_capturing.py", line 287, in wrapper
+    outputs = func(self, *args, **kwargs)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/transformers/models/gemma/modeling_gemma.py", line 415, in forward
+    hidden_states = decoder_layer(
+                    ^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/transformers/modeling_layers.py", line 111, in __call__
+    return super().__call__(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/transformers/models/gemma/modeling_gemma.py", line 308, in forward
+    hidden_states, _ = self.self_attn(
+                       ^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/transformers/models/gemma/modeling_gemma.py", line 262, in forward
+    key_states, value_states = past_key_values.update(key_states, value_states, self.layer_idx)
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/transformers/cache_utils.py", line 1423, in update
+    keys, values = self.layers[layer_idx].update(key_states, value_states, *args, **kwargs)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/transformers/cache_utils.py", line 471, in update
+    self.keys.index_copy_(2, cache_position, key_states). To prevent overwriting, call torch.compiler.cudagraph_mark_step_begin() before each model invocation. If a tensor is a user-visible output that must remain live across generations, manually clone the tensor outside torch.compile(), or set torch._inductor.config.triton.cudagraph_trees_generation_cloning = 'user_visible' to clone all user-visible tensors that persist across generations.
+Exception raised from throw_storage_access_error at /__w/pytorch/pytorch/c10/core/TensorImpl.cpp:342 (most recent call first):
+C++ CapturedTraceback:
+#4 std::_Function_handler<std::shared_ptr<c10::LazyValue<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > const> (), c10::SetStackTraceFetcher(std::function<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > ()>)::{lambda()#1}>::_M_invoke(std::_Any_data const&) from Logging.cpp:0
+#5 c10::Error::Error(c10::SourceLocation, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) from ??:0
+#6 c10::detail::torchCheckFail(char const*, char const*, unsigned int, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) from ??:0
+#7 c10::TensorImpl::throw_storage_access_error() const from ??:0
+#8 c10::TensorImpl::storage() const from :0
+#9 at::native::as_strided_tensorimpl(at::Tensor const&, c10::ArrayRef<long>, c10::ArrayRef<long>, std::optional<long>) from ??:0
+#10 c10::impl::make_boxed_from_unboxed_functor<c10::impl::detail::WrapFunctionIntoFunctor_<c10::CompileTimeFunctionPointer<at::Tensor (at::Tensor const&, c10::ArrayRef<c10::SymInt>, c10::ArrayRef<c10::SymInt>, std::optional<c10::SymInt>), &at::(anonymous namespace)::(anonymous namespace)::wrapper_CUDA__as_strided>, at::Tensor, c10::guts::typelist::typelist<at::Tensor const&, c10::ArrayRef<c10::SymInt>, c10::ArrayRef<c10::SymInt>, std::optional<c10::SymInt> > >, false>::call(c10::OperatorKernel*, c10::OperatorHandle const&, c10::DispatchKeySet, std::vector<c10::IValue, std::allocator<c10::IValue> >*) from RegisterCUDA_0.cpp:0
+#11 c10::Dispatcher::callBoxed(c10::OperatorHandle const&, std::vector<c10::IValue, std::allocator<c10::IValue> >*) const [clone .isra.0] from register_c10_ops.cpp:0
+#12 torch::jit::invokeOperatorFromPython(c10::ArrayRef<std::shared_ptr<torch::jit::Operator> >, pybind11::args const&, pybind11::kwargs const&, std::optional<c10::DispatchKey>) from :0
+#13 torch::jit::_get_operation_for_overload_or_packet(c10::ArrayRef<std::shared_ptr<torch::jit::Operator> >, c10::Symbol, pybind11::args const&, pybind11::kwargs const&, bool, std::optional<c10::DispatchKey>) from :0
+#14 pybind11::cpp_function::initialize<torch::jit::initJITBindings(_object*)::{lambda(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&)#2}::operator()(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) const::{lambda(pybind11::args const&, pybind11::kwargs const&)#1}, pybind11::object, pybind11::args const&, pybind11::kwargs const&>(torch::jit::initJITBindings(_object*)::{lambda(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&)#2}::operator()(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) const::{lambda(pybind11::args const&, pybind11::kwargs const&)#1}&&, pybind11::object (*)(pybind11::args const&, pybind11::kwargs const&))::{lambda(pybind11::detail::function_call&)#1}::_FUN(pybind11::detail::function_call&) from init.cpp:0
+#15 pybind11::cpp_function::dispatcher(_object*, _object* const*, unsigned long, _object*) from :0
+#16 _PyCode_New from ??:0
+#17 _PyEval_EvalFrameDefault from ??:0
+#18 _PyObject_GetMethod from ??:0
+#19 _PyObject_FastCallDictTstate from ??:0
+#20 _PyObject_Call_Prepend from ??:0
+#21 PyNumber_Positive from ??:0
+#22 _PyObject_Call from ??:0
+#23 _PyEval_EvalFrameDefault from ??:0
+#24 _PyObject_GetMethod from ??:0
+#25 _PyEval_EvalFrameDefault from ??:0
+#26 _PyObject_GetMethod from ??:0
+#27 _PyEval_EvalFrameDefault from ??:0
+#28 _PyObject_GetMethod from ??:0
+#29 PyObject_CallFinalizerFromDealloc from ??:0
+#30 PyObject_CallFunction from ??:0
+#31 PyObject_CallMethod from ??:0
+#32 torch::handle_torch_function_no_python_arg_parser(c10::ArrayRef<_object*>, _object*, _object*, char const*, _object*, char const*, c10::OperatorHandle const*, std::vector<c10::IValue, std::allocator<c10::IValue> >*, torch::TorchFunctionName) from :0
+#33 torch::detail::(anonymous namespace)::ConcretePyInterpreterVTable::dispatch(c10::OperatorHandle const&, std::vector<c10::IValue, std::allocator<c10::IValue> >*) const from PyInterpreter.cpp:0
+#34 (anonymous namespace)::pythonFallback(c10::OperatorHandle const&, c10::DispatchKeySet, std::vector<c10::IValue, std::allocator<c10::IValue> >*) from PythonFallbackKernel.cpp:0
+#35 void c10::BoxedKernel::make_boxed_function<&(anonymous namespace)::pythonTLSSnapshotFallback>(c10::OperatorKernel*, c10::OperatorHandle const&, c10::DispatchKeySet, std::vector<c10::IValue, std::allocator<c10::IValue> >*) from PythonFallbackKernel.cpp:0
+#36 c10::impl::BoxedKernelWrapper<at::Tensor (at::Tensor const&, c10::ArrayRef<c10::SymInt>, c10::ArrayRef<c10::SymInt>, std::optional<c10::SymInt>), void>::call(c10::BoxedKernel const&, c10::OperatorHandle const&, c10::DispatchKeySet, at::Tensor const&, c10::ArrayRef<c10::SymInt>, c10::ArrayRef<c10::SymInt>, std::optional<c10::SymInt>) from :0
+#37 at::_ops::as_strided::call(at::Tensor const&, c10::ArrayRef<c10::SymInt>, c10::ArrayRef<c10::SymInt>, std::optional<c10::SymInt>) from ??:0
+#38 torch::autograd::THPVariable_as_strided(_object*, _object*, _object*) from python_torch_functions_0.cpp:0
+#39 PyUnicode_DecodeUTF8Stateful from ??:0
+#40 _PyObject_MakeTpCall from ??:0
+#41 _PyEval_EvalFrameDefault from ??:0
+#42 _PyObject_GetMethod from ??:0
+#43 PyObject_CallFinalizerFromDealloc from ??:0
+#44 _PyEval_EvalFrameDefault from ??:0
+#45 _PyObject_GetMethod from ??:0
+#46 _PyObject_Call from ??:0
+#47 _PyEval_EvalFrameDefault from ??:0
+#48 _PyObject_GetMethod from ??:0
+#49 _PyObject_Call from ??:0
+#50 _PyEval_EvalFrameDefault from ??:0
+#51 _PyObject_GetMethod from ??:0
+#52 PyObject_CallFinalizerFromDealloc from ??:0
+#53 _PyObject_Call from ??:0
+#54 _PyEval_EvalFrameDefault from ??:0
+#55 _PyObject_GetMethod from ??:0
+#56 _PyObject_Call from ??:0
+#57 _PyEval_EvalFrameDefault from ??:0
+#58 _PyObject_GetMethod from ??:0
+#59 _PyObject_Call from ??:0
+#60 _PyEval_EvalFrameDefault from ??:0
+#61 _PyObject_GetMethod from ??:0
+#62 PyObject_CallFinalizerFromDealloc from ??:0
+#63 _PyObject_Call from ??:0
+#64 _PyEval_EvalFrameDefault from ??:0
+#65 _PyObject_GetMethod from ??:0
+#66 PyObject_CallFinalizerFromDealloc from ??:0
+#67 _PyEval_EvalFrameDefault from ??:0
+#68 _PyObject_GetMethod from ??:0
+#69 PyObject_CallFinalizerFromDealloc from ??:0
+#70 _PyEval_EvalFrameDefault from ??:0
+#71 _PyObject_GetMethod from ??:0
+#72 PyObject_CallFinalizerFromDealloc from ??:0
+#73 _PyEval_EvalFrameDefault from ??:0
+#74 _PyObject_GetMethod from ??:0
+#75 PyObject_CallFinalizerFromDealloc from ??:0
+#76 _PyObject_Call from ??:0
+#77 PyNumber_InPlaceAnd from ??:0
+#78 _PyObject_MakeTpCall from ??:0
+#79 PyObject_Vectorcall from ??:0
+#80 _PyEval_EvalFrameDefault from ??:0
+#81 _PyObject_GetMethod from ??:0
+#82 _PyObject_Call from ??:0
+#83 _PyEval_EvalFrameDefault from ??:0
+#84 _PyObject_GetMethod from ??:0
+#85 _PyObject_FastCallDictTstate from ??:0
+#86 _PyObject_Call_Prepend from ??:0
+#87 PyNumber_Positive from ??:0
+#88 _PyObject_Call from ??:0
+#89 _PyEval_EvalFrameDefault from ??:0
+#90 _PyObject_GetMethod from ??:0
+#91 _PyObject_FastCallDictTstate from ??:0
+#92 _PyObject_Call_Prepend from ??:0
+#93 PyNumber_Positive from ??:0
+#94 _PyObject_MakeTpCall from ??:0
+#95 _PyEval_EvalFrameDefault from ??:0
+#96 _PyObject_GetMethod from ??:0
+#97 _PyEval_EvalFrameDefault from ??:0
+#98 dynamo__custom_eval_frame::{lambda()#1}::operator()() const from eval_frame_cpp.cpp:0
+#99 dynamo__custom_eval_frame from :0
+#100 Py_CompileStringExFlags from ??:0
+#101 PyObject_Vectorcall from ??:0
+#102 _PyEval_EvalFrameDefault from ??:0
+#103 dynamo_eval_custom_code from ??:0
+#104 dynamo__custom_eval_frame::{lambda()#2}::operator()() const from eval_frame_cpp.cpp:0
+#105 dynamo__custom_eval_frame from :0
+#106 Py_CompileStringExFlags from ??:0
+#107 PyObject_CallFinalizerFromDealloc from ??:0
+#108 _PyObject_Call from ??:0
+#109 _PyEval_EvalFrameDefault from ??:0
+#110 _PyObject_GetMethod from ??:0
+#111 _PyObject_Call from ??:0
+#112 _PyEval_EvalFrameDefault from ??:0
+#113 _PyObject_GetMethod from ??:0
+#114 _PyObject_Call from ??:0
+#115 _PyEval_EvalFrameDefault from ??:0
+#116 _PyObject_GetMethod from ??:0
+#117 PyObject_CallFinalizerFromDealloc from ??:0
+#118 _PyObject_Call from ??:0
+#119 _PyEval_EvalFrameDefault from ??:0
+#120 _PyObject_GetMethod from ??:0
+#121 PyObject_CallFinalizerFromDealloc from ??:0
+#122 _PyObject_Call from ??:0
+#123 _PyEval_EvalFrameDefault from ??:0
+#124 _PyObject_GetMethod from ??:0
+#125 _PyObject_Call from ??:0
+#126 _PyEval_EvalFrameDefault from ??:0
+#127 _PyObject_GetMethod from ??:0
+#128 _PyObject_Call from ??:0
+#129 _PyEval_EvalFrameDefault from ??:0
+#130 _PyObject_GetMethod from ??:0
+#131 PyObject_CallFinalizerFromDealloc from ??:0
+#132 _PyObject_Call from ??:0
+#133 _PyEval_EvalFrameDefault from ??:0
+#134 _PyObject_GetMethod from ??:0
+#135 _PyObject_Call from ??:0
+#136 _PyEval_EvalFrameDefault from ??:0
+#137 _PyObject_GetMethod from ??:0
+#138 _PyEval_EvalFrameDefault from ??:0
+#139 _PyObject_GetMethod from ??:0
+#140 PyEval_EvalCode from ??:0
+#141 _PyLong_FromUid from ??:0
+#142 PyUnicode_DecodeASCII from ??:0
+#143 PyImport_GetMagicNumber from ??:0
+#144 _PyRun_SimpleFileObject from ??:0
+#145 _PyRun_AnyFileObject from ??:0
+#146 Py_RunMain from ??:0
+#147 Py_BytesMain from ??:0
+#148 __libc_init_first from ??:0
+#149 __libc_start_main from ??:0
+#150 _start from ??:0
+

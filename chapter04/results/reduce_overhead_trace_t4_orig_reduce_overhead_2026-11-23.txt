@@ -1,0 +1,115 @@
+[transformers] We found `hidden_act="gelu"` in this Gemma config. This is a legacy value of the official releases but it is meant to target the tanh approximation. Setting `hidden_act="gelu_pytorch_tanh"` instead.
+[transformers] `torch_dtype` is deprecated! Use `dtype` instead!
+
+Loading weights:   0%|          | 0/164 [00:00<?, ?it/s]
+Loading weights:   1%|          | 1/164 [00:01<03:35,  1.32s/it]
+Loading weights:  58%|█████▊    | 95/164 [00:01<00:00, 92.11it/s]
+Loading weights:  90%|█████████ | 148/164 [00:01<00:00, 95.04it/s]
+Loading weights: 100%|██████████| 164/164 [00:02<00:00, 79.76it/s]
+W1123 17:15:59.723000 181 site-packages/torch/_inductor/utils.py:1806] [0/0] Not enough SMs to use max_autotune_gemm mode
+W1123 17:16:46.115000 181 site-packages/torch/_inductor/cudagraph_utils.py:401] [__cudagraphs] skipping cudagraphs due to mutated inputs (54 instances). Found from : 
+W1123 17:16:46.115000 181 site-packages/torch/_inductor/cudagraph_utils.py:401] [__cudagraphs]    File "/usr/local/lib/python3.11/site-packages/transformers/utils/generic.py", line 943, in wrapper
+W1123 17:16:46.115000 181 site-packages/torch/_inductor/cudagraph_utils.py:401] [__cudagraphs]     output = func(self, *args, **kwargs)
+W1123 17:16:46.115000 181 site-packages/torch/_inductor/cudagraph_utils.py:401] [__cudagraphs]              ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+W1123 17:16:46.115000 181 site-packages/torch/_inductor/cudagraph_utils.py:401] [__cudagraphs]   File "/usr/local/lib/python3.11/site-packages/transformers/models/gemma/modeling_gemma.py", line 478, in forward
+W1123 17:16:46.115000 181 site-packages/torch/_inductor/cudagraph_utils.py:401] [__cudagraphs]     outputs: BaseModelOutputWithPast = self.model(
+W1123 17:16:46.115000 181 site-packages/torch/_inductor/cudagraph_utils.py:401] [__cudagraphs]                                        ^^^^^^^^^^^
+W1123 17:16:46.115000 181 site-packages/torch/_inductor/cudagraph_utils.py:401] [__cudagraphs]   File "/usr/local/lib/python3.11/site-packages/transformers/utils/generic.py", line 1081, in wrapper
+W1123 17:16:46.115000 181 site-packages/torch/_inductor/cudagraph_utils.py:401] [__cudagraphs]     output = func(self, *args, **kwargs)
+W1123 17:16:46.115000 181 site-packages/torch/_inductor/cudagraph_utils.py:401] [__cudagraphs]              ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+W1123 17:16:46.115000 181 site-packages/torch/_inductor/cudagraph_utils.py:401] [__cudagraphs]   File "/usr/local/lib/python3.11/site-packages/transformers/utils/output_capturing.py", line 287, in wrapper
+W1123 17:16:46.115000 181 site-packages/torch/_inductor/cudagraph_utils.py:401] [__cudagraphs]     outputs = func(self, *args, **kwargs)
+W1123 17:16:46.115000 181 site-packages/torch/_inductor/cudagraph_utils.py:401] [__cudagraphs]               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+W1123 17:16:46.115000 181 site-packages/torch/_inductor/cudagraph_utils.py:401] [__cudagraphs]   File "/usr/local/lib/python3.11/site-packages/transformers/models/gemma/modeling_gemma.py", line 415, in forward
+W1123 17:16:46.115000 181 site-packages/torch/_inductor/cudagraph_utils.py:401] [__cudagraphs]     hidden_states = decoder_layer(
+W1123 17:16:46.115000 181 site-packages/torch/_inductor/cudagraph_utils.py:401] [__cudagraphs]                     ^^^^^^^^^^^^^^
+W1123 17:16:46.115000 181 site-packages/torch/_inductor/cudagraph_utils.py:401] [__cudagraphs]   File "/usr/local/lib/python3.11/site-packages/transformers/modeling_layers.py", line 111, in __call__
+W1123 17:16:46.115000 181 site-packages/torch/_inductor/cudagraph_utils.py:401] [__cudagraphs]     return super().__call__(*args, **kwargs)
+W1123 17:16:46.115000 181 site-packages/torch/_inductor/cudagraph_utils.py:401] [__cudagraphs]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+W1123 17:16:46.115000 181 site-packages/torch/_inductor/cudagraph_utils.py:401] [__cudagraphs]   File "/usr/local/lib/python3.11/site-packages/transformers/models/gemma/modeling_gemma.py", line 308, in forward
+W1123 17:16:46.115000 181 site-packages/torch/_inductor/cudagraph_utils.py:401] [__cudagraphs]     hidden_states, _ = self.self_attn(
+W1123 17:16:46.115000 181 site-packages/torch/_inductor/cudagraph_utils.py:401] [__cudagraphs]                        ^^^^^^^^^^^^^^^
+W1123 17:16:46.115000 181 site-packages/torch/_inductor/cudagraph_utils.py:401] [__cudagraphs]   File "/usr/local/lib/python3.11/site-packages/transformers/models/gemma/modeling_gemma.py", line 262, in forward
+W1123 17:16:46.115000 181 site-packages/torch/_inductor/cudagraph_utils.py:401] [__cudagraphs]     key_states, value_states = past_key_values.update(key_states, value_states, self.layer_idx)
+W1123 17:16:46.115000 181 site-packages/torch/_inductor/cudagraph_utils.py:401] [__cudagraphs]                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+W1123 17:16:46.115000 181 site-packages/torch/_inductor/cudagraph_utils.py:401] [__cudagraphs]   File "/usr/local/lib/python3.11/site-packages/transformers/cache_utils.py", line 1423, in update
+W1123 17:16:46.115000 181 site-packages/torch/_inductor/cudagraph_utils.py:401] [__cudagraphs]     keys, values = self.layers[layer_idx].update(key_states, value_states, *args, **kwargs)
+W1123 17:16:46.115000 181 site-packages/torch/_inductor/cudagraph_utils.py:401] [__cudagraphs]                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+W1123 17:16:46.115000 181 site-packages/torch/_inductor/cudagraph_utils.py:401] [__cudagraphs]   File "/usr/local/lib/python3.11/site-packages/transformers/cache_utils.py", line 467, in update
+W1123 17:16:46.115000 181 site-packages/torch/_inductor/cudagraph_utils.py:401] [__cudagraphs]     self.cumulative_length.add_(kv_length)
+W1123 17:16:46.115000 181 site-packages/torch/_inductor/cudagraph_utils.py:401] [__cudagraphs] 
+[W1123 17:16:46.070284808 Module.cpp:208] symbolizing C++ stack trace for exception; if this hangs, rerun with TORCH_DISABLE_ADDR2LINE=1...
+
+Fatal Python error: Segmentation fault
+
+Thread 0x00002b9d845376c0 (most recent call first):
+  File "/usr/local/lib/python3.11/concurrent/futures/thread.py", line 81 in _worker
+  File "/usr/local/lib/python3.11/threading.py", line 982 in run
+  File "/usr/local/lib/python3.11/threading.py", line 1045 in _bootstrap_inner
+  File "/usr/local/lib/python3.11/threading.py", line 1002 in _bootstrap
+
+Thread 0x00002b9c14e036c0 (most recent call first):
+  File "/usr/local/lib/python3.11/site-packages/torch/_inductor/compile_worker/timer.py", line 42 in check
+  File "/usr/local/lib/python3.11/threading.py", line 982 in run
+  File "/usr/local/lib/python3.11/threading.py", line 1045 in _bootstrap_inner
+  File "/usr/local/lib/python3.11/threading.py", line 1002 in _bootstrap
+
+Thread 0x00002b9c150046c0 (most recent call first):
+  File "/usr/local/lib/python3.11/threading.py", line 331 in wait
+  File "/usr/local/lib/python3.11/threading.py", line 629 in wait
+  File "/usr/local/lib/python3.11/site-packages/tqdm/_monitor.py", line 69 in run
+  File "/usr/local/lib/python3.11/threading.py", line 1045 in _bootstrap_inner
+  File "/usr/local/lib/python3.11/threading.py", line 1002 in _bootstrap
+
+Thread 0x00002b9c14c026c0 (most recent call first):
+  File "/usr/local/lib/python3.11/site-packages/torch/_inductor/compile_worker/subproc_pool.py", line 387 in _health_monitor
+  File "/usr/local/lib/python3.11/threading.py", line 982 in run
+  File "/usr/local/lib/python3.11/threading.py", line 1045 in _bootstrap_inner
+  File "/usr/local/lib/python3.11/threading.py", line 1002 in _bootstrap
+
+Thread 0x00002b9c14a016c0 (most recent call first):
+  File "/usr/local/lib/python3.11/site-packages/torch/_inductor/compile_worker/subproc_pool.py", line 106 in _recv_msg
+  File "/usr/local/lib/python3.11/site-packages/torch/_inductor/compile_worker/subproc_pool.py", line 323 in _read_thread
+  File "/usr/local/lib/python3.11/threading.py", line 982 in run
+  File "/usr/local/lib/python3.11/threading.py", line 1045 in _bootstrap_inner
+  File "/usr/local/lib/python3.11/threading.py", line 1002 in _bootstrap
+
+Thread 0x00002b9c15ac96c0 (most recent call first):
+  File "/usr/local/lib/python3.11/threading.py", line 331 in wait
+  File "/usr/local/lib/python3.11/threading.py", line 629 in wait
+  File "/usr/local/lib/python3.11/site-packages/tqdm/_monitor.py", line 69 in run
+  File "/usr/local/lib/python3.11/threading.py", line 1045 in _bootstrap_inner
+  File "/usr/local/lib/python3.11/threading.py", line 1002 in _bootstrap
+
+Current thread 0x00002b9b261f3b80 (most recent call first):
+  File "/usr/local/lib/python3.11/site-packages/torch/_inductor/runtime/static_triton_launcher.py", line 448 in run
+  File "<string>", line 5 in launcher
+  File "/usr/local/lib/python3.11/site-packages/torch/_inductor/runtime/triton_heuristics.py", line 2558 in run
+  File "/tmp/torchinductor_root/vm/cvmsaf4zyrkne2hh7m3ki2qw4avonjrs44xzoen3orq4ntyrfnr4.py", line 1814 in partition_0
+  File "/usr/local/lib/python3.11/site-packages/torch/_inductor/cudagraph_trees.py", line 2499 in _run
+  File "/usr/local/lib/python3.11/site-packages/torch/_inductor/cudagraph_trees.py", line 2406 in run
+  File "/usr/local/lib/python3.11/site-packages/torch/_inductor/cudagraph_trees.py", line 2782 in add_function
+  File "/usr/local/lib/python3.11/site-packages/torch/_inductor/cudagraph_trees.py", line 542 in cudagraphify
+  File "/usr/local/lib/python3.11/site-packages/torch/_inductor/cudagraph_trees.py", line 479 in deferred_cudagraphify
+  File "/usr/local/lib/python3.11/site-packages/torch/_inductor/compile_fx.py", line 2086 in run
+  File "/tmp/torchinductor_root/vm/cvmsaf4zyrkne2hh7m3ki2qw4avonjrs44xzoen3orq4ntyrfnr4.py", line 3057 in call
+  File "/usr/local/lib/python3.11/site-packages/torch/_inductor/output_code.py", line 828 in __call__
+  File "/usr/local/lib/python3.11/site-packages/torch/_functorch/_aot_autograd/runtime_wrappers.py", line 2594 in __call__
+  File "/usr/local/lib/python3.11/site-packages/torch/_functorch/_aot_autograd/codegen.py:codegen(runtime_wrapper_orchestration)", line 9 in _runtime_wrapper
+  File "/usr/local/lib/python3.11/site-packages/torch/_functorch/_aot_autograd/runtime_wrappers.py", line 1189 in runtime_wrapper
+  File "/usr/local/lib/python3.11/site-packages/torch/_functorch/aot_autograd.py", line 1289 in forward
+  File "/usr/local/lib/python3.11/site-packages/torch/_dynamo/eval_frame.py", line 1548 in _fn
+  File "/usr/local/lib/python3.11/site-packages/transformers/utils/generic.py", line 937 in wrapper
+  File "/usr/local/lib/python3.11/site-packages/torch/_dynamo/eval_frame.py", line 1261 in compile_wrapper
+  File "/usr/local/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1794 in _call_impl
+  File "/usr/local/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1783 in _wrapped_call_impl
+  File "/usr/local/lib/python3.11/site-packages/transformers/generation/utils.py", line 3217 in _sample
+  File "/usr/local/lib/python3.11/site-packages/transformers/generation/utils.py", line 2989 in generate
+  File "/usr/local/lib/python3.11/site-packages/torch/utils/_contextlib.py", line 124 in decorate_context
+  File "/repo/chapter04/scripts/../../case_study/experiments.py", line 184 in <lambda>
+  File "/repo/chapter04/scripts/../../case_study/experiments.py", line 191 in measure
+  File "/repo/chapter04/scripts/reduce_overhead_retest.py", line 86 in child
+  File "/repo/chapter04/scripts/reduce_overhead_retest.py", line 120 in main
+  File "/repo/chapter04/scripts/reduce_overhead_retest.py", line 157 in <module>
+
+Extension modules: numpy._core._multiarray_umath, numpy.linalg._umath_linalg, torch._C, torch._C._dynamo.autograd_compiler, torch._C._dynamo.eval_frame, torch._C._dynamo.guards, torch._C._dynamo.utils, torch._C._fft, torch._C._linalg, torch._C._nested, torch._C._nn, torch._C._sparse, torch._C._special, cuda.bindings._internal.utils, cuda.bindings._internal.driver, cuda.bindings.cydriver, cuda.bindings.driver, cuda.bindings._internal.runtime_ptds, cuda.bindings._internal.runtime, cuda.bindings.cyruntime, cuda.bindings.runtime, regex._regex, markupsafe._speedups, yaml._yaml, numpy.random._common, numpy.random.bit_generator, numpy.random._bounded_integers, numpy.random._pcg64, numpy.random._generator, numpy.random._mt19937, numpy.random._philox, numpy.random._sfc64, numpy.random.mtrand, sklearn.__check_build._check_build, _cyutility, scipy._cyutility, scipy._lib._ccallback_c, scipy.sparse._sparsetools, _csparsetools, scipy.sparse._csparsetools, psutil._psutil_linux, scipy.special._ufuncs_cxx, scipy.special._ellip_harm_2, scipy.special._special_ufuncs, scipy.special._gufuncs, scipy.special._ufuncs, scipy.special._specfun, scipy.special._comb, scipy.linalg._fblas, scipy.linalg._flapack, scipy.linalg.cython_lapack, scipy.linalg._cythonized_array_utils, scipy.linalg._solve_toeplitz, scipy.linalg._batched_linalg, scipy.linalg._decomp_lu_cython, scipy.linalg._matfuncs_schur_sqrtm, scipy.linalg._matfuncs_expm, scipy.linalg._linalg_pythran, scipy.linalg.cython_blas, scipy.linalg._decomp_update, scipy.sparse.linalg._dsolve._superlu, scipy.sparse.linalg._eigen.arpack._arpacklib, scipy.sparse.linalg._propack, scipy.spatial._ckdtree, scipy._lib.messagestream, scipy.spatial._qhull, scipy.spatial._voronoi, scipy.spatial._hausdorff, scipy.spatial._distance_wrap, scipy.spatial.transform._rotation_cy, scipy.spatial.transform._rigid_transform_cy, scipy.optimize._group_columns, scipy.optimize._trlib._trlib, scipy.optimize._lbfgsb, _moduleTNC, scipy.optimize._moduleTNC, scipy.optimize._slsqplib, scipy.optimize._minpack, scipy.optimize._lsq.givens_elimination, scipy.optimize._zeros, scipy._lib._uarray._uarray, scipy.linalg._decomp_interpolative, scipy.optimize._bglu_dense, scipy.optimize._lsap, scipy.optimize._direct, scipy.integrate._odepack, scipy.integrate._quadpack, scipy.integrate._vode, scipy.integrate._dop, scipy.interpolate._fitpack, scipy.interpolate._dfitpack, scipy.interpolate._dierckx, scipy.interpolate._ppoly, scipy.interpolate._interpnd, scipy.interpolate._rbfinterp_pythran, scipy.interpolate._rgi_cython, scipy.special.cython_special, scipy.stats._stats, scipy.stats._biasedurn, scipy.stats._stats_pythran, scipy.stats._levy_stable.levyst, scipy.stats._ansari_swilk_statistics, scipy.sparse.csgraph._tools, scipy.sparse.csgraph._shortest_path, scipy.sparse.csgraph._traversal, scipy.sparse.csgraph._min_spanning_tree, scipy.sparse.csgraph._flow, scipy.sparse.csgraph._matching, scipy.sparse.csgraph._reordering, scipy.stats._sobol, scipy.stats._qmc_cy, scipy.stats._rcont.rcont, scipy.stats._qmvnt_cy, scipy.ndimage._nd_image, scipy.ndimage._rank_filter_1d, _ni_label, scipy.ndimage._ni_label, pyarrow.lib, pandas._libs._cyutility, pandas._libs.tslibs.ccalendar, pandas._libs.tslibs.np_datetime, pandas._libs.tslibs.dtypes, pandas._libs.tslibs.base, pandas._libs.tslibs.nattype, pandas._libs.tslibs.timezones, pandas._libs.properties, pandas._libs.tslibs.fields, pandas._libs.tslibs.timedeltas, pandas._libs.tslibs.tzconversion, pandas._libs.tslibs.timestamps, pandas._libs.tslibs.offsets, pandas._libs.tslibs.strptime, pandas._libs.tslibs.parsing, pandas._libs.tslibs.conversion, pandas._libs.tslibs.period, pandas._libs.tslibs.vectorized, pandas._libs.ops_dispatch, pandas._libs.missing, pandas._libs.hashtable, pandas._libs.algos, pandas._libs.interval, pandas._libs.lib, pyarrow._compute, pandas._libs.ops, pandas._libs.groupby, pandas._libs.hashing, pandas._libs.arrays, pandas._libs.tslib, pandas._libs.sparse, pandas._libs.internals, pandas._libs.index, pandas._libs.writers, pandas._libs.join, pandas._libs.indexing, pandas._libs.window.aggregations, pandas._libs.window.indexers, pandas._libs.reshape, pandas._libs._ujson, pandas._libs.parsers, pandas._libs.testing, sklearn._cyutility, sklearn.utils._isfinite, sklearn.utils.sparsefuncs_fast, sklearn.utils.murmurhash, sklearn.utils._openmp_helpers, sklearn.metrics.cluster._expected_mutual_info_fast, sklearn.metrics._dist_metrics, sklearn.metrics._pairwise_distances_reduction._datasets_pair, sklearn.utils._cython_blas, sklearn.metrics._pairwise_distances_reduction._base, sklearn.metrics._pairwise_distances_reduction._middle_term_computer, sklearn.utils._heap, sklearn.utils._sorting, sklearn.metrics._pairwise_distances_reduction._argkmin, sklearn.metrics._pairwise_distances_reduction._argkmin_classmode, sklearn.utils._vector_sentinel, sklearn.metrics._pairwise_distances_reduction._radius_neighbors, sklearn.metrics._pairwise_distances_reduction._radius_neighbors_classmode, sklearn.metrics._pairwise_fast, sklearn.preprocessing._csr_polynomial_expansion, sklearn.preprocessing._target_encoder_fast, pyarrow._acero, pyarrow._fs, pyarrow._csv, pyarrow._json, pyarrow._substrait, pyarrow._dataset, pyarrow._dataset_orc, pyarrow._parquet, pyarrow._azurefs, pyarrow._hdfs, pyarrow._gcsfs, pyarrow._s3fs, pyarrow._parquet_encryption, pyarrow._dataset_parquet_encryption, pyarrow._dataset_parquet, xxhash._xxhash, multidict._multidict, yarl._quoting_c, propcache._helpers_c, aiohttp._http_writer, aiohttp._http_parser, aiohttp._websocket.mask, aiohttp._websocket.reader_c, scipy.io.matlab._mio_utils, scipy.io.matlab._streams, scipy.io.matlab._mio5_utils, cuda_utils, c45ygelbu25t2wmekmptwmxhl7nizmsnefp4skcp7ey2bzowc7ey.kernel (total: 209)

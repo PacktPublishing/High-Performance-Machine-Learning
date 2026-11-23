@@ -1,0 +1,389 @@
+[transformers] We found `hidden_act="gelu"` in this Gemma config. This is a legacy value of the official releases but it is meant to target the tanh approximation. Setting `hidden_act="gelu_pytorch_tanh"` instead.
+[transformers] `torch_dtype` is deprecated! Use `dtype` instead!
+
+Loading weights:   0%|          | 0/164 [00:00<?, ?it/s]
+Loading weights:   1%|          | 1/164 [00:00<01:08,  2.37it/s]
+Loading weights:  24%|██▍       | 40/164 [00:00<00:01, 97.05it/s]
+Loading weights:  37%|███▋      | 61/164 [00:00<00:00, 121.85it/s]
+Loading weights:  49%|████▉     | 81/164 [00:00<00:00, 139.76it/s]
+Loading weights:  62%|██████▏   | 101/164 [00:00<00:00, 150.11it/s]
+Loading weights:  73%|███████▎  | 120/164 [00:01<00:00, 144.98it/s]
+Loading weights:  85%|████████▍ | 139/164 [00:01<00:00, 150.92it/s]
+Loading weights:  96%|█████████▌| 157/164 [00:01<00:00, 155.45it/s]
+Loading weights: 100%|██████████| 164/164 [00:01<00:00, 132.81it/s]
+/tmp/job/py/lib/python3.11/site-packages/triton/knobs.py:504: UserWarning: TRITON_DEFAULT_FP_FUSION is unset: defaulting to FP fusion ENABLED for backward compatibility in Triton 3.9. The default will change to DISABLED in Triton 3.10; set TRITON_DEFAULT_FP_FUSION=1 to keep fusion enabled or =0 to adopt the new default early and silence this warning.
+  warn_once(FP_FUSION_DEFAULT_WARNING)
+W1123 17:25:08.813000 2649860 site-packages/torch/_inductor/cudagraph_utils.py:405] [__cudagraphs] skipping cudagraphs due to mutated inputs (54 instances). Found from : 
+W1123 17:25:08.813000 2649860 site-packages/torch/_inductor/cudagraph_utils.py:405] [__cudagraphs]    File "/tmp/job/py/lib/python3.11/site-packages/transformers/utils/deprecation.py", line 173, in wrapped_func
+W1123 17:25:08.813000 2649860 site-packages/torch/_inductor/cudagraph_utils.py:405] [__cudagraphs]     return func(*args, **kwargs)
+W1123 17:25:08.813000 2649860 site-packages/torch/_inductor/cudagraph_utils.py:405] [__cudagraphs]            ^^^^^^^^^^^^^^^^^^^^^
+W1123 17:25:08.813000 2649860 site-packages/torch/_inductor/cudagraph_utils.py:405] [__cudagraphs]   File "/tmp/job/py/lib/python3.11/site-packages/transformers/utils/generic.py", line 1036, in wrapper
+W1123 17:25:08.813000 2649860 site-packages/torch/_inductor/cudagraph_utils.py:405] [__cudagraphs]     output = func(self, *args, **kwargs)
+W1123 17:25:08.813000 2649860 site-packages/torch/_inductor/cudagraph_utils.py:405] [__cudagraphs]              ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+W1123 17:25:08.813000 2649860 site-packages/torch/_inductor/cudagraph_utils.py:405] [__cudagraphs]   File "/tmp/job/py/lib/python3.11/site-packages/transformers/models/gemma/modeling_gemma.py", line 480, in forward
+W1123 17:25:08.813000 2649860 site-packages/torch/_inductor/cudagraph_utils.py:405] [__cudagraphs]     outputs: BaseModelOutputWithPast = self.model(
+W1123 17:25:08.813000 2649860 site-packages/torch/_inductor/cudagraph_utils.py:405] [__cudagraphs]                                        ^^^^^^^^^^^
+W1123 17:25:08.813000 2649860 site-packages/torch/_inductor/cudagraph_utils.py:405] [__cudagraphs]   File "/tmp/job/py/lib/python3.11/site-packages/transformers/utils/generic.py", line 1182, in wrapper
+W1123 17:25:08.813000 2649860 site-packages/torch/_inductor/cudagraph_utils.py:405] [__cudagraphs]     output = func(self, *args, **kwargs)
+W1123 17:25:08.813000 2649860 site-packages/torch/_inductor/cudagraph_utils.py:405] [__cudagraphs]              ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+W1123 17:25:08.813000 2649860 site-packages/torch/_inductor/cudagraph_utils.py:405] [__cudagraphs]   File "/tmp/job/py/lib/python3.11/site-packages/transformers/utils/output_capturing.py", line 361, in wrapper
+W1123 17:25:08.813000 2649860 site-packages/torch/_inductor/cudagraph_utils.py:405] [__cudagraphs]     outputs = func(self, *args, **kwargs)
+W1123 17:25:08.813000 2649860 site-packages/torch/_inductor/cudagraph_utils.py:405] [__cudagraphs]               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+W1123 17:25:08.813000 2649860 site-packages/torch/_inductor/cudagraph_utils.py:405] [__cudagraphs]   File "/tmp/job/py/lib/python3.11/site-packages/transformers/utils/deprecation.py", line 173, in wrapped_func
+W1123 17:25:08.813000 2649860 site-packages/torch/_inductor/cudagraph_utils.py:405] [__cudagraphs]     return func(*args, **kwargs)
+W1123 17:25:08.813000 2649860 site-packages/torch/_inductor/cudagraph_utils.py:405] [__cudagraphs]            ^^^^^^^^^^^^^^^^^^^^^
+W1123 17:25:08.813000 2649860 site-packages/torch/_inductor/cudagraph_utils.py:405] [__cudagraphs]   File "/tmp/job/py/lib/python3.11/site-packages/transformers/models/gemma/modeling_gemma.py", line 416, in forward
+W1123 17:25:08.813000 2649860 site-packages/torch/_inductor/cudagraph_utils.py:405] [__cudagraphs]     hidden_states = decoder_layer(
+W1123 17:25:08.813000 2649860 site-packages/torch/_inductor/cudagraph_utils.py:405] [__cudagraphs]                     ^^^^^^^^^^^^^^
+W1123 17:25:08.813000 2649860 site-packages/torch/_inductor/cudagraph_utils.py:405] [__cudagraphs]   File "/tmp/job/py/lib/python3.11/site-packages/transformers/modeling_layers.py", line 124, in forward_with_checkpointing
+W1123 17:25:08.813000 2649860 site-packages/torch/_inductor/cudagraph_utils.py:405] [__cudagraphs]     return forward(self, *args, **kwargs)
+W1123 17:25:08.813000 2649860 site-packages/torch/_inductor/cudagraph_utils.py:405] [__cudagraphs]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+W1123 17:25:08.813000 2649860 site-packages/torch/_inductor/cudagraph_utils.py:405] [__cudagraphs]   File "/tmp/job/py/lib/python3.11/site-packages/transformers/utils/deprecation.py", line 173, in wrapped_func
+W1123 17:25:08.813000 2649860 site-packages/torch/_inductor/cudagraph_utils.py:405] [__cudagraphs]     return func(*args, **kwargs)
+W1123 17:25:08.813000 2649860 site-packages/torch/_inductor/cudagraph_utils.py:405] [__cudagraphs]            ^^^^^^^^^^^^^^^^^^^^^
+W1123 17:25:08.813000 2649860 site-packages/torch/_inductor/cudagraph_utils.py:405] [__cudagraphs]   File "/tmp/job/py/lib/python3.11/site-packages/transformers/models/gemma/modeling_gemma.py", line 310, in forward
+W1123 17:25:08.813000 2649860 site-packages/torch/_inductor/cudagraph_utils.py:405] [__cudagraphs]     hidden_states, _ = self.self_attn(
+W1123 17:25:08.813000 2649860 site-packages/torch/_inductor/cudagraph_utils.py:405] [__cudagraphs]                        ^^^^^^^^^^^^^^^
+W1123 17:25:08.813000 2649860 site-packages/torch/_inductor/cudagraph_utils.py:405] [__cudagraphs]   File "/tmp/job/py/lib/python3.11/site-packages/transformers/utils/deprecation.py", line 173, in wrapped_func
+W1123 17:25:08.813000 2649860 site-packages/torch/_inductor/cudagraph_utils.py:405] [__cudagraphs]     return func(*args, **kwargs)
+W1123 17:25:08.813000 2649860 site-packages/torch/_inductor/cudagraph_utils.py:405] [__cudagraphs]            ^^^^^^^^^^^^^^^^^^^^^
+W1123 17:25:08.813000 2649860 site-packages/torch/_inductor/cudagraph_utils.py:405] [__cudagraphs]   File "/tmp/job/py/lib/python3.11/site-packages/transformers/models/gemma/modeling_gemma.py", line 263, in forward
+W1123 17:25:08.813000 2649860 site-packages/torch/_inductor/cudagraph_utils.py:405] [__cudagraphs]     key_states, value_states = cache.update(key_states, value_states, self.layer_idx, kwargs=kwargs)
+W1123 17:25:08.813000 2649860 site-packages/torch/_inductor/cudagraph_utils.py:405] [__cudagraphs]                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+W1123 17:25:08.813000 2649860 site-packages/torch/_inductor/cudagraph_utils.py:405] [__cudagraphs]   File "/tmp/job/py/lib/python3.11/site-packages/transformers/cache_utils.py", line 1620, in update
+W1123 17:25:08.813000 2649860 site-packages/torch/_inductor/cudagraph_utils.py:405] [__cudagraphs]     keys, values = self.layers[layer_idx].update(key_states, value_states, *args, **kwargs)
+W1123 17:25:08.813000 2649860 site-packages/torch/_inductor/cudagraph_utils.py:405] [__cudagraphs]                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+W1123 17:25:08.813000 2649860 site-packages/torch/_inductor/cudagraph_utils.py:405] [__cudagraphs]   File "/tmp/job/py/lib/python3.11/site-packages/transformers/cache_utils.py", line 483, in update
+W1123 17:25:08.813000 2649860 site-packages/torch/_inductor/cudagraph_utils.py:405] [__cudagraphs]     self.cumulative_length.add_(kv_length)
+W1123 17:25:08.813000 2649860 site-packages/torch/_inductor/cudagraph_utils.py:405] [__cudagraphs] 
+Traceback (most recent call last):
+  File "/home/user/bv_projects/bv_ch4/chapter04/scripts/reduce_overhead_retest.py", line 157, in <module>
+    main()
+  File "/home/user/bv_projects/bv_ch4/chapter04/scripts/reduce_overhead_retest.py", line 120, in main
+    return child(*a.child)
+           ^^^^^^^^^^^^^^^
+  File "/home/user/bv_projects/bv_ch4/chapter04/scripts/reduce_overhead_retest.py", line 94, in child
+    measure("result", model, cache_implementation="static", **off)
+  File "/home/user/bv_projects/bv_ch4/chapter04/scripts/../../case_study/experiments.py", line 191, in measure
+    gen(m, cfg.NEW_TOKENS, **kw)()          # first call: includes any compilation
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/bv_projects/bv_ch4/chapter04/scripts/../../case_study/experiments.py", line 184, in <lambda>
+    return lambda: m.generate(**inputs, max_new_tokens=n, min_new_tokens=n, do_sample=False,
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/job/py/lib/python3.11/site-packages/transformers/utils/deprecation.py", line 173, in wrapped_func
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/job/py/lib/python3.11/site-packages/transformers/utils/deprecation.py", line 173, in wrapped_func
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/job/py/lib/python3.11/site-packages/torch/utils/_contextlib.py", line 158, in no_grad
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/job/py/lib/python3.11/site-packages/transformers/generation/utils.py", line 3008, in generate
+    result = decoding_method(
+             ^^^^^^^^^^^^^^^^
+  File "/tmp/job/py/lib/python3.11/site-packages/transformers/generation/utils.py", line 3236, in _sample
+    outputs = model_forward(**model_inputs, return_dict=True)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/job/py/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1787, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/job/py/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1798, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/bv_projects/bv_ch4/chapter04/scripts/reduce_overhead_retest.py", line 92, in fwd
+    return compiled(*a, **k)
+           ^^^^^^^^^^^^^^^^^
+  File "/tmp/job/py/lib/python3.11/site-packages/torch/_dynamo/eval_frame.py", line 1265, in compile_wrapper
+    result = fn(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^
+  File "/tmp/job/py/lib/python3.11/site-packages/transformers/utils/deprecation.py", line 121, in wrapped_func
+    @wraps(func)
+  File "/tmp/job/py/lib/python3.11/site-packages/torch/_dynamo/eval_frame.py", line 1552, in _fn
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/tmp/job/py/lib/python3.11/site-packages/torch/_functorch/aot_autograd.py", line 1289, in forward
+    return compiled_fn(full_args)
+           ^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/job/py/lib/python3.11/site-packages/torch/_functorch/_aot_autograd/runtime_wrappers.py", line 1204, in runtime_wrapper
+    result = _codegen_runtime_wrapper(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/job/py/lib/python3.11/site-packages/torch/_functorch/_aot_autograd/codegen.py:codegen(runtime_wrapper_orchestration)", line 9, in _runtime_wrapper
+  File "/tmp/job/py/lib/python3.11/site-packages/torch/_functorch/_aot_autograd/runtime_wrappers.py", line 2610, in __call__
+    return self.compiled_fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/job/py/lib/python3.11/site-packages/torch/_inductor/output_code.py", line 830, in __call__
+    return self.current_callable(inputs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/job/inductor/ld/cldwpbnuibuzoyksnbh3ios5mf4qw7yqamwmjv63fnhvj7l5vrs5.py", line 3186, in call
+    (buf389,) = self.partitions[0](partition0_args)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/job/py/lib/python3.11/site-packages/torch/_inductor/compile_fx.py", line 2294, in run
+    return compiled_fn(new_inputs)  # type: ignore[arg-type]
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/job/py/lib/python3.11/site-packages/torch/_inductor/cudagraph_trees.py", line 526, in deferred_cudagraphify
+    fn, out = cudagraphify(model, inputs, new_static_input_idxs, *args, **kwargs)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/job/py/lib/python3.11/site-packages/torch/_inductor/cudagraph_trees.py", line 602, in cudagraphify
+    return manager.add_function(
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/job/py/lib/python3.11/site-packages/torch/_inductor/cudagraph_trees.py", line 3032, in add_function
+    return fn, fn(inputs)
+               ^^^^^^^^^^
+  File "/tmp/job/py/lib/python3.11/site-packages/torch/_inductor/cudagraph_trees.py", line 2570, in run
+    out = self._run(new_inputs, function_id)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/job/py/lib/python3.11/site-packages/torch/_inductor/cudagraph_trees.py", line 2715, in _run
+    return self.ids_to_funcs[function_id].model(new_inputs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/job/inductor/ld/cldwpbnuibuzoyksnbh3ios5mf4qw7yqamwmjv63fnhvj7l5vrs5.py", line 1944, in partition_0
+    triton_poi_fused__to_copy__unsafe_view_add_arange_cat_index_copy_mul_neg_slice_transpose_unsqueeze_view_1.run(arg3_1, buf3, arg5_1, arg10_1, 256, stream=raw_stream0)
+  File "/tmp/job/py/lib/python3.11/site-packages/torch/_inductor/runtime/triton_heuristics.py", line 2553, in run
+    self.autotune_to_one_config(*args, **kwargs)
+  File "/tmp/job/py/lib/python3.11/site-packages/torch/_inductor/runtime/triton_heuristics.py", line 1910, in autotune_to_one_config
+    timings = self.benchmark_all_configs(*args, **kwargs)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/job/py/lib/python3.11/site-packages/torch/_inductor/runtime/triton_heuristics.py", line 1863, in benchmark_all_configs
+    timing = self.bench(launcher, *args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/job/py/lib/python3.11/site-packages/torch/_inductor/runtime/triton_heuristics.py", line 1593, in bench
+    result = benchmarker.benchmark(
+             ^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/job/py/lib/python3.11/site-packages/torch/_inductor/runtime/benchmarking.py", line 194, in wrapper
+    return fn(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/job/py/lib/python3.11/site-packages/torch/_inductor/runtime/benchmarking.py", line 309, in benchmark
+    return benchmark_fn(self, _callable, warmup=warmup, rep=rep, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/job/py/lib/python3.11/site-packages/torch/_inductor/runtime/benchmarking.py", line 426, in _default_cuda_bench
+    return self.benchmark_gpu(f, warmup=warmup, rep=rep, **kw)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/job/py/lib/python3.11/site-packages/torch/_inductor/runtime/benchmarking.py", line 194, in wrapper
+    return fn(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/job/py/lib/python3.11/site-packages/torch/_inductor/runtime/benchmarking.py", line 89, in wrapper
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/tmp/job/py/lib/python3.11/site-packages/torch/_inductor/runtime/benchmarking.py", line 739, in benchmark_gpu
+    _callable()
+  File "/tmp/job/py/lib/python3.11/site-packages/torch/_inductor/runtime/benchmarking.py", line 291, in _callable
+    return fn()
+           ^^^^
+  File "/tmp/job/py/lib/python3.11/site-packages/torch/_inductor/runtime/triton_heuristics.py", line 1529, in kernel_call
+    cloned_args, cloned_kwargs = self.maybe_clone_args(
+                                 ^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/job/py/lib/python3.11/site-packages/torch/_inductor/runtime/triton_heuristics.py", line 1723, in maybe_clone_args
+    cloned_args = [
+                  ^
+  File "/tmp/job/py/lib/python3.11/site-packages/torch/_inductor/runtime/triton_heuristics.py", line 1724, in <listcomp>
+    prepare_arg(name, arg)
+  File "/tmp/job/py/lib/python3.11/site-packages/torch/_inductor/runtime/triton_heuristics.py", line 1719, in prepare_arg
+    return clone_preserve_strides(arg)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/job/py/lib/python3.11/site-packages/torch/_inductor/utils.py", line 4657, in clone_preserve_strides
+    buffer = torch.as_strided(x, (needed_size,), (1,)).clone()
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/job/py/lib/python3.11/site-packages/torch/_compile.py", line 54, in inner
+    return disable_fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/job/py/lib/python3.11/site-packages/torch/_dynamo/eval_frame.py", line 1552, in _fn
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/tmp/job/py/lib/python3.11/site-packages/torch/_functorch/_aot_autograd/runtime_wrappers.py", line 492, in __torch_dispatch__
+    res = func(*args, **kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/job/py/lib/python3.11/site-packages/torch/_ops.py", line 916, in __call__
+    return self._op(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: Error: accessing tensor output of CUDAGraphs that has been overwritten by a subsequent run. Stack trace: File "/tmp/job/py/lib/python3.11/site-packages/transformers/utils/deprecation.py", line 173, in wrapped_func
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/job/py/lib/python3.11/site-packages/transformers/utils/generic.py", line 1036, in wrapper
+    output = func(self, *args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/job/py/lib/python3.11/site-packages/transformers/models/gemma/modeling_gemma.py", line 480, in forward
+    outputs: BaseModelOutputWithPast = self.model(
+                                       ^^^^^^^^^^^
+  File "/tmp/job/py/lib/python3.11/site-packages/transformers/utils/generic.py", line 1182, in wrapper
+    output = func(self, *args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/job/py/lib/python3.11/site-packages/transformers/utils/output_capturing.py", line 361, in wrapper
+    outputs = func(self, *args, **kwargs)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/job/py/lib/python3.11/site-packages/transformers/utils/deprecation.py", line 173, in wrapped_func
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/job/py/lib/python3.11/site-packages/transformers/models/gemma/modeling_gemma.py", line 416, in forward
+    hidden_states = decoder_layer(
+                    ^^^^^^^^^^^^^^
+  File "/tmp/job/py/lib/python3.11/site-packages/transformers/modeling_layers.py", line 124, in forward_with_checkpointing
+    return forward(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/job/py/lib/python3.11/site-packages/transformers/utils/deprecation.py", line 173, in wrapped_func
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/job/py/lib/python3.11/site-packages/transformers/models/gemma/modeling_gemma.py", line 310, in forward
+    hidden_states, _ = self.self_attn(
+                       ^^^^^^^^^^^^^^^
+  File "/tmp/job/py/lib/python3.11/site-packages/transformers/utils/deprecation.py", line 173, in wrapped_func
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/job/py/lib/python3.11/site-packages/transformers/models/gemma/modeling_gemma.py", line 263, in forward
+    key_states, value_states = cache.update(key_states, value_states, self.layer_idx, kwargs=kwargs)
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/job/py/lib/python3.11/site-packages/transformers/cache_utils.py", line 1620, in update
+    keys, values = self.layers[layer_idx].update(key_states, value_states, *args, **kwargs)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/job/py/lib/python3.11/site-packages/transformers/cache_utils.py", line 487, in update
+    self.keys.index_copy_(2, cache_position, key_states). To prevent overwriting, call torch.compiler.cudagraph_mark_step_begin() before each model invocation. If a tensor is a user-visible output that must remain live across generations, manually clone the tensor outside torch.compile(), or set torch._inductor.config.triton.cudagraph_trees_generation_cloning = 'user_visible' to clone all user-visible tensors that persist across generations.
+Exception raised from throw_storage_access_error at /__w/pytorch/pytorch/c10/core/TensorImpl.cpp:351 (most recent call first):
+C++ CapturedTraceback:
+#4 ?? from /tmp/job/py/lib/python3.11/site-packages/torch/lib/libc10.so:714418
+#5 c10::Error::Error(c10::SourceLocation, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) from /tmp/job/py/lib/python3.11/site-packages/torch/lib/libc10.so:708924
+#6 c10::detail::torchCheckFail(char const*, char const*, unsigned int, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) from /tmp/job/py/lib/python3.11/site-packages/torch/lib/libc10.so:224542
+#7 c10::TensorImpl::throw_storage_access_error() const from /tmp/job/py/lib/python3.11/site-packages/torch/lib/libc10.so:530177
+#8 ?? from /tmp/job/py/lib/python3.11/site-packages/torch/lib/libc10.so:563992
+#9 at::native::as_strided_tensorimpl(at::Tensor const&, c10::ArrayRef<long>, c10::ArrayRef<long>, std::optional<long>) from /tmp/job/py/lib/python3.11/site-packages/torch/lib/libtorch_cpu.so:35638673
+#10 ?? from /tmp/job/py/lib/python3.11/site-packages/torch/lib/libtorch_cuda.so:65075628
+#11 ?? from /tmp/job/py/lib/python3.11/site-packages/torch/lib/libtorch_cpu.so:108499875
+#12 ?? from /tmp/job/py/lib/python3.11/site-packages/torch/lib/libtorch_python.so:12208419
+#13 ?? from /tmp/job/py/lib/python3.11/site-packages/torch/lib/libtorch_python.so:12209975
+#14 ?? from /tmp/job/py/lib/python3.11/site-packages/torch/lib/libtorch_python.so:10967821
+#15 ?? from /tmp/job/py/lib/python3.11/site-packages/torch/lib/libtorch_python.so:4261572
+#16 ?? from /tmp/job/py/bin/python3.11:2080089
+#17 _PyEval_EvalFrameDefault from /tmp/job/py/bin/python3.11:2063257
+#18 _PyFunction_Vectorcall from /tmp/job/py/bin/python3.11:2190996
+#19 _PyObject_FastCallDictTstate from /tmp/job/py/bin/python3.11:1989932
+#20 _PyObject_Call_Prepend from /tmp/job/py/bin/python3.11:2226083
+#21 ?? from /tmp/job/py/bin/python3.11:3120993
+#22 PyObject_Call from /tmp/job/py/bin/python3.11:2235465
+#23 _PyEval_EvalFrameDefault from /tmp/job/py/bin/python3.11:2045509
+#24 _PyFunction_Vectorcall from /tmp/job/py/bin/python3.11:2190996
+#25 _PyEval_EvalFrameDefault from /tmp/job/py/bin/python3.11:2045509
+#26 _PyFunction_Vectorcall from /tmp/job/py/bin/python3.11:2190996
+#27 _PyEval_EvalFrameDefault from /tmp/job/py/bin/python3.11:2045509
+#28 ?? from /tmp/job/py/bin/python3.11:2327624
+#29 ?? from /tmp/job/py/bin/python3.11:2821832
+#30 PyObject_CallMethod from /tmp/job/py/bin/python3.11:2855713
+#31 ?? from /tmp/job/py/lib/python3.11/site-packages/torch/lib/libtorch_python.so:15096244
+#32 ?? from /tmp/job/py/lib/python3.11/site-packages/torch/lib/libtorch_python.so:7966956
+#33 ?? from /tmp/job/py/lib/python3.11/site-packages/torch/lib/libtorch_cpu.so:29021642
+#34 ?? from /tmp/job/py/lib/python3.11/site-packages/torch/lib/libtorch_cpu.so:29016153
+#35 ?? from /tmp/job/py/lib/python3.11/site-packages/torch/lib/libtorch_cpu.so:42025814
+#36 at::_ops::as_strided::call(at::Tensor const&, c10::ArrayRef<c10::SymInt>, c10::ArrayRef<c10::SymInt>, std::optional<c10::SymInt>) from /tmp/job/py/lib/python3.11/site-packages/torch/lib/libtorch_cpu.so:41477658
+#37 ?? from /tmp/job/py/lib/python3.11/site-packages/torch/lib/libtorch_python.so:5222701
+#38 ?? from /tmp/job/py/bin/python3.11:2121413
+#39 _PyObject_MakeTpCall from /tmp/job/py/bin/python3.11:1969971
+#40 _PyEval_EvalFrameDefault from /tmp/job/py/bin/python3.11:2029685
+#41 ?? from /tmp/job/py/bin/python3.11:2327624
+#42 _PyEval_EvalFrameDefault from /tmp/job/py/bin/python3.11:2045509
+#43 _PyFunction_Vectorcall from /tmp/job/py/bin/python3.11:2190996
+#44 PyObject_Call from /tmp/job/py/bin/python3.11:2235604
+#45 _PyEval_EvalFrameDefault from /tmp/job/py/bin/python3.11:2045509
+#46 _PyFunction_Vectorcall from /tmp/job/py/bin/python3.11:2190996
+#47 PyObject_Call from /tmp/job/py/bin/python3.11:2235604
+#48 _PyEval_EvalFrameDefault from /tmp/job/py/bin/python3.11:2045509
+#49 ?? from /tmp/job/py/bin/python3.11:2329997
+#50 ?? from /tmp/job/py/bin/python3.11:2327973
+#51 PyObject_Call from /tmp/job/py/bin/python3.11:2235604
+#52 _PyEval_EvalFrameDefault from /tmp/job/py/bin/python3.11:2045509
+#53 _PyFunction_Vectorcall from /tmp/job/py/bin/python3.11:2190996
+#54 PyObject_Call from /tmp/job/py/bin/python3.11:2235604
+#55 _PyEval_EvalFrameDefault from /tmp/job/py/bin/python3.11:2045509
+#56 _PyFunction_Vectorcall from /tmp/job/py/bin/python3.11:2190996
+#57 PyObject_Call from /tmp/job/py/bin/python3.11:2235604
+#58 _PyEval_EvalFrameDefault from /tmp/job/py/bin/python3.11:2045509
+#59 ?? from /tmp/job/py/bin/python3.11:2329997
+#60 ?? from /tmp/job/py/bin/python3.11:2327973
+#61 PyObject_Call from /tmp/job/py/bin/python3.11:2235604
+#62 _PyEval_EvalFrameDefault from /tmp/job/py/bin/python3.11:2045509
+#63 ?? from /tmp/job/py/bin/python3.11:2327624
+#64 _PyEval_EvalFrameDefault from /tmp/job/py/bin/python3.11:2045509
+#65 ?? from /tmp/job/py/bin/python3.11:2327624
+#66 _PyEval_EvalFrameDefault from /tmp/job/py/bin/python3.11:2045509
+#67 ?? from /tmp/job/py/bin/python3.11:2327624
+#68 _PyEval_EvalFrameDefault from /tmp/job/py/bin/python3.11:2045509
+#69 ?? from /tmp/job/py/bin/python3.11:2329997
+#70 ?? from /tmp/job/py/bin/python3.11:2327973
+#71 PyObject_Call from /tmp/job/py/bin/python3.11:2235604
+#72 ?? from /tmp/job/py/bin/python3.11:3110524
+#73 _PyObject_MakeTpCall from /tmp/job/py/bin/python3.11:1969971
+#74 PyObject_Vectorcall from /tmp/job/py/bin/python3.11:2079931
+#75 _PyEval_EvalFrameDefault from /tmp/job/py/bin/python3.11:2029685
+#76 _PyFunction_Vectorcall from /tmp/job/py/bin/python3.11:2190996
+#77 PyObject_Call from /tmp/job/py/bin/python3.11:2235604
+#78 _PyEval_EvalFrameDefault from /tmp/job/py/bin/python3.11:2045509
+#79 _PyFunction_Vectorcall from /tmp/job/py/bin/python3.11:2190996
+#80 _PyObject_FastCallDictTstate from /tmp/job/py/bin/python3.11:1989932
+#81 _PyObject_Call_Prepend from /tmp/job/py/bin/python3.11:2226083
+#82 ?? from /tmp/job/py/bin/python3.11:3120993
+#83 PyObject_Call from /tmp/job/py/bin/python3.11:2235465
+#84 _PyEval_EvalFrameDefault from /tmp/job/py/bin/python3.11:2045509
+#85 _PyFunction_Vectorcall from /tmp/job/py/bin/python3.11:2190996
+#86 _PyObject_FastCallDictTstate from /tmp/job/py/bin/python3.11:1989932
+#87 _PyObject_Call_Prepend from /tmp/job/py/bin/python3.11:2226083
+#88 ?? from /tmp/job/py/bin/python3.11:3120993
+#89 _PyObject_MakeTpCall from /tmp/job/py/bin/python3.11:1969971
+#90 _PyEval_EvalFrameDefault from /tmp/job/py/bin/python3.11:2029685
+#91 _PyFunction_Vectorcall from /tmp/job/py/bin/python3.11:2190996
+#92 _PyEval_EvalFrameDefault from /tmp/job/py/bin/python3.11:2045509
+#93 ?? from /tmp/job/py/lib/python3.11/site-packages/torch/lib/libtorch_python.so:9407440
+#94 ?? from /tmp/job/py/lib/python3.11/site-packages/torch/lib/libtorch_python.so:9418443
+#95 ?? from /tmp/job/py/bin/python3.11:1138976
+#96 PyObject_Vectorcall from /tmp/job/py/bin/python3.11:2079931
+#97 ?? from /tmp/job/py/bin/python3.11:1075677
+#98 dynamo_eval_custom_code from /tmp/job/py/lib/python3.11/site-packages/torch/lib/libtorch_python.so:9406780
+#99 ?? from /tmp/job/py/lib/python3.11/site-packages/torch/lib/libtorch_python.so:9414765
+#100 ?? from /tmp/job/py/lib/python3.11/site-packages/torch/lib/libtorch_python.so:9419376
+#101 ?? from /tmp/job/py/bin/python3.11:1205695
+#102 ?? from /tmp/job/py/bin/python3.11:2327973
+#103 PyObject_Call from /tmp/job/py/bin/python3.11:2235604
+#104 _PyEval_EvalFrameDefault from /tmp/job/py/bin/python3.11:2045509
+#105 _PyFunction_Vectorcall from /tmp/job/py/bin/python3.11:2190996
+#106 PyObject_Call from /tmp/job/py/bin/python3.11:2235604
+#107 _PyEval_EvalFrameDefault from /tmp/job/py/bin/python3.11:2045509
+#108 _PyFunction_Vectorcall from /tmp/job/py/bin/python3.11:2190996
+#109 PyObject_Call from /tmp/job/py/bin/python3.11:2235604
+#110 _PyEval_EvalFrameDefault from /tmp/job/py/bin/python3.11:2045509
+#111 ?? from /tmp/job/py/bin/python3.11:2329997
+#112 ?? from /tmp/job/py/bin/python3.11:2327973
+#113 PyObject_Call from /tmp/job/py/bin/python3.11:2235604
+#114 _PyEval_EvalFrameDefault from /tmp/job/py/bin/python3.11:2045509
+#115 ?? from /tmp/job/py/bin/python3.11:2329997
+#116 ?? from /tmp/job/py/bin/python3.11:2327973
+#117 PyObject_Call from /tmp/job/py/bin/python3.11:2235604
+#118 _PyEval_EvalFrameDefault from /tmp/job/py/bin/python3.11:2045509
+#119 _PyFunction_Vectorcall from /tmp/job/py/bin/python3.11:2190996
+#120 PyObject_Call from /tmp/job/py/bin/python3.11:2235604
+#121 _PyEval_EvalFrameDefault from /tmp/job/py/bin/python3.11:2045509
+#122 _PyFunction_Vectorcall from /tmp/job/py/bin/python3.11:2190996
+#123 PyObject_Call from /tmp/job/py/bin/python3.11:2235604
+#124 _PyEval_EvalFrameDefault from /tmp/job/py/bin/python3.11:2045509
+#125 _PyFunction_Vectorcall from /tmp/job/py/bin/python3.11:2190996
+#126 PyObject_Call from /tmp/job/py/bin/python3.11:2235604
+#127 _PyEval_EvalFrameDefault from /tmp/job/py/bin/python3.11:2045509
+#128 _PyFunction_Vectorcall from /tmp/job/py/bin/python3.11:2190996
+#129 PyObject_Call from /tmp/job/py/bin/python3.11:2235604
+#130 _PyEval_EvalFrameDefault from /tmp/job/py/bin/python3.11:2045509
+#131 ?? from /tmp/job/py/bin/python3.11:2329997
+#132 ?? from /tmp/job/py/bin/python3.11:2327973
+#133 PyObject_Call from /tmp/job/py/bin/python3.11:2235604
+#134 _PyEval_EvalFrameDefault from /tmp/job/py/bin/python3.11:2045509
+#135 _PyFunction_Vectorcall from /tmp/job/py/bin/python3.11:2190996
+#136 PyObject_Call from /tmp/job/py/bin/python3.11:2235604
+#137 _PyEval_EvalFrameDefault from /tmp/job/py/bin/python3.11:2045509
+#138 _PyFunction_Vectorcall from /tmp/job/py/bin/python3.11:2190996
+#139 _PyEval_EvalFrameDefault from /tmp/job/py/bin/python3.11:2045509
+#140 ?? from /tmp/job/py/bin/python3.11:2834041
+#141 PyEval_EvalCode from /tmp/job/py/bin/python3.11:2831846
+#142 ?? from /tmp/job/py/bin/python3.11:2955608
+#143 ?? from /tmp/job/py/bin/python3.11:2937620
+#144 ?? from /tmp/job/py/bin/python3.11:3031215
+#145 _PyRun_SimpleFileObject from /tmp/job/py/bin/python3.11:3027248
+#146 _PyRun_AnyFileObject from /tmp/job/py/bin/python3.11:3026499
+#147 Py_RunMain from /tmp/job/py/bin/python3.11:3001526
+#148 Py_BytesMain from /tmp/job/py/bin/python3.11:2765156
+#149 ?? from /lib64/libc.so.6:173583
+#150 __libc_start_main from /lib64/libc.so.6:173759
+#151 ?? from /tmp/job/py/bin/python3.11:2764768
+

@@ -1,0 +1,390 @@
+[transformers] We found `hidden_act="gelu"` in this Gemma config. This is a legacy value of the official releases but it is meant to target the tanh approximation. Setting `hidden_act="gelu_pytorch_tanh"` instead.
+[transformers] `torch_dtype` is deprecated! Use `dtype` instead!
+
+Loading weights:   0%|          | 0/164 [00:00<?, ?it/s]
+Loading weights:   1%|          | 1/164 [00:01<03:15,  1.20s/it]
+Loading weights:  52%|█████▏    | 85/164 [00:01<00:00, 89.22it/s]
+Loading weights:  80%|███████▉  | 131/164 [00:01<00:00, 104.44it/s]
+Loading weights:  99%|█████████▉| 162/164 [00:01<00:00, 110.77it/s]
+Loading weights: 100%|██████████| 164/164 [00:01<00:00, 86.65it/s] 
+/usr/local/lib/python3.11/site-packages/triton/knobs.py:504: UserWarning: TRITON_DEFAULT_FP_FUSION is unset: defaulting to FP fusion ENABLED for backward compatibility in Triton 3.9. The default will change to DISABLED in Triton 3.10; set TRITON_DEFAULT_FP_FUSION=1 to keep fusion enabled or =0 to adopt the new default early and silence this warning.
+  warn_once(FP_FUSION_DEFAULT_WARNING)
+W1123 17:21:14.629000 509 site-packages/torch/_inductor/cudagraph_utils.py:405] [__cudagraphs] skipping cudagraphs due to mutated inputs (54 instances). Found from : 
+W1123 17:21:14.629000 509 site-packages/torch/_inductor/cudagraph_utils.py:405] [__cudagraphs]    File "/usr/local/lib/python3.11/site-packages/transformers/utils/deprecation.py", line 173, in wrapped_func
+W1123 17:21:14.629000 509 site-packages/torch/_inductor/cudagraph_utils.py:405] [__cudagraphs]     return func(*args, **kwargs)
+W1123 17:21:14.629000 509 site-packages/torch/_inductor/cudagraph_utils.py:405] [__cudagraphs]            ^^^^^^^^^^^^^^^^^^^^^
+W1123 17:21:14.629000 509 site-packages/torch/_inductor/cudagraph_utils.py:405] [__cudagraphs]   File "/usr/local/lib/python3.11/site-packages/transformers/utils/generic.py", line 1036, in wrapper
+W1123 17:21:14.629000 509 site-packages/torch/_inductor/cudagraph_utils.py:405] [__cudagraphs]     output = func(self, *args, **kwargs)
+W1123 17:21:14.629000 509 site-packages/torch/_inductor/cudagraph_utils.py:405] [__cudagraphs]              ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+W1123 17:21:14.629000 509 site-packages/torch/_inductor/cudagraph_utils.py:405] [__cudagraphs]   File "/usr/local/lib/python3.11/site-packages/transformers/models/gemma/modeling_gemma.py", line 480, in forward
+W1123 17:21:14.629000 509 site-packages/torch/_inductor/cudagraph_utils.py:405] [__cudagraphs]     outputs: BaseModelOutputWithPast = self.model(
+W1123 17:21:14.629000 509 site-packages/torch/_inductor/cudagraph_utils.py:405] [__cudagraphs]                                        ^^^^^^^^^^^
+W1123 17:21:14.629000 509 site-packages/torch/_inductor/cudagraph_utils.py:405] [__cudagraphs]   File "/usr/local/lib/python3.11/site-packages/transformers/utils/generic.py", line 1182, in wrapper
+W1123 17:21:14.629000 509 site-packages/torch/_inductor/cudagraph_utils.py:405] [__cudagraphs]     output = func(self, *args, **kwargs)
+W1123 17:21:14.629000 509 site-packages/torch/_inductor/cudagraph_utils.py:405] [__cudagraphs]              ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+W1123 17:21:14.629000 509 site-packages/torch/_inductor/cudagraph_utils.py:405] [__cudagraphs]   File "/usr/local/lib/python3.11/site-packages/transformers/utils/output_capturing.py", line 361, in wrapper
+W1123 17:21:14.629000 509 site-packages/torch/_inductor/cudagraph_utils.py:405] [__cudagraphs]     outputs = func(self, *args, **kwargs)
+W1123 17:21:14.629000 509 site-packages/torch/_inductor/cudagraph_utils.py:405] [__cudagraphs]               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+W1123 17:21:14.629000 509 site-packages/torch/_inductor/cudagraph_utils.py:405] [__cudagraphs]   File "/usr/local/lib/python3.11/site-packages/transformers/utils/deprecation.py", line 173, in wrapped_func
+W1123 17:21:14.629000 509 site-packages/torch/_inductor/cudagraph_utils.py:405] [__cudagraphs]     return func(*args, **kwargs)
+W1123 17:21:14.629000 509 site-packages/torch/_inductor/cudagraph_utils.py:405] [__cudagraphs]            ^^^^^^^^^^^^^^^^^^^^^
+W1123 17:21:14.629000 509 site-packages/torch/_inductor/cudagraph_utils.py:405] [__cudagraphs]   File "/usr/local/lib/python3.11/site-packages/transformers/models/gemma/modeling_gemma.py", line 416, in forward
+W1123 17:21:14.629000 509 site-packages/torch/_inductor/cudagraph_utils.py:405] [__cudagraphs]     hidden_states = decoder_layer(
+W1123 17:21:14.629000 509 site-packages/torch/_inductor/cudagraph_utils.py:405] [__cudagraphs]                     ^^^^^^^^^^^^^^
+W1123 17:21:14.629000 509 site-packages/torch/_inductor/cudagraph_utils.py:405] [__cudagraphs]   File "/usr/local/lib/python3.11/site-packages/transformers/modeling_layers.py", line 124, in forward_with_checkpointing
+W1123 17:21:14.629000 509 site-packages/torch/_inductor/cudagraph_utils.py:405] [__cudagraphs]     return forward(self, *args, **kwargs)
+W1123 17:21:14.629000 509 site-packages/torch/_inductor/cudagraph_utils.py:405] [__cudagraphs]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+W1123 17:21:14.629000 509 site-packages/torch/_inductor/cudagraph_utils.py:405] [__cudagraphs]   File "/usr/local/lib/python3.11/site-packages/transformers/utils/deprecation.py", line 173, in wrapped_func
+W1123 17:21:14.629000 509 site-packages/torch/_inductor/cudagraph_utils.py:405] [__cudagraphs]     return func(*args, **kwargs)
+W1123 17:21:14.629000 509 site-packages/torch/_inductor/cudagraph_utils.py:405] [__cudagraphs]            ^^^^^^^^^^^^^^^^^^^^^
+W1123 17:21:14.629000 509 site-packages/torch/_inductor/cudagraph_utils.py:405] [__cudagraphs]   File "/usr/local/lib/python3.11/site-packages/transformers/models/gemma/modeling_gemma.py", line 310, in forward
+W1123 17:21:14.629000 509 site-packages/torch/_inductor/cudagraph_utils.py:405] [__cudagraphs]     hidden_states, _ = self.self_attn(
+W1123 17:21:14.629000 509 site-packages/torch/_inductor/cudagraph_utils.py:405] [__cudagraphs]                        ^^^^^^^^^^^^^^^
+W1123 17:21:14.629000 509 site-packages/torch/_inductor/cudagraph_utils.py:405] [__cudagraphs]   File "/usr/local/lib/python3.11/site-packages/transformers/utils/deprecation.py", line 173, in wrapped_func
+W1123 17:21:14.629000 509 site-packages/torch/_inductor/cudagraph_utils.py:405] [__cudagraphs]     return func(*args, **kwargs)
+W1123 17:21:14.629000 509 site-packages/torch/_inductor/cudagraph_utils.py:405] [__cudagraphs]            ^^^^^^^^^^^^^^^^^^^^^
+W1123 17:21:14.629000 509 site-packages/torch/_inductor/cudagraph_utils.py:405] [__cudagraphs]   File "/usr/local/lib/python3.11/site-packages/transformers/models/gemma/modeling_gemma.py", line 263, in forward
+W1123 17:21:14.629000 509 site-packages/torch/_inductor/cudagraph_utils.py:405] [__cudagraphs]     key_states, value_states = cache.update(key_states, value_states, self.layer_idx, kwargs=kwargs)
+W1123 17:21:14.629000 509 site-packages/torch/_inductor/cudagraph_utils.py:405] [__cudagraphs]                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+W1123 17:21:14.629000 509 site-packages/torch/_inductor/cudagraph_utils.py:405] [__cudagraphs]   File "/usr/local/lib/python3.11/site-packages/transformers/cache_utils.py", line 1620, in update
+W1123 17:21:14.629000 509 site-packages/torch/_inductor/cudagraph_utils.py:405] [__cudagraphs]     keys, values = self.layers[layer_idx].update(key_states, value_states, *args, **kwargs)
+W1123 17:21:14.629000 509 site-packages/torch/_inductor/cudagraph_utils.py:405] [__cudagraphs]                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+W1123 17:21:14.629000 509 site-packages/torch/_inductor/cudagraph_utils.py:405] [__cudagraphs]   File "/usr/local/lib/python3.11/site-packages/transformers/cache_utils.py", line 483, in update
+W1123 17:21:14.629000 509 site-packages/torch/_inductor/cudagraph_utils.py:405] [__cudagraphs]     self.cumulative_length.add_(kv_length)
+W1123 17:21:14.629000 509 site-packages/torch/_inductor/cudagraph_utils.py:405] [__cudagraphs] 
+Traceback (most recent call last):
+  File "/repo/chapter04/scripts/reduce_overhead_retest.py", line 157, in <module>
+    main()
+  File "/repo/chapter04/scripts/reduce_overhead_retest.py", line 120, in main
+    return child(*a.child)
+           ^^^^^^^^^^^^^^^
+  File "/repo/chapter04/scripts/reduce_overhead_retest.py", line 94, in child
+    measure("result", model, cache_implementation="static", **off)
+  File "/repo/chapter04/scripts/../../case_study/experiments.py", line 191, in measure
+    gen(m, cfg.NEW_TOKENS, **kw)()          # first call: includes any compilation
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/repo/chapter04/scripts/../../case_study/experiments.py", line 184, in <lambda>
+    return lambda: m.generate(**inputs, max_new_tokens=n, min_new_tokens=n, do_sample=False,
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/transformers/utils/deprecation.py", line 173, in wrapped_func
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/transformers/utils/deprecation.py", line 173, in wrapped_func
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/torch/utils/_contextlib.py", line 158, in no_grad
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/transformers/generation/utils.py", line 3008, in generate
+    result = decoding_method(
+             ^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/transformers/generation/utils.py", line 3236, in _sample
+    outputs = model_forward(**model_inputs, return_dict=True)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1787, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1798, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/repo/chapter04/scripts/reduce_overhead_retest.py", line 92, in fwd
+    return compiled(*a, **k)
+           ^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/torch/_dynamo/eval_frame.py", line 1265, in compile_wrapper
+    result = fn(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/transformers/utils/deprecation.py", line 121, in wrapped_func
+    @wraps(func)
+  File "/usr/local/lib/python3.11/site-packages/torch/_dynamo/eval_frame.py", line 1552, in _fn
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/torch/_functorch/aot_autograd.py", line 1289, in forward
+    return compiled_fn(full_args)
+           ^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/torch/_functorch/_aot_autograd/runtime_wrappers.py", line 1204, in runtime_wrapper
+    result = _codegen_runtime_wrapper(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/torch/_functorch/_aot_autograd/codegen.py:codegen(runtime_wrapper_orchestration)", line 9, in _runtime_wrapper
+  File "/usr/local/lib/python3.11/site-packages/torch/_functorch/_aot_autograd/runtime_wrappers.py", line 2610, in __call__
+    return self.compiled_fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/torch/_inductor/output_code.py", line 830, in __call__
+    return self.current_callable(inputs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/torchinductor_root/va/cvactzsa7fwclh677jfnehm7npbt5tdq6n47aqpkzwktkmuh2vth.py", line 3242, in call
+    (buf389,) = self.partitions[0](partition0_args)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/torch/_inductor/compile_fx.py", line 2294, in run
+    return compiled_fn(new_inputs)  # type: ignore[arg-type]
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/torch/_inductor/cudagraph_trees.py", line 526, in deferred_cudagraphify
+    fn, out = cudagraphify(model, inputs, new_static_input_idxs, *args, **kwargs)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/torch/_inductor/cudagraph_trees.py", line 602, in cudagraphify
+    return manager.add_function(
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/torch/_inductor/cudagraph_trees.py", line 3032, in add_function
+    return fn, fn(inputs)
+               ^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/torch/_inductor/cudagraph_trees.py", line 2570, in run
+    out = self._run(new_inputs, function_id)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/torch/_inductor/cudagraph_trees.py", line 2715, in _run
+    return self.ids_to_funcs[function_id].model(new_inputs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/torchinductor_root/va/cvactzsa7fwclh677jfnehm7npbt5tdq6n47aqpkzwktkmuh2vth.py", line 2000, in partition_0
+    triton_poi_fused__to_copy__unsafe_view_add_arange_cat_index_copy_mul_neg_slice_transpose_unsqueeze_view_1.run(arg3_1, buf3, arg5_1, arg10_1, 256, stream=raw_stream0)
+  File "/usr/local/lib/python3.11/site-packages/torch/_inductor/runtime/triton_heuristics.py", line 2553, in run
+    self.autotune_to_one_config(*args, **kwargs)
+  File "/usr/local/lib/python3.11/site-packages/torch/_inductor/runtime/triton_heuristics.py", line 1910, in autotune_to_one_config
+    timings = self.benchmark_all_configs(*args, **kwargs)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/torch/_inductor/runtime/triton_heuristics.py", line 1863, in benchmark_all_configs
+    timing = self.bench(launcher, *args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/torch/_inductor/runtime/triton_heuristics.py", line 1593, in bench
+    result = benchmarker.benchmark(
+             ^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/torch/_inductor/runtime/benchmarking.py", line 194, in wrapper
+    return fn(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/torch/_inductor/runtime/benchmarking.py", line 309, in benchmark
+    return benchmark_fn(self, _callable, warmup=warmup, rep=rep, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/torch/_inductor/runtime/benchmarking.py", line 426, in _default_cuda_bench
+    return self.benchmark_gpu(f, warmup=warmup, rep=rep, **kw)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/torch/_inductor/runtime/benchmarking.py", line 194, in wrapper
+    return fn(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/torch/_inductor/runtime/benchmarking.py", line 89, in wrapper
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/torch/_inductor/runtime/benchmarking.py", line 739, in benchmark_gpu
+    _callable()
+  File "/usr/local/lib/python3.11/site-packages/torch/_inductor/runtime/benchmarking.py", line 291, in _callable
+    return fn()
+           ^^^^
+  File "/usr/local/lib/python3.11/site-packages/torch/_inductor/runtime/triton_heuristics.py", line 1529, in kernel_call
+    cloned_args, cloned_kwargs = self.maybe_clone_args(
+                                 ^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/torch/_inductor/runtime/triton_heuristics.py", line 1723, in maybe_clone_args
+    cloned_args = [
+                  ^
+  File "/usr/local/lib/python3.11/site-packages/torch/_inductor/runtime/triton_heuristics.py", line 1724, in <listcomp>
+    prepare_arg(name, arg)
+  File "/usr/local/lib/python3.11/site-packages/torch/_inductor/runtime/triton_heuristics.py", line 1719, in prepare_arg
+    return clone_preserve_strides(arg)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/torch/_inductor/utils.py", line 4657, in clone_preserve_strides
+    buffer = torch.as_strided(x, (needed_size,), (1,)).clone()
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/torch/_compile.py", line 54, in inner
+    return disable_fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/torch/_dynamo/eval_frame.py", line 1552, in _fn
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/torch/_functorch/_aot_autograd/runtime_wrappers.py", line 492, in __torch_dispatch__
+    res = func(*args, **kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/torch/_ops.py", line 916, in __call__
+    return self._op(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: Error: accessing tensor output of CUDAGraphs that has been overwritten by a subsequent run. Stack trace: File "/usr/local/lib/python3.11/site-packages/transformers/utils/deprecation.py", line 173, in wrapped_func
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/transformers/utils/generic.py", line 1036, in wrapper
+    output = func(self, *args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/transformers/models/gemma/modeling_gemma.py", line 480, in forward
+    outputs: BaseModelOutputWithPast = self.model(
+                                       ^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/transformers/utils/generic.py", line 1182, in wrapper
+    output = func(self, *args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/transformers/utils/output_capturing.py", line 361, in wrapper
+    outputs = func(self, *args, **kwargs)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/transformers/utils/deprecation.py", line 173, in wrapped_func
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/transformers/models/gemma/modeling_gemma.py", line 416, in forward
+    hidden_states = decoder_layer(
+                    ^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/transformers/modeling_layers.py", line 124, in forward_with_checkpointing
+    return forward(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/transformers/utils/deprecation.py", line 173, in wrapped_func
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/transformers/models/gemma/modeling_gemma.py", line 310, in forward
+    hidden_states, _ = self.self_attn(
+                       ^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/transformers/utils/deprecation.py", line 173, in wrapped_func
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/transformers/models/gemma/modeling_gemma.py", line 263, in forward
+    key_states, value_states = cache.update(key_states, value_states, self.layer_idx, kwargs=kwargs)
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/transformers/cache_utils.py", line 1620, in update
+    keys, values = self.layers[layer_idx].update(key_states, value_states, *args, **kwargs)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/transformers/cache_utils.py", line 487, in update
+    self.keys.index_copy_(2, cache_position, key_states). To prevent overwriting, call torch.compiler.cudagraph_mark_step_begin() before each model invocation. If a tensor is a user-visible output that must remain live across generations, manually clone the tensor outside torch.compile(), or set torch._inductor.config.triton.cudagraph_trees_generation_cloning = 'user_visible' to clone all user-visible tensors that persist across generations.
+Exception raised from throw_storage_access_error at /__w/pytorch/pytorch/c10/core/TensorImpl.cpp:351 (most recent call first):
+C++ CapturedTraceback:
+#4 ?? from /usr/local/lib/python3.11/site-packages/torch/lib/libc10.so:714418
+#5 c10::Error::Error(c10::SourceLocation, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) from /usr/local/lib/python3.11/site-packages/torch/lib/libc10.so:708924
+#6 c10::detail::torchCheckFail(char const*, char const*, unsigned int, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) from /usr/local/lib/python3.11/site-packages/torch/lib/libc10.so:224542
+#7 c10::TensorImpl::throw_storage_access_error() const from /usr/local/lib/python3.11/site-packages/torch/lib/libc10.so:530177
+#8 ?? from /usr/local/lib/python3.11/site-packages/torch/lib/libc10.so:563992
+#9 at::native::as_strided_tensorimpl(at::Tensor const&, c10::ArrayRef<long>, c10::ArrayRef<long>, std::optional<long>) from /usr/local/lib/python3.11/site-packages/torch/lib/libtorch_cpu.so:35638673
+#10 ?? from /usr/local/lib/python3.11/site-packages/torch/lib/libtorch_cuda.so:65075628
+#11 ?? from /usr/local/lib/python3.11/site-packages/torch/lib/libtorch_cpu.so:108499875
+#12 ?? from /usr/local/lib/python3.11/site-packages/torch/lib/libtorch_python.so:12208419
+#13 ?? from /usr/local/lib/python3.11/site-packages/torch/lib/libtorch_python.so:12209975
+#14 ?? from /usr/local/lib/python3.11/site-packages/torch/lib/libtorch_python.so:10967821
+#15 ?? from /usr/local/lib/python3.11/site-packages/torch/lib/libtorch_python.so:4261572
+#16 ?? from /usr/local/bin/../lib/libpython3.11.so.1.0:1878197
+#17 _PyEval_EvalFrameDefault from /usr/local/bin/../lib/libpython3.11.so.1.0:1840495
+#18 ?? from /usr/local/bin/../lib/libpython3.11.so.1.0:1809657
+#19 _PyObject_FastCallDictTstate from /usr/local/bin/../lib/libpython3.11.so.1.0:1801610
+#20 _PyObject_Call_Prepend from /usr/local/bin/../lib/libpython3.11.so.1.0:1970894
+#21 ?? from /usr/local/bin/../lib/libpython3.11.so.1.0:2656904
+#22 _PyObject_Call from /usr/local/bin/../lib/libpython3.11.so.1.0:1976608
+#23 _PyEval_EvalFrameDefault from /usr/local/bin/../lib/libpython3.11.so.1.0:1840495
+#24 ?? from /usr/local/bin/../lib/libpython3.11.so.1.0:1809657
+#25 _PyEval_EvalFrameDefault from /usr/local/bin/../lib/libpython3.11.so.1.0:1840495
+#26 ?? from /usr/local/bin/../lib/libpython3.11.so.1.0:1809657
+#27 _PyEval_EvalFrameDefault from /usr/local/bin/../lib/libpython3.11.so.1.0:1840495
+#28 ?? from /usr/local/bin/../lib/libpython3.11.so.1.0:1809657
+#29 ?? from /usr/local/bin/../lib/libpython3.11.so.1.0:2043877
+#30 ?? from /usr/local/bin/../lib/libpython3.11.so.1.0:1778056
+#31 PyObject_CallMethod from /usr/local/bin/../lib/libpython3.11.so.1.0:2399036
+#32 ?? from /usr/local/lib/python3.11/site-packages/torch/lib/libtorch_python.so:15096244
+#33 ?? from /usr/local/lib/python3.11/site-packages/torch/lib/libtorch_python.so:7966956
+#34 ?? from /usr/local/lib/python3.11/site-packages/torch/lib/libtorch_cpu.so:29021642
+#35 ?? from /usr/local/lib/python3.11/site-packages/torch/lib/libtorch_cpu.so:29016153
+#36 ?? from /usr/local/lib/python3.11/site-packages/torch/lib/libtorch_cpu.so:42025814
+#37 at::_ops::as_strided::call(at::Tensor const&, c10::ArrayRef<c10::SymInt>, c10::ArrayRef<c10::SymInt>, std::optional<c10::SymInt>) from /usr/local/lib/python3.11/site-packages/torch/lib/libtorch_cpu.so:41477658
+#38 ?? from /usr/local/lib/python3.11/site-packages/torch/lib/libtorch_python.so:5222701
+#39 ?? from /usr/local/bin/../lib/libpython3.11.so.1.0:1907964
+#40 _PyObject_MakeTpCall from /usr/local/bin/../lib/libpython3.11.so.1.0:1790046
+#41 _PyEval_EvalFrameDefault from /usr/local/bin/../lib/libpython3.11.so.1.0:1825468
+#42 ?? from /usr/local/bin/../lib/libpython3.11.so.1.0:1809657
+#43 ?? from /usr/local/bin/../lib/libpython3.11.so.1.0:2043877
+#44 _PyEval_EvalFrameDefault from /usr/local/bin/../lib/libpython3.11.so.1.0:1840495
+#45 ?? from /usr/local/bin/../lib/libpython3.11.so.1.0:1809657
+#46 ?? from /usr/local/bin/../lib/libpython3.11.so.1.0:1976884
+#47 _PyEval_EvalFrameDefault from /usr/local/bin/../lib/libpython3.11.so.1.0:1840495
+#48 ?? from /usr/local/bin/../lib/libpython3.11.so.1.0:1809657
+#49 ?? from /usr/local/bin/../lib/libpython3.11.so.1.0:1976884
+#50 _PyEval_EvalFrameDefault from /usr/local/bin/../lib/libpython3.11.so.1.0:1840495
+#51 ?? from /usr/local/bin/../lib/libpython3.11.so.1.0:1809657
+#52 ?? from /usr/local/bin/../lib/libpython3.11.so.1.0:2044047
+#53 ?? from /usr/local/bin/../lib/libpython3.11.so.1.0:1976884
+#54 _PyEval_EvalFrameDefault from /usr/local/bin/../lib/libpython3.11.so.1.0:1840495
+#55 ?? from /usr/local/bin/../lib/libpython3.11.so.1.0:1809657
+#56 ?? from /usr/local/bin/../lib/libpython3.11.so.1.0:1976884
+#57 _PyEval_EvalFrameDefault from /usr/local/bin/../lib/libpython3.11.so.1.0:1840495
+#58 ?? from /usr/local/bin/../lib/libpython3.11.so.1.0:1809657
+#59 ?? from /usr/local/bin/../lib/libpython3.11.so.1.0:1976884
+#60 _PyEval_EvalFrameDefault from /usr/local/bin/../lib/libpython3.11.so.1.0:1840495
+#61 ?? from /usr/local/bin/../lib/libpython3.11.so.1.0:1809657
+#62 ?? from /usr/local/bin/../lib/libpython3.11.so.1.0:2044047
+#63 ?? from /usr/local/bin/../lib/libpython3.11.so.1.0:1976884
+#64 _PyEval_EvalFrameDefault from /usr/local/bin/../lib/libpython3.11.so.1.0:1840495
+#65 ?? from /usr/local/bin/../lib/libpython3.11.so.1.0:1809657
+#66 ?? from /usr/local/bin/../lib/libpython3.11.so.1.0:2043877
+#67 _PyEval_EvalFrameDefault from /usr/local/bin/../lib/libpython3.11.so.1.0:1840495
+#68 ?? from /usr/local/bin/../lib/libpython3.11.so.1.0:1809657
+#69 ?? from /usr/local/bin/../lib/libpython3.11.so.1.0:2043877
+#70 _PyEval_EvalFrameDefault from /usr/local/bin/../lib/libpython3.11.so.1.0:1840495
+#71 ?? from /usr/local/bin/../lib/libpython3.11.so.1.0:1809657
+#72 ?? from /usr/local/bin/../lib/libpython3.11.so.1.0:2043877
+#73 _PyEval_EvalFrameDefault from /usr/local/bin/../lib/libpython3.11.so.1.0:1840495
+#74 ?? from /usr/local/bin/../lib/libpython3.11.so.1.0:1809657
+#75 ?? from /usr/local/bin/../lib/libpython3.11.so.1.0:2044047
+#76 ?? from /usr/local/bin/../lib/libpython3.11.so.1.0:1976884
+#77 ?? from /usr/local/bin/../lib/libpython3.11.so.1.0:2649323
+#78 _PyObject_MakeTpCall from /usr/local/bin/../lib/libpython3.11.so.1.0:1790046
+#79 PyObject_Vectorcall from /usr/local/bin/../lib/libpython3.11.so.1.0:1875218
+#80 _PyEval_EvalFrameDefault from /usr/local/bin/../lib/libpython3.11.so.1.0:1825468
+#81 ?? from /usr/local/bin/../lib/libpython3.11.so.1.0:1809657
+#82 ?? from /usr/local/bin/../lib/libpython3.11.so.1.0:1976884
+#83 _PyEval_EvalFrameDefault from /usr/local/bin/../lib/libpython3.11.so.1.0:1840495
+#84 ?? from /usr/local/bin/../lib/libpython3.11.so.1.0:1809657
+#85 _PyObject_FastCallDictTstate from /usr/local/bin/../lib/libpython3.11.so.1.0:1801610
+#86 _PyObject_Call_Prepend from /usr/local/bin/../lib/libpython3.11.so.1.0:1970894
+#87 ?? from /usr/local/bin/../lib/libpython3.11.so.1.0:2656904
+#88 _PyObject_Call from /usr/local/bin/../lib/libpython3.11.so.1.0:1976608
+#89 _PyEval_EvalFrameDefault from /usr/local/bin/../lib/libpython3.11.so.1.0:1840495
+#90 ?? from /usr/local/bin/../lib/libpython3.11.so.1.0:1809657
+#91 _PyObject_FastCallDictTstate from /usr/local/bin/../lib/libpython3.11.so.1.0:1801610
+#92 _PyObject_Call_Prepend from /usr/local/bin/../lib/libpython3.11.so.1.0:1970894
+#93 ?? from /usr/local/bin/../lib/libpython3.11.so.1.0:2656904
+#94 _PyObject_MakeTpCall from /usr/local/bin/../lib/libpython3.11.so.1.0:1790046
+#95 _PyEval_EvalFrameDefault from /usr/local/bin/../lib/libpython3.11.so.1.0:1825468
+#96 ?? from /usr/local/bin/../lib/libpython3.11.so.1.0:1809657
+#97 _PyEval_EvalFrameDefault from /usr/local/bin/../lib/libpython3.11.so.1.0:1840495
+#98 ?? from /usr/local/lib/python3.11/site-packages/torch/lib/libtorch_python.so:9407440
+#99 ?? from /usr/local/lib/python3.11/site-packages/torch/lib/libtorch_python.so:9418443
+#100 ?? from /usr/local/bin/../lib/libpython3.11.so.1.0:1028583
+#101 PyObject_Vectorcall from /usr/local/bin/../lib/libpython3.11.so.1.0:1875218
+#102 _PyEval_EvalFrameDefault from /usr/local/bin/../lib/libpython3.11.so.1.0:1825468
+#103 dynamo_eval_custom_code from /usr/local/lib/python3.11/site-packages/torch/lib/libtorch_python.so:9406780
+#104 ?? from /usr/local/lib/python3.11/site-packages/torch/lib/libtorch_python.so:9414765
+#105 ?? from /usr/local/lib/python3.11/site-packages/torch/lib/libtorch_python.so:9419376
+#106 ?? from /usr/local/bin/../lib/libpython3.11.so.1.0:1028583
+#107 ?? from /usr/local/bin/../lib/libpython3.11.so.1.0:2044047
+#108 ?? from /usr/local/bin/../lib/libpython3.11.so.1.0:1976884
+#109 _PyEval_EvalFrameDefault from /usr/local/bin/../lib/libpython3.11.so.1.0:1840495
+#110 ?? from /usr/local/bin/../lib/libpython3.11.so.1.0:1809657
+#111 ?? from /usr/local/bin/../lib/libpython3.11.so.1.0:1976884
+#112 _PyEval_EvalFrameDefault from /usr/local/bin/../lib/libpython3.11.so.1.0:1840495
+#113 ?? from /usr/local/bin/../lib/libpython3.11.so.1.0:1809657
+#114 ?? from /usr/local/bin/../lib/libpython3.11.so.1.0:1976884
+#115 _PyEval_EvalFrameDefault from /usr/local/bin/../lib/libpython3.11.so.1.0:1840495
+#116 ?? from /usr/local/bin/../lib/libpython3.11.so.1.0:1809657
+#117 ?? from /usr/local/bin/../lib/libpython3.11.so.1.0:2044047
+#118 ?? from /usr/local/bin/../lib/libpython3.11.so.1.0:1976884
+#119 _PyEval_EvalFrameDefault from /usr/local/bin/../lib/libpython3.11.so.1.0:1840495
+#120 ?? from /usr/local/bin/../lib/libpython3.11.so.1.0:1809657
+#121 ?? from /usr/local/bin/../lib/libpython3.11.so.1.0:2044047
+#122 ?? from /usr/local/bin/../lib/libpython3.11.so.1.0:1976884
+#123 _PyEval_EvalFrameDefault from /usr/local/bin/../lib/libpython3.11.so.1.0:1840495
+#124 ?? from /usr/local/bin/../lib/libpython3.11.so.1.0:1809657
+#125 ?? from /usr/local/bin/../lib/libpython3.11.so.1.0:1976884
+#126 _PyEval_EvalFrameDefault from /usr/local/bin/../lib/libpython3.11.so.1.0:1840495
+#127 ?? from /usr/local/bin/../lib/libpython3.11.so.1.0:1809657
+#128 ?? from /usr/local/bin/../lib/libpython3.11.so.1.0:1976884
+#129 _PyEval_EvalFrameDefault from /usr/local/bin/../lib/libpython3.11.so.1.0:1840495
+#130 ?? from /usr/local/bin/../lib/libpython3.11.so.1.0:1809657
+#131 ?? from /usr/local/bin/../lib/libpython3.11.so.1.0:1976884
+#132 _PyEval_EvalFrameDefault from /usr/local/bin/../lib/libpython3.11.so.1.0:1840495
+#133 ?? from /usr/local/bin/../lib/libpython3.11.so.1.0:1809657
+#134 ?? from /usr/local/bin/../lib/libpython3.11.so.1.0:1976884
+#135 _PyEval_EvalFrameDefault from /usr/local/bin/../lib/libpython3.11.so.1.0:1840495
+#136 ?? from /usr/local/bin/../lib/libpython3.11.so.1.0:1809657
+#137 ?? from /usr/local/bin/../lib/libpython3.11.so.1.0:2044047
+#138 ?? from /usr/local/bin/../lib/libpython3.11.so.1.0:1976884
+#139 _PyEval_EvalFrameDefault from /usr/local/bin/../lib/libpython3.11.so.1.0:1840495
+#140 ?? from /usr/local/bin/../lib/libpython3.11.so.1.0:1809657
+#141 ?? from /usr/local/bin/../lib/libpython3.11.so.1.0:1976884
+#142 _PyEval_EvalFrameDefault from /usr/local/bin/../lib/libpython3.11.so.1.0:1840495
+#143 ?? from /usr/local/bin/../lib/libpython3.11.so.1.0:1809657
+#144 _PyEval_EvalFrameDefault from /usr/local/bin/../lib/libpython3.11.so.1.0:1840495
+#145 ?? from /usr/local/bin/../lib/libpython3.11.so.1.0:1809657
+#146 PyEval_EvalCode from /usr/local/bin/../lib/libpython3.11.so.1.0:2374759
+#147 ?? from /usr/local/bin/../lib/libpython3.11.so.1.0:2496850
+#148 ?? from /usr/local/bin/../lib/libpython3.11.so.1.0:2481497
+#149 ?? from /usr/local/bin/../lib/libpython3.11.so.1.0:2569713
+#150 _PyRun_SimpleFileObject from /usr/local/bin/../lib/libpython3.11.so.1.0:2567748
+#151 _PyRun_AnyFileObject from /usr/local/bin/../lib/libpython3.11.so.1.0:2565443
+#152 Py_RunMain from /usr/local/bin/../lib/libpython3.11.so.1.0:2542432
+#153 Py_BytesMain from /usr/local/bin/../lib/libpython3.11.so.1.0:2309670
+#154 ?? from /usr/lib/x86_64-linux-gnu/libc.so.6:160329
+#155 __libc_start_main from /usr/lib/x86_64-linux-gnu/libc.so.6:160516
+#156 _start from /usr/local/bin/python3.11:4208
+

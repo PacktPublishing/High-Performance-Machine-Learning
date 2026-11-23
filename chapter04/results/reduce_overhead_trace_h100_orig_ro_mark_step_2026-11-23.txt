@@ -1,0 +1,351 @@
+[transformers] We found `hidden_act="gelu"` in this Gemma config. This is a legacy value of the official releases but it is meant to target the tanh approximation. Setting `hidden_act="gelu_pytorch_tanh"` instead.
+[transformers] `torch_dtype` is deprecated! Use `dtype` instead!
+
+Loading weights:   0%|          | 0/164 [00:00<?, ?it/s]
+Loading weights:   1%|          | 1/164 [00:00<00:51,  3.16it/s]
+Loading weights:  29%|██▊       | 47/164 [00:00<00:00, 141.96it/s]
+Loading weights:  45%|████▍     | 73/164 [00:00<00:00, 174.84it/s]
+Loading weights:  60%|██████    | 99/164 [00:00<00:00, 183.02it/s]
+Loading weights:  74%|███████▍  | 122/164 [00:00<00:00, 190.04it/s]
+Loading weights:  90%|████████▉ | 147/164 [00:00<00:00, 194.90it/s]
+Loading weights: 100%|██████████| 164/164 [00:00<00:00, 174.19it/s]
+W1123 17:23:34.484000 1125027 site-packages/torch/_inductor/cudagraph_utils.py:401] [__cudagraphs] skipping cudagraphs due to mutated inputs (54 instances). Found from : 
+W1123 17:23:34.484000 1125027 site-packages/torch/_inductor/cudagraph_utils.py:401] [__cudagraphs]    File "/tmp/job/py/lib/python3.11/site-packages/transformers/utils/generic.py", line 943, in wrapper
+W1123 17:23:34.484000 1125027 site-packages/torch/_inductor/cudagraph_utils.py:401] [__cudagraphs]     output = func(self, *args, **kwargs)
+W1123 17:23:34.484000 1125027 site-packages/torch/_inductor/cudagraph_utils.py:401] [__cudagraphs]              ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+W1123 17:23:34.484000 1125027 site-packages/torch/_inductor/cudagraph_utils.py:401] [__cudagraphs]   File "/tmp/job/py/lib/python3.11/site-packages/transformers/models/gemma/modeling_gemma.py", line 478, in forward
+W1123 17:23:34.484000 1125027 site-packages/torch/_inductor/cudagraph_utils.py:401] [__cudagraphs]     outputs: BaseModelOutputWithPast = self.model(
+W1123 17:23:34.484000 1125027 site-packages/torch/_inductor/cudagraph_utils.py:401] [__cudagraphs]                                        ^^^^^^^^^^^
+W1123 17:23:34.484000 1125027 site-packages/torch/_inductor/cudagraph_utils.py:401] [__cudagraphs]   File "/tmp/job/py/lib/python3.11/site-packages/transformers/utils/generic.py", line 1081, in wrapper
+W1123 17:23:34.484000 1125027 site-packages/torch/_inductor/cudagraph_utils.py:401] [__cudagraphs]     output = func(self, *args, **kwargs)
+W1123 17:23:34.484000 1125027 site-packages/torch/_inductor/cudagraph_utils.py:401] [__cudagraphs]              ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+W1123 17:23:34.484000 1125027 site-packages/torch/_inductor/cudagraph_utils.py:401] [__cudagraphs]   File "/tmp/job/py/lib/python3.11/site-packages/transformers/utils/output_capturing.py", line 287, in wrapper
+W1123 17:23:34.484000 1125027 site-packages/torch/_inductor/cudagraph_utils.py:401] [__cudagraphs]     outputs = func(self, *args, **kwargs)
+W1123 17:23:34.484000 1125027 site-packages/torch/_inductor/cudagraph_utils.py:401] [__cudagraphs]               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+W1123 17:23:34.484000 1125027 site-packages/torch/_inductor/cudagraph_utils.py:401] [__cudagraphs]   File "/tmp/job/py/lib/python3.11/site-packages/transformers/models/gemma/modeling_gemma.py", line 415, in forward
+W1123 17:23:34.484000 1125027 site-packages/torch/_inductor/cudagraph_utils.py:401] [__cudagraphs]     hidden_states = decoder_layer(
+W1123 17:23:34.484000 1125027 site-packages/torch/_inductor/cudagraph_utils.py:401] [__cudagraphs]                     ^^^^^^^^^^^^^^
+W1123 17:23:34.484000 1125027 site-packages/torch/_inductor/cudagraph_utils.py:401] [__cudagraphs]   File "/tmp/job/py/lib/python3.11/site-packages/transformers/modeling_layers.py", line 111, in __call__
+W1123 17:23:34.484000 1125027 site-packages/torch/_inductor/cudagraph_utils.py:401] [__cudagraphs]     return super().__call__(*args, **kwargs)
+W1123 17:23:34.484000 1125027 site-packages/torch/_inductor/cudagraph_utils.py:401] [__cudagraphs]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+W1123 17:23:34.484000 1125027 site-packages/torch/_inductor/cudagraph_utils.py:401] [__cudagraphs]   File "/tmp/job/py/lib/python3.11/site-packages/transformers/models/gemma/modeling_gemma.py", line 308, in forward
+W1123 17:23:34.484000 1125027 site-packages/torch/_inductor/cudagraph_utils.py:401] [__cudagraphs]     hidden_states, _ = self.self_attn(
+W1123 17:23:34.484000 1125027 site-packages/torch/_inductor/cudagraph_utils.py:401] [__cudagraphs]                        ^^^^^^^^^^^^^^^
+W1123 17:23:34.484000 1125027 site-packages/torch/_inductor/cudagraph_utils.py:401] [__cudagraphs]   File "/tmp/job/py/lib/python3.11/site-packages/transformers/models/gemma/modeling_gemma.py", line 262, in forward
+W1123 17:23:34.484000 1125027 site-packages/torch/_inductor/cudagraph_utils.py:401] [__cudagraphs]     key_states, value_states = past_key_values.update(key_states, value_states, self.layer_idx)
+W1123 17:23:34.484000 1125027 site-packages/torch/_inductor/cudagraph_utils.py:401] [__cudagraphs]                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+W1123 17:23:34.484000 1125027 site-packages/torch/_inductor/cudagraph_utils.py:401] [__cudagraphs]   File "/tmp/job/py/lib/python3.11/site-packages/transformers/cache_utils.py", line 1423, in update
+W1123 17:23:34.484000 1125027 site-packages/torch/_inductor/cudagraph_utils.py:401] [__cudagraphs]     keys, values = self.layers[layer_idx].update(key_states, value_states, *args, **kwargs)
+W1123 17:23:34.484000 1125027 site-packages/torch/_inductor/cudagraph_utils.py:401] [__cudagraphs]                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+W1123 17:23:34.484000 1125027 site-packages/torch/_inductor/cudagraph_utils.py:401] [__cudagraphs]   File "/tmp/job/py/lib/python3.11/site-packages/transformers/cache_utils.py", line 467, in update
+W1123 17:23:34.484000 1125027 site-packages/torch/_inductor/cudagraph_utils.py:401] [__cudagraphs]     self.cumulative_length.add_(kv_length)
+W1123 17:23:34.484000 1125027 site-packages/torch/_inductor/cudagraph_utils.py:401] [__cudagraphs] 
+[W1123 17:23:34.837956619 Module.cpp:208] symbolizing C++ stack trace for exception; if this hangs, rerun with TORCH_DISABLE_ADDR2LINE=1...
+
+Traceback (most recent call last):
+  File "/home/user/bv_projects/bv_ch4/chapter04/scripts/reduce_overhead_retest.py", line 157, in <module>
+    main()
+  File "/home/user/bv_projects/bv_ch4/chapter04/scripts/reduce_overhead_retest.py", line 120, in main
+    return child(*a.child)
+           ^^^^^^^^^^^^^^^
+  File "/home/user/bv_projects/bv_ch4/chapter04/scripts/reduce_overhead_retest.py", line 94, in child
+    measure("result", model, cache_implementation="static", **off)
+  File "/home/user/bv_projects/bv_ch4/chapter04/scripts/../../case_study/experiments.py", line 191, in measure
+    gen(m, cfg.NEW_TOKENS, **kw)()          # first call: includes any compilation
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/bv_projects/bv_ch4/chapter04/scripts/../../case_study/experiments.py", line 184, in <lambda>
+    return lambda: m.generate(**inputs, max_new_tokens=n, min_new_tokens=n, do_sample=False,
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/job/py/lib/python3.11/site-packages/torch/utils/_contextlib.py", line 124, in decorate_context
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/job/py/lib/python3.11/site-packages/transformers/generation/utils.py", line 2989, in generate
+    result = decoding_method(
+             ^^^^^^^^^^^^^^^^
+  File "/tmp/job/py/lib/python3.11/site-packages/transformers/generation/utils.py", line 3217, in _sample
+    outputs = model_forward(**model_inputs, return_dict=True)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/job/py/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1783, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/job/py/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1794, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/bv_projects/bv_ch4/chapter04/scripts/reduce_overhead_retest.py", line 92, in fwd
+    return compiled(*a, **k)
+           ^^^^^^^^^^^^^^^^^
+  File "/tmp/job/py/lib/python3.11/site-packages/torch/_dynamo/eval_frame.py", line 1261, in compile_wrapper
+    result = fn(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^
+  File "/tmp/job/py/lib/python3.11/site-packages/transformers/utils/generic.py", line 937, in wrapper
+    @wraps(func)
+  File "/tmp/job/py/lib/python3.11/site-packages/torch/_dynamo/eval_frame.py", line 1548, in _fn
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/tmp/job/py/lib/python3.11/site-packages/torch/_functorch/aot_autograd.py", line 1289, in forward
+    return compiled_fn(full_args)
+           ^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/job/py/lib/python3.11/site-packages/torch/_functorch/_aot_autograd/runtime_wrappers.py", line 1189, in runtime_wrapper
+    result = _codegen_runtime_wrapper(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/job/py/lib/python3.11/site-packages/torch/_functorch/_aot_autograd/codegen.py:codegen(runtime_wrapper_orchestration)", line 9, in _runtime_wrapper
+  File "/tmp/job/py/lib/python3.11/site-packages/torch/_functorch/_aot_autograd/runtime_wrappers.py", line 2594, in __call__
+    return self.compiled_fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/job/py/lib/python3.11/site-packages/torch/_inductor/output_code.py", line 828, in __call__
+    return self.current_callable(inputs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/job/inductor/by/cbyjyiklvcuxbcdm7igf7ioj6aa4f3pcqxjz6vv2ccxoao2nkcae.py", line 3186, in call
+    (buf389,) = self.partitions[0](partition0_args)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/job/py/lib/python3.11/site-packages/torch/_inductor/compile_fx.py", line 2086, in run
+    return compiled_fn(new_inputs)  # type: ignore[arg-type]
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/job/py/lib/python3.11/site-packages/torch/_inductor/cudagraph_trees.py", line 479, in deferred_cudagraphify
+    fn, out = cudagraphify(model, inputs, new_static_input_idxs, *args, **kwargs)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/job/py/lib/python3.11/site-packages/torch/_inductor/cudagraph_trees.py", line 542, in cudagraphify
+    return manager.add_function(
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/job/py/lib/python3.11/site-packages/torch/_inductor/cudagraph_trees.py", line 2782, in add_function
+    return fn, fn(inputs)
+               ^^^^^^^^^^
+  File "/tmp/job/py/lib/python3.11/site-packages/torch/_inductor/cudagraph_trees.py", line 2406, in run
+    out = self._run(new_inputs, function_id)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/job/py/lib/python3.11/site-packages/torch/_inductor/cudagraph_trees.py", line 2499, in _run
+    return self.ids_to_funcs[function_id].model(new_inputs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/job/inductor/by/cbyjyiklvcuxbcdm7igf7ioj6aa4f3pcqxjz6vv2ccxoao2nkcae.py", line 1944, in partition_0
+    triton_poi_fused__to_copy__unsafe_view_add_arange_cat_index_copy_mul_neg_slice_transpose_unsqueeze_view_1.run(arg3_1, buf3, arg5_1, arg10_1, 256, stream=raw_stream0)
+  File "/tmp/job/py/lib/python3.11/site-packages/torch/_inductor/runtime/triton_heuristics.py", line 2516, in run
+    self.autotune_to_one_config(*args, **kwargs)
+  File "/tmp/job/py/lib/python3.11/site-packages/torch/_inductor/runtime/triton_heuristics.py", line 1883, in autotune_to_one_config
+    timings = self.benchmark_all_configs(*args, **kwargs)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/job/py/lib/python3.11/site-packages/torch/_inductor/runtime/triton_heuristics.py", line 1836, in benchmark_all_configs
+    timing = self.bench(launcher, *args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/job/py/lib/python3.11/site-packages/torch/_inductor/runtime/triton_heuristics.py", line 1566, in bench
+    result = benchmarker.benchmark(
+             ^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/job/py/lib/python3.11/site-packages/torch/_inductor/runtime/benchmarking.py", line 193, in wrapper
+    return fn(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/job/py/lib/python3.11/site-packages/torch/_inductor/runtime/benchmarking.py", line 308, in benchmark
+    return benchmark_fn(self, _callable, warmup=warmup, rep=rep, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/job/py/lib/python3.11/site-packages/torch/_inductor/runtime/benchmarking.py", line 408, in _default_cuda_bench
+    return self.benchmark_gpu(f, warmup=warmup, rep=rep, **kw)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/job/py/lib/python3.11/site-packages/torch/_inductor/runtime/benchmarking.py", line 193, in wrapper
+    return fn(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/job/py/lib/python3.11/site-packages/torch/_inductor/runtime/benchmarking.py", line 88, in wrapper
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/tmp/job/py/lib/python3.11/site-packages/torch/_inductor/runtime/benchmarking.py", line 712, in benchmark_gpu
+    _callable()
+  File "/tmp/job/py/lib/python3.11/site-packages/torch/_inductor/runtime/benchmarking.py", line 290, in _callable
+    return fn()
+           ^^^^
+  File "/tmp/job/py/lib/python3.11/site-packages/torch/_inductor/runtime/triton_heuristics.py", line 1502, in kernel_call
+    cloned_args, cloned_kwargs = self.maybe_clone_args(
+                                 ^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/job/py/lib/python3.11/site-packages/torch/_inductor/runtime/triton_heuristics.py", line 1696, in maybe_clone_args
+    cloned_args = [
+                  ^
+  File "/tmp/job/py/lib/python3.11/site-packages/torch/_inductor/runtime/triton_heuristics.py", line 1697, in <listcomp>
+    prepare_arg(name, arg)
+  File "/tmp/job/py/lib/python3.11/site-packages/torch/_inductor/runtime/triton_heuristics.py", line 1692, in prepare_arg
+    return clone_preserve_strides(arg)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/job/py/lib/python3.11/site-packages/torch/_inductor/utils.py", line 3740, in clone_preserve_strides
+    buffer = torch.as_strided(x, (needed_size,), (1,)).clone()
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/job/py/lib/python3.11/site-packages/torch/_compile.py", line 54, in inner
+    return disable_fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/job/py/lib/python3.11/site-packages/torch/_dynamo/eval_frame.py", line 1548, in _fn
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/tmp/job/py/lib/python3.11/site-packages/torch/_functorch/_aot_autograd/runtime_wrappers.py", line 477, in __torch_dispatch__
+    res = func(*args, **kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/job/py/lib/python3.11/site-packages/torch/_ops.py", line 916, in __call__
+    return self._op(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: Error: accessing tensor output of CUDAGraphs that has been overwritten by a subsequent run. Stack trace: File "/tmp/job/py/lib/python3.11/site-packages/transformers/utils/generic.py", line 943, in wrapper
+    output = func(self, *args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/job/py/lib/python3.11/site-packages/transformers/models/gemma/modeling_gemma.py", line 478, in forward
+    outputs: BaseModelOutputWithPast = self.model(
+                                       ^^^^^^^^^^^
+  File "/tmp/job/py/lib/python3.11/site-packages/transformers/utils/generic.py", line 1081, in wrapper
+    output = func(self, *args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/job/py/lib/python3.11/site-packages/transformers/utils/output_capturing.py", line 287, in wrapper
+    outputs = func(self, *args, **kwargs)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/job/py/lib/python3.11/site-packages/transformers/models/gemma/modeling_gemma.py", line 415, in forward
+    hidden_states = decoder_layer(
+                    ^^^^^^^^^^^^^^
+  File "/tmp/job/py/lib/python3.11/site-packages/transformers/modeling_layers.py", line 111, in __call__
+    return super().__call__(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/job/py/lib/python3.11/site-packages/transformers/models/gemma/modeling_gemma.py", line 308, in forward
+    hidden_states, _ = self.self_attn(
+                       ^^^^^^^^^^^^^^^
+  File "/tmp/job/py/lib/python3.11/site-packages/transformers/models/gemma/modeling_gemma.py", line 262, in forward
+    key_states, value_states = past_key_values.update(key_states, value_states, self.layer_idx)
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/job/py/lib/python3.11/site-packages/transformers/cache_utils.py", line 1423, in update
+    keys, values = self.layers[layer_idx].update(key_states, value_states, *args, **kwargs)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/job/py/lib/python3.11/site-packages/transformers/cache_utils.py", line 471, in update
+    self.keys.index_copy_(2, cache_position, key_states). To prevent overwriting, call torch.compiler.cudagraph_mark_step_begin() before each model invocation. If a tensor is a user-visible output that must remain live across generations, manually clone the tensor outside torch.compile(), or set torch._inductor.config.triton.cudagraph_trees_generation_cloning = 'user_visible' to clone all user-visible tensors that persist across generations.
+Exception raised from throw_storage_access_error at /__w/pytorch/pytorch/c10/core/TensorImpl.cpp:342 (most recent call first):
+C++ CapturedTraceback:
+#4 std::_Function_handler<std::shared_ptr<c10::LazyValue<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > const> (), c10::SetStackTraceFetcher(std::function<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > ()>)::{lambda()#1}>::_M_invoke(std::_Any_data const&) from Logging.cpp:0
+#5 c10::Error::Error(c10::SourceLocation, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) from ??:0
+#6 c10::detail::torchCheckFail(char const*, char const*, unsigned int, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) from ??:0
+#7 c10::TensorImpl::throw_storage_access_error() const from ??:0
+#8 c10::TensorImpl::storage() const from :0
+#9 at::native::as_strided_tensorimpl(at::Tensor const&, c10::ArrayRef<long>, c10::ArrayRef<long>, std::optional<long>) from ??:0
+#10 c10::impl::make_boxed_from_unboxed_functor<c10::impl::detail::WrapFunctionIntoFunctor_<c10::CompileTimeFunctionPointer<at::Tensor (at::Tensor const&, c10::ArrayRef<c10::SymInt>, c10::ArrayRef<c10::SymInt>, std::optional<c10::SymInt>), &at::(anonymous namespace)::(anonymous namespace)::wrapper_CUDA__as_strided>, at::Tensor, c10::guts::typelist::typelist<at::Tensor const&, c10::ArrayRef<c10::SymInt>, c10::ArrayRef<c10::SymInt>, std::optional<c10::SymInt> > >, false>::call(c10::OperatorKernel*, c10::OperatorHandle const&, c10::DispatchKeySet, std::vector<c10::IValue, std::allocator<c10::IValue> >*) from RegisterCUDA_0.cpp:0
+#11 c10::Dispatcher::callBoxed(c10::OperatorHandle const&, std::vector<c10::IValue, std::allocator<c10::IValue> >*) const [clone .isra.0] from register_c10_ops.cpp:0
+#12 torch::jit::invokeOperatorFromPython(c10::ArrayRef<std::shared_ptr<torch::jit::Operator> >, pybind11::args const&, pybind11::kwargs const&, std::optional<c10::DispatchKey>) from :0
+#13 torch::jit::_get_operation_for_overload_or_packet(c10::ArrayRef<std::shared_ptr<torch::jit::Operator> >, c10::Symbol, pybind11::args const&, pybind11::kwargs const&, bool, std::optional<c10::DispatchKey>) from :0
+#14 pybind11::cpp_function::initialize<torch::jit::initJITBindings(_object*)::{lambda(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&)#2}::operator()(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) const::{lambda(pybind11::args const&, pybind11::kwargs const&)#1}, pybind11::object, pybind11::args const, pybind11::kwargs const>(torch::jit::initJITBindings(_object*)::{lambda(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&)#2}::operator()(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) const::{lambda(pybind11::args const&, pybind11::kwargs const&)#1}&&, pybind11::object (*)(pybind11::args const, pybind11::kwargs const))::{lambda(pybind11::detail::function_call&)#1}::_FUN(pybind11::detail) from init.cpp:0
+#15 pybind11::cpp_function::dispatcher(_object*, _object* const*, unsigned long, _object*) from :0
+#16 cfunction_vectorcall_FASTCALL_KEYWORDS from /usr/local/src/conda/python-split-3.11.18/Objects/methodobject.c:443
+#17 do_call_core from /usr/local/src/conda/python-split-3.11.18/Python/ceval.c:7321
+#18 _PyEval_EvalFrame from /usr/local/src/conda/python-split-3.11.18/Include/internal/pycore_ceval.h:73
+#19 _PyObject_FastCallDictTstate from /usr/local/src/conda/python-split-3.11.18/Objects/call.c:141
+#20 _PyObject_Call_Prepend from /usr/local/src/conda/python-split-3.11.18/Objects/call.c:482
+#21 slot_tp_call from /usr/local/src/conda/python-split-3.11.18/Objects/typeobject.c:7624
+#22 _PyObject_Call from /usr/local/src/conda/python-split-3.11.18/Objects/call.c:343
+#23 do_call_core from /usr/local/src/conda/python-split-3.11.18/Python/ceval.c:7349
+#24 _PyEval_EvalFrame from /usr/local/src/conda/python-split-3.11.18/Include/internal/pycore_ceval.h:73
+#25 do_call_core from /usr/local/src/conda/python-split-3.11.18/Python/ceval.c:7349
+#26 _PyEval_EvalFrame from /usr/local/src/conda/python-split-3.11.18/Include/internal/pycore_ceval.h:73
+#27 do_call_core from /usr/local/src/conda/python-split-3.11.18/Python/ceval.c:7349
+#28 _PyEval_EvalFrame from /usr/local/src/conda/python-split-3.11.18/Include/internal/pycore_ceval.h:73
+#29 _PyObject_VectorcallTstate from /usr/local/src/conda/python-split-3.11.18/Include/internal/pycore_call.h:92
+#30 PyObject_CallMethod from /usr/local/src/conda/python-split-3.11.18/Objects/call.c:627
+#31 torch::handle_torch_function_no_python_arg_parser(c10::ArrayRef<_object*>, _object*, _object*, char const*, _object*, char const*, c10::OperatorHandle const*, std::vector<c10::IValue, std::allocator<c10::IValue> >*, torch::TorchFunctionName) from :0
+#32 torch::detail::(anonymous namespace)::ConcretePyInterpreterVTable::dispatch(c10::OperatorHandle const&, std::vector<c10::IValue, std::allocator<c10::IValue> >*) const from PyInterpreter.cpp:0
+#33 (anonymous namespace)::pythonFallback(c10::OperatorHandle const&, c10::DispatchKeySet, std::vector<c10::IValue, std::allocator<c10::IValue> >*) from PythonFallbackKernel.cpp:0
+#34 void c10::BoxedKernel::make_boxed_function<&(anonymous namespace)::pythonTLSSnapshotFallback>(c10::OperatorKernel*, c10::OperatorHandle const&, c10::DispatchKeySet, std::vector<c10::IValue, std::allocator<c10::IValue> >*) from PythonFallbackKernel.cpp:0
+#35 c10::impl::BoxedKernelWrapper<at::Tensor (at::Tensor const&, c10::ArrayRef<c10::SymInt>, c10::ArrayRef<c10::SymInt>, std::optional<c10::SymInt>), void>::call(c10::BoxedKernel const&, c10::OperatorHandle const&, c10::DispatchKeySet, at::Tensor const&, c10::ArrayRef<c10::SymInt>, c10::ArrayRef<c10::SymInt>, std::optional<c10::SymInt>) from :0
+#36 at::_ops::as_strided::call(at::Tensor const&, c10::ArrayRef<c10::SymInt>, c10::ArrayRef<c10::SymInt>, std::optional<c10::SymInt>) from ??:0
+#37 torch::autograd::THPVariable_as_strided(_object*, _object*, _object*) from python_torch_functions_0.cpp:0
+#38 cfunction_call from /usr/local/src/conda/python-split-3.11.18/Objects/methodobject.c:542
+#39 _PyObject_MakeTpCall from /usr/local/src/conda/python-split-3.11.18/Objects/call.c:214
+#40 _PyEval_EvalFrameDefault from /usr/local/src/conda/python-split-3.11.18/Python/ceval.c:4769
+#41 _PyEval_EvalFrame from /usr/local/src/conda/python-split-3.11.18/Include/internal/pycore_ceval.h:73
+#42 do_call_core from /usr/local/src/conda/python-split-3.11.18/Python/ceval.c:7349
+#43 _PyEval_EvalFrame from /usr/local/src/conda/python-split-3.11.18/Include/internal/pycore_ceval.h:73
+#44 _PyVectorcall_Call from /usr/local/src/conda/python-split-3.11.18/Objects/call.c:257
+#45 do_call_core from /usr/local/src/conda/python-split-3.11.18/Python/ceval.c:7349
+#46 _PyEval_EvalFrame from /usr/local/src/conda/python-split-3.11.18/Include/internal/pycore_ceval.h:73
+#47 _PyVectorcall_Call from /usr/local/src/conda/python-split-3.11.18/Objects/call.c:257
+#48 do_call_core from /usr/local/src/conda/python-split-3.11.18/Python/ceval.c:7349
+#49 _PyEval_EvalFrame from /usr/local/src/conda/python-split-3.11.18/Include/internal/pycore_ceval.h:73
+#50 method_vectorcall from /usr/local/src/conda/python-split-3.11.18/Objects/classobject.c:59
+#51 _PyVectorcall_Call from /usr/local/src/conda/python-split-3.11.18/Objects/call.c:257
+#52 do_call_core from /usr/local/src/conda/python-split-3.11.18/Python/ceval.c:7349
+#53 _PyEval_EvalFrame from /usr/local/src/conda/python-split-3.11.18/Include/internal/pycore_ceval.h:73
+#54 _PyVectorcall_Call from /usr/local/src/conda/python-split-3.11.18/Objects/call.c:257
+#55 do_call_core from /usr/local/src/conda/python-split-3.11.18/Python/ceval.c:7349
+#56 _PyEval_EvalFrame from /usr/local/src/conda/python-split-3.11.18/Include/internal/pycore_ceval.h:73
+#57 _PyVectorcall_Call from /usr/local/src/conda/python-split-3.11.18/Objects/call.c:257
+#58 do_call_core from /usr/local/src/conda/python-split-3.11.18/Python/ceval.c:7349
+#59 _PyEval_EvalFrame from /usr/local/src/conda/python-split-3.11.18/Include/internal/pycore_ceval.h:73
+#60 method_vectorcall from /usr/local/src/conda/python-split-3.11.18/Objects/classobject.c:59
+#61 _PyVectorcall_Call from /usr/local/src/conda/python-split-3.11.18/Objects/call.c:257
+#62 do_call_core from /usr/local/src/conda/python-split-3.11.18/Python/ceval.c:7349
+#63 _PyEval_EvalFrame from /usr/local/src/conda/python-split-3.11.18/Include/internal/pycore_ceval.h:73
+#64 do_call_core from /usr/local/src/conda/python-split-3.11.18/Python/ceval.c:7349
+#65 _PyEval_EvalFrame from /usr/local/src/conda/python-split-3.11.18/Include/internal/pycore_ceval.h:73
+#66 do_call_core from /usr/local/src/conda/python-split-3.11.18/Python/ceval.c:7349
+#67 _PyEval_EvalFrame from /usr/local/src/conda/python-split-3.11.18/Include/internal/pycore_ceval.h:73
+#68 do_call_core from /usr/local/src/conda/python-split-3.11.18/Python/ceval.c:7349
+#69 _PyEval_EvalFrame from /usr/local/src/conda/python-split-3.11.18/Include/internal/pycore_ceval.h:73
+#70 method_vectorcall from /usr/local/src/conda/python-split-3.11.18/Objects/classobject.c:59
+#71 _PyVectorcall_Call from /usr/local/src/conda/python-split-3.11.18/Objects/call.c:257
+#72 partial_call from /usr/local/src/conda/python-split-3.11.18/Modules/_functoolsmodule.c:324
+#73 _PyObject_MakeTpCall from /usr/local/src/conda/python-split-3.11.18/Objects/call.c:214
+#74 _PyObject_VectorcallTstate from /usr/local/src/conda/python-split-3.11.18/Include/internal/pycore_call.h:92
+#75 _PyEval_EvalFrameDefault from /usr/local/src/conda/python-split-3.11.18/Python/ceval.c:4769
+#76 _PyEval_EvalFrame from /usr/local/src/conda/python-split-3.11.18/Include/internal/pycore_ceval.h:73
+#77 _PyVectorcall_Call from /usr/local/src/conda/python-split-3.11.18/Objects/call.c:257
+#78 do_call_core from /usr/local/src/conda/python-split-3.11.18/Python/ceval.c:7349
+#79 _PyEval_EvalFrame from /usr/local/src/conda/python-split-3.11.18/Include/internal/pycore_ceval.h:73
+#80 _PyObject_FastCallDictTstate from /usr/local/src/conda/python-split-3.11.18/Objects/call.c:141
+#81 _PyObject_Call_Prepend from /usr/local/src/conda/python-split-3.11.18/Objects/call.c:482
+#82 slot_tp_call from /usr/local/src/conda/python-split-3.11.18/Objects/typeobject.c:7624
+#83 _PyObject_Call from /usr/local/src/conda/python-split-3.11.18/Objects/call.c:343
+#84 do_call_core from /usr/local/src/conda/python-split-3.11.18/Python/ceval.c:7349
+#85 _PyEval_EvalFrame from /usr/local/src/conda/python-split-3.11.18/Include/internal/pycore_ceval.h:73
+#86 _PyObject_FastCallDictTstate from /usr/local/src/conda/python-split-3.11.18/Objects/call.c:141
+#87 _PyObject_Call_Prepend from /usr/local/src/conda/python-split-3.11.18/Objects/call.c:482
+#88 slot_tp_call from /usr/local/src/conda/python-split-3.11.18/Objects/typeobject.c:7624
+#89 _PyObject_MakeTpCall from /usr/local/src/conda/python-split-3.11.18/Objects/call.c:214
+#90 _PyEval_EvalFrameDefault from /usr/local/src/conda/python-split-3.11.18/Python/ceval.c:4769
+#91 _PyEval_EvalFrame from /usr/local/src/conda/python-split-3.11.18/Include/internal/pycore_ceval.h:73
+#92 do_call_core from /usr/local/src/conda/python-split-3.11.18/Python/ceval.c:7349
+#93 dynamo__custom_eval_frame::{lambda()#1}::operator()() const from eval_frame_cpp.cpp:0
+#94 dynamo__custom_eval_frame from :0
+#95 _PyEval_EvalFrame from /usr/local/src/conda/python-split-3.11.18/Include/internal/pycore_ceval.h:75
+#96 _PyObject_VectorcallTstate from /usr/local/src/conda/python-split-3.11.18/Include/internal/pycore_call.h:92
+#97 _PyEval_EvalFrameDefault from /usr/local/src/conda/python-split-3.11.18/Python/ceval.c:4769
+#98 dynamo_eval_custom_code from ??:0
+#99 dynamo__custom_eval_frame::{lambda()#2}::operator()() const from eval_frame_cpp.cpp:0
+#100 dynamo__custom_eval_frame from :0
+#101 _PyEval_EvalFrame from /usr/local/src/conda/python-split-3.11.18/Include/internal/pycore_ceval.h:75
+#102 method_vectorcall from /usr/local/src/conda/python-split-3.11.18/Objects/classobject.c:59
+#103 _PyVectorcall_Call from /usr/local/src/conda/python-split-3.11.18/Objects/call.c:257
+#104 do_call_core from /usr/local/src/conda/python-split-3.11.18/Python/ceval.c:7349
+#105 _PyEval_EvalFrame from /usr/local/src/conda/python-split-3.11.18/Include/internal/pycore_ceval.h:73
+#106 _PyVectorcall_Call from /usr/local/src/conda/python-split-3.11.18/Objects/call.c:257
+#107 do_call_core from /usr/local/src/conda/python-split-3.11.18/Python/ceval.c:7349
+#108 _PyEval_EvalFrame from /usr/local/src/conda/python-split-3.11.18/Include/internal/pycore_ceval.h:73
+#109 _PyVectorcall_Call from /usr/local/src/conda/python-split-3.11.18/Objects/call.c:257
+#110 do_call_core from /usr/local/src/conda/python-split-3.11.18/Python/ceval.c:7349
+#111 _PyEval_EvalFrame from /usr/local/src/conda/python-split-3.11.18/Include/internal/pycore_ceval.h:73
+#112 method_vectorcall from /usr/local/src/conda/python-split-3.11.18/Objects/classobject.c:59
+#113 _PyVectorcall_Call from /usr/local/src/conda/python-split-3.11.18/Objects/call.c:257
+#114 do_call_core from /usr/local/src/conda/python-split-3.11.18/Python/ceval.c:7349
+#115 _PyEval_EvalFrame from /usr/local/src/conda/python-split-3.11.18/Include/internal/pycore_ceval.h:73
+#116 method_vectorcall from /usr/local/src/conda/python-split-3.11.18/Objects/classobject.c:59
+#117 _PyVectorcall_Call from /usr/local/src/conda/python-split-3.11.18/Objects/call.c:257
+#118 do_call_core from /usr/local/src/conda/python-split-3.11.18/Python/ceval.c:7349
+#119 _PyEval_EvalFrame from /usr/local/src/conda/python-split-3.11.18/Include/internal/pycore_ceval.h:73
+#120 _PyVectorcall_Call from /usr/local/src/conda/python-split-3.11.18/Objects/call.c:257
+#121 do_call_core from /usr/local/src/conda/python-split-3.11.18/Python/ceval.c:7349
+#122 _PyEval_EvalFrame from /usr/local/src/conda/python-split-3.11.18/Include/internal/pycore_ceval.h:73
+#123 _PyVectorcall_Call from /usr/local/src/conda/python-split-3.11.18/Objects/call.c:257
+#124 do_call_core from /usr/local/src/conda/python-split-3.11.18/Python/ceval.c:7349
+#125 _PyEval_EvalFrame from /usr/local/src/conda/python-split-3.11.18/Include/internal/pycore_ceval.h:73
+#126 method_vectorcall from /usr/local/src/conda/python-split-3.11.18/Objects/classobject.c:59
+#127 _PyVectorcall_Call from /usr/local/src/conda/python-split-3.11.18/Objects/call.c:257
+#128 do_call_core from /usr/local/src/conda/python-split-3.11.18/Python/ceval.c:7349
+#129 _PyEval_EvalFrame from /usr/local/src/conda/python-split-3.11.18/Include/internal/pycore_ceval.h:73
+#130 _PyVectorcall_Call from /usr/local/src/conda/python-split-3.11.18/Objects/call.c:257
+#131 do_call_core from /usr/local/src/conda/python-split-3.11.18/Python/ceval.c:7349
+#132 _PyEval_EvalFrame from /usr/local/src/conda/python-split-3.11.18/Include/internal/pycore_ceval.h:73
+#133 do_call_core from /usr/local/src/conda/python-split-3.11.18/Python/ceval.c:7349
+#134 _PyEval_EvalFrame from /usr/local/src/conda/python-split-3.11.18/Include/internal/pycore_ceval.h:73
+#135 PyEval_EvalCode from /usr/local/src/conda/python-split-3.11.18/Python/ceval.c:1148
+#136 run_eval_code_obj from /usr/local/src/conda/python-split-3.11.18/Python/pythonrun.c:1741
+#137 run_mod from /usr/local/src/conda/python-split-3.11.18/Python/pythonrun.c:1762
+#138 pyrun_file from /usr/local/src/conda/python-split-3.11.18/Python/pythonrun.c:1657
+#139 _PyRun_SimpleFileObject from /usr/local/src/conda/python-split-3.11.18/Python/pythonrun.c:440
+#140 _PyRun_AnyFileObject from /usr/local/src/conda/python-split-3.11.18/Python/pythonrun.c:79
+#141 pymain_run_file_obj from /usr/local/src/conda/python-split-3.11.18/Modules/main.c:360
+#142 Py_BytesMain from /usr/local/src/conda/python-split-3.11.18/Modules/main.c:738
+#143 __libc_start_call_main from ??:0
+#144 __libc_start_main_alias_2 from :0
+#145 _start from ??:0
+
