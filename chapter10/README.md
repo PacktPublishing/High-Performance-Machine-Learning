@@ -24,7 +24,7 @@ Llama-3.2-1B and re-bases the same LoRA recipe onto the next generator, Qwen3-VL
 | `eval_quality.py` | Quality, abstention, forgetting and KL evaluation with vLLM |
 | `serve_bench.py` | Serving benchmark for merged and unmerged LoRA adapters with vLLM 0.33 |
 | `distill.py` | Distillation arms (SFT, sequence-level KD, token-level KD, GKD) |
-| `svd_spectrum.py` | Singular values of the weight change of one MLP projection of Gemma-2B (Figure 10.12) |
+| `svd_spectrum.py` | Singular values of the weight change of one MLP projection of Gemma-2B (online spectrum figure, below) |
 | `collect_results.py` | Collects all measurements into `results/ch10_results.json`, the file the chapter build reads |
 
 ## Experimental setup
@@ -154,7 +154,7 @@ rsLoRA at rank 256 diverged at the shared learning rate of 2e-4 (its scale facto
 | Llama-3.1-8B-Instruct | 35.7 | 62.1 | 0.77 | 6.47 / 7.86 |
 | Qwen3-VL-8B-Instruct | 59.6 | 63.1 | 0.89 | 6.83 / 8.58 |
 
-Figure 10.12 data (singular values of the weight change of layer 9's MLP down projection of Gemma-2B for full
+Data for the online spectrum figure (singular values of the weight change of layer 9's MLP down projection of Gemma-2B for full
 fine-tuning, LoRA r = 16 and LoRA r = 256) is in `results/spectrum.json`.
 
 ### Additional runs
@@ -212,8 +212,61 @@ On the T4, `train_peft.py` trains in FP16 (BF16 matmuls need compute capability 
 | `results/eval/` | per-item HotpotQA, abstention and probe results for each run |
 | `results/lmeval/<run>/` | lm-evaluation-harness results and per-sample logs (GSM8K, IFEval, ARC-C) |
 | `results/serve/` | serving benchmarks, including the TPOT of each student |
-| `results/spectrum.json`, `results/smoke_H100.json` | Figure 10.12 data; vLLM 0.33 smoke test |
+| `results/spectrum.json`, `results/smoke_H100.json` | singular values for the online spectrum figure; vLLM 0.33 smoke test |
 
 Every result file carries an `env` block with the GPU name from `nvidia-smi`, the driver and the package
 versions. The per-token KL files (about 70 MB each) and the MMLU per-sample logs (1.4 GB) are not in the repository; their
 values are in `ch10_results.json`.
+
+## Online resources
+
+The print chapter refers to the material below.
+
+### Rank sweep on Gemma-2B
+
+Change in HotpotQA exact match and in the forgetting-suite average, in points, with the original α / r scaling and
+with rsLoRA (α = 2r), learning rate 2e-4. Data: `results/ch10_results.json` (key `rank`).
+
+| Rank | α / r: HotpotQA | α / r: forgetting | rsLoRA: HotpotQA | rsLoRA: forgetting | Adapter size (MB) |
+|---|---|---|---|---|---|
+| 4 | +50.3 ± 1.6 | −3.8 ± 1.0 | +51.8 ± 1.6 | −3.3 ± 1.0 | 10 |
+| 16 | +52.6 ± 1.6 | −2.5 ± 1.0 | +52.0 ± 1.6 | −4.4 ± 1.0 | 39 |
+| 64 | +54.3 ± 1.6 | −3.6 ± 1.1 | +45.6 ± 1.6 | −9.9 ± 1.1 | 157 |
+| 256 | +54.9 ± 1.6 | −5.6 ± 1.0 | −0.1 ± 0.1 | −10.5 ± 1.2 | 627 |
+
+With α / r, exact match rises with the rank and forgetting grows from rank 16 upward. rsLoRA multiplies the update by
+α / √r, which at rank 256 is 16 times the α / r value; at the same learning rate the run at rank 256 did not train.
+rsLoRA at high rank needs its own learning-rate sweep.
+
+### Singular values of the weight update
+
+![Singular values of the weight change of one MLP projection of Gemma-2B](online/lora_update_spectrum.png)
+
+Singular values of the weight change ΔW of one MLP projection of Gemma-2B after full fine-tuning and after LoRA at
+ranks 16 and 256, normalized to the largest. The LoRA updates have exactly r non-zero singular values: the 17th
+singular value of the rank-16 update is 0.4% of the largest. The full fine-tuning update decays slowly, and its 512th
+singular value is 34% of the largest. Script: `svd_spectrum.py`; data: `results/spectrum.json`.
+
+### Variants of LoRA
+
+Reported results are from the original papers, under their conditions. Reference numbers are those of the chapter.
+
+| Method | What changes | Training memory | Reported result | How to enable |
+|---|---|---|---|---|
+| rsLoRA [16] | Scaling α/√r | Same as LoRA | Stable training at high rank | `use_rslora=True` |
+| DoRA [21] | Separate magnitude vector; LoRA updates the direction | Slightly higher | Higher accuracy than LoRA at equal rank on commonsense tasks; merge for inference | `use_dora=True` |
+| LoRA+ [22] | Larger learning rate for B than for A | Same as LoRA | Up to 2× faster convergence | `create_loraplus_optimizer` |
+| PiSSA [23] | Initializes A and B from the top singular vectors of W₀ | Same as LoRA | Mistral-7B GSM8K 72.9 vs 67.7 with LoRA | `init_lora_weights="pissa"` |
+| VeRA [24] | Shared frozen random A and B; trains scaling vectors | Far fewer trainable parameters | Comparable accuracy with 10× or more fewer parameters | `VeraConfig` |
+| LoRA-FA [25] | Freezes A | Lower activation memory | LLaMA-7B memory 56 → 27.5 GB | `create_lorafa_optimizer` |
+| GaLore [26] | Full-rank weights; low-rank projection of gradients | Optimizer states up to 65.5% smaller | 7B pre-training on a 24 GB GPU | Trainer `optim="galore_adamw"` |
+
+### Structured pruning of transformer language models
+
+| Method | Unit removed | Recovery training | Result |
+|---|---|---|---|
+| Michel et al. [45] | Attention heads | None | 40% of BERT's heads with no noticeable loss on MNLI |
+| ShortGPT [46] | Layers, by input-output similarity | None | 10 of 40 layers of Llama-2-13B, about 92% of benchmark performance kept |
+| Gromov et al. [47] | Contiguous deep layers | Short QLoRA fine-tune, one GPU | Up to half of the layers of large Llama-2 models with little MMLU loss |
+| Sheared-LLaMA [48] | Layers, heads, width | 50B tokens | Llama-2-7B to 1.3B and 2.7B, about 3% of the compute of training from scratch |
+| Minitron [49], [51] | Width or depth | 94B tokens, distillation | Llama-3.1-8B to 4B: MMLU 60.5 (width) or 58.7 (depth) vs 65.3; about 1.8× and 2.7× faster in TensorRT-LLM |

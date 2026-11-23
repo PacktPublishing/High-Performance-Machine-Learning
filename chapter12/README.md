@@ -139,3 +139,48 @@ KV cache), with or without batch invariance.
 | `results/judge_agreement.json` | second-judge and human check of the verdicts |
 
 Traces (`*_trace.jsonl`) are not in the repository.
+
+## Online resources
+
+The print chapter refers to the material below. Reference numbers are those of the chapter.
+
+- Full scale-out and GPU-choice results: [Scale-out and routing (E8)](#scale-out-and-routing-e8-e7-configuration-one-repeat)
+  and [Choosing the GPU (E9)](#choosing-the-gpu-e9-e7-configuration) above.
+- Running the routing comparison on Kubernetes with llm-d 1.0 and four vLLM pods: [`k8s/`](k8s/README.md). llm-d
+  replaces the case study's router with its precise prefix-cache scorer and adds flow control and autoscaling [6].
+
+### Cluster serving frameworks (November 2026)
+
+Features change with each release, and all three projects release about monthly.
+
+| | llm-d 1.0 | NVIDIA Dynamo 1.6 | KServe 0.18 |
+|---|---|---|---|
+| Governance, license | CNCF Sandbox, Apache 2.0 | NVIDIA-led, Apache 2.0 | CNCF Incubating, Apache 2.0 |
+| Interface | Gateway API Inference Extension | Own frontend and CRDs; can plug into the Gateway API | `LLMInferenceService` CRD |
+| Routing | Filter, score, pick; precise prefix-cache scoring from KV events; latency predictor | KV-aware router; flow control | Through llm-d |
+| Prefill/decode pools | Yes | Yes, with planner | Through llm-d |
+| KV offload | CPU, SSD; peer-to-peer prefix sharing | GPU, CPU, SSD, object storage | Through llm-d |
+| Engines | vLLM, SGLang, TensorRT-LLM | vLLM, SGLang, TensorRT-LLM | vLLM and others |
+
+### Failure modes of a multi-replica LLM service
+
+| Failure | Effect without a mechanism | Mechanism | Cost |
+|---|---|---|---|
+| Replica crash | In-flight requests fail | Health checks; request migration; client retry | Recomputed prefill for migrated requests |
+| Overload | Queues grow and most requests miss their objectives | Admission control and load shedding (503 with Retry-After); priority bands | Rejected requests |
+| Router failure | Service unavailable | Redundant routers; hot standby | Extra router instances |
+| Cold start | Minutes before a new replica serves | Weights cached on local disk or CPU memory; sleep mode; weight streaming | Memory or storage |
+| Spot preemption | Replica lost with short notice | Migration to on-demand replicas; checkpointed state | Lower savings |
+| Upgrade | Capacity drops during rollout; regressions | Rolling or canary upgrades; regression gates | Duplicate capacity during rollout |
+
+### Architecture choices and their reported effect on inference cost
+
+As measured by the authors of each paper.
+
+| Design | Example | Reported effect |
+|---|---|---|
+| Multi-head latent attention + MoE | DeepSeek-V2 (236B total, 21B active) | 93.3% smaller KV cache and 5.76× higher maximum generation throughput than DeepSeek 67B [48] |
+| Local:global attention 5:1, 1,024-token window | Gemma 3 | KV memory overhead at 32K context reduced from about 60% to under 15% [45] |
+| Attention:Mamba 1:7 with MoE | Jamba | 4 GB KV cache at 256K context against 32 GB for Mixtral; 3× Mixtral's throughput at 128K [46] |
+| Hybrid Mamba-Transformer | Nemotron-H 8B and 56B | Up to 3× faster inference than similarly sized Transformers at similar accuracy [49] |
+| Blockwise NAS on a trained model | Nemotron-51B from Llama-3.1-70B | Up to 2.17× throughput on one H100 with about 98.4% of the parent's accuracy [50] |
