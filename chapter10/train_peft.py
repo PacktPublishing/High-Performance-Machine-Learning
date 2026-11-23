@@ -38,7 +38,9 @@ def main():
     run = a.run or f"{a.model}-{a.method}-r{a.rank}{'-rs' if a.rslora else ''}-s{a.seed}-{a.gpu}"
     out = f"{RUNS}/{run}"
     mid = MODELS[a.model]
-    bf16 = torch.cuda.is_bf16_supported()
+    # BF16 matmuls need compute capability 8.0 (A100, H100). is_bf16_supported() also returns True on the T4 (7.5),
+    # where BF16 GEMMs then fail, so decide on the capability: the T4 trains in FP16.
+    bf16 = torch.cuda.get_device_capability()[0] >= 8
     dtype = torch.bfloat16 if bf16 else torch.float16
     lr = a.lr or (2e-5 if a.method == "full" else 1e-4)
 
@@ -87,7 +89,16 @@ def main():
                     logging_steps=10, save_strategy="no", report_to=[], seed=a.seed, max_steps=a.max_steps,
                     optim=("paged_adamw_8bit" if a.method == "qlora" else "adamw_torch_fused"))
     trainer = SFTTrainer(model=model, args=cfg, train_dataset=ds, processing_class=tok, peft_config=peft_cfg)
+    if not bf16:  # FP16 mixed precision (T4): trainable weights must be FP32 for the loss scaler, as in
+        # peft.prepare_model_for_kbit_training; otherwise BF16 adapter weights fail in the gradient unscale step
+        for p_ in trainer.model.parameters():
+            if p_.requires_grad and p_.dtype != torch.float32:
+                p_.data = p_.data.float()
 
+    if a.method == "pissa":   # keep the initial adapter so that the trained one can be converted to plain LoRA
+        trainer.model.peft_config["default"].init_lora_weights = True
+        trainer.model.save_pretrained(f"{out}-pissa-init")
+        trainer.model.peft_config["default"].init_lora_weights = "pissa_niter_16"
     torch.cuda.reset_peak_memory_stats()
     with Timer() as t:
         res = trainer.train()
@@ -96,7 +107,10 @@ def main():
     if a.max_steps > 0:  # packed sequences of max_len tokens, global batch = per-device x accumulation x GPUs
         tokens = min(tokens, res.global_step * cfg.per_device_train_batch_size * cfg.gradient_accumulation_steps
                      * a.n_gpus * a.max_len)
-    trainer.save_model(out)
+    if a.method == "pissa":   # rank-2r LoRA on the original base weights (PEFT PiSSA conversion), servable by vLLM
+        trainer.model.save_pretrained(out, path_initial_model_for_weight_conversion=f"{out}-pissa-init")
+    else:
+        trainer.save_model(out)
     tok.save_pretrained(out)
     gpu_hours = t.s / 3600 * a.n_gpus
     m = {"run": run, "model": a.model, "method": a.method, "rank": a.rank, "rslora": a.rslora, "gpu": a.gpu,

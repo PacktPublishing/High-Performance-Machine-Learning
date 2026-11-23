@@ -1,0 +1,22 @@
+{
+ "run": "llama-3.1-8b-qlora-r16-s0-A100",
+ "model": "llama-3.1-8b",
+ "method": "qlora",
+ "rank": 16,
+ "rslora": false,
+ "gpu": "A100-80GB",
+ "n_gpus": 1,
+ "seed": 0,
+ "lr": 0.0001,
+ "max_examples": 0,
+ "max_steps": 200,
+ "steps": 200,
+ "peak_mem_gb": 9.933097984,
+ "train_seconds": 1341.02756357193,
+ "tokens": 3276800,
+ "tokens_per_s": 2443.499364973522,
+ "gpu_hours": 0.3725076565477583,
+ "cost_usd": 0.9312691413693958,
+ "final_loss": 1.4413266229629516,
+ "trainable_params": 41943040
+}

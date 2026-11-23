@@ -1,0 +1,166 @@
+{
+ "rr_hit_rate": 53.1,
+ "affinity_hit_rate": 70.7,
+ "prefix_hit_rate": 82.6,
+ "rr_p95_s": 4.76,
+ "affinity_p95_s": 4.49,
+ "prefix_p95_s": 4.18,
+ "headline_rate_tasks_per_s": 8.0,
+ "replicas": 4,
+ "note": "Headline values: 4 replicas at 8 tasks/s, the highest tested load at which every policy met the task objective (>= 90% within 20 s). At 16 tasks/s all policies met it for 68-70% of tasks; 32 tasks/s is overload. Single replica (E7) hit rate 71%. One retriever on GPU 0 serves all replicas.",
+ "grid": {
+  "4": {
+   "round_robin": {
+    "8.0": {
+     "tasks": 4289,
+     "hit": 53.1,
+     "p50": 2.54,
+     "p95": 4.76,
+     "met": 1.0
+    },
+    "16.0": {
+     "tasks": 8654,
+     "hit": 52.6,
+     "p50": 15.72,
+     "p95": 34.78,
+     "met": 0.682
+    },
+    "32.0": {
+     "tasks": 17426,
+     "hit": 51.1,
+     "p50": 199.35,
+     "p95": 325.74,
+     "met": 0.017
+    }
+   },
+   "affinity": {
+    "8.0": {
+     "tasks": 4289,
+     "hit": 70.7,
+     "p50": 2.49,
+     "p95": 4.49,
+     "met": 1.0
+    },
+    "16.0": {
+     "tasks": 8654,
+     "hit": 70.9,
+     "p50": 15.83,
+     "p95": 29.98,
+     "met": 0.692
+    },
+    "32.0": {
+     "tasks": 17426,
+     "hit": 60.2,
+     "p50": 181.4,
+     "p95": 310.38,
+     "met": 0.018
+    }
+   },
+   "prefix": {
+    "8.0": {
+     "tasks": 4289,
+     "hit": 82.6,
+     "p50": 2.37,
+     "p95": 4.18,
+     "met": 1.0
+    },
+    "16.0": {
+     "tasks": 8654,
+     "hit": 82.5,
+     "p50": 16.22,
+     "p95": 33.14,
+     "met": 0.699
+    },
+    "32.0": {
+     "tasks": 17426,
+     "hit": 79.3,
+     "p50": 168.14,
+     "p95": 306.96,
+     "met": 0.01
+    }
+   }
+  },
+  "2": {
+   "round_robin": {
+    "4.0": {
+     "tasks": 2193,
+     "hit": 59.5,
+     "p50": 2.26,
+     "p95": 4.23,
+     "met": 1.0
+    },
+    "8.0": {
+     "tasks": 4289,
+     "hit": 59.6,
+     "p50": 3.65,
+     "p95": 7.43,
+     "met": 1.0
+    },
+    "16.0": {
+     "tasks": 8654,
+     "hit": 48.4,
+     "p50": 149.53,
+     "p95": 415.47,
+     "met": 0.082
+    }
+   },
+   "affinity": {
+    "4.0": {
+     "tasks": 2193,
+     "hit": 70.6,
+     "p50": 2.16,
+     "p95": 3.93,
+     "met": 1.0
+    },
+    "8.0": {
+     "tasks": 4289,
+     "hit": 70.5,
+     "p50": 3.0,
+     "p95": 5.74,
+     "met": 1.0
+    },
+    "16.0": {
+     "tasks": 8654,
+     "hit": 45.8,
+     "p50": 161.3,
+     "p95": 325.12,
+     "met": 0.011
+    }
+   },
+   "prefix": {
+    "4.0": {
+     "tasks": 2193,
+     "hit": 74.4,
+     "p50": 2.12,
+     "p95": 3.8,
+     "met": 1.0
+    },
+    "8.0": {
+     "tasks": 4289,
+     "hit": 74.8,
+     "p50": 2.86,
+     "p95": 5.58,
+     "met": 1.0
+    },
+    "16.0": {
+     "tasks": 8654,
+     "hit": 66.0,
+     "p50": 34.87,
+     "p95": 73.98,
+     "met": 0.127
+    }
+   }
+  }
+ },
+ "repeats": 1,
+ "duration_s": 600,
+ "env": {
+  "utc": "2026-11-22T16:52:34Z",
+  "gpus_nvidia_smi": [
+   "nvidia-smi failed: FileNotFoundError(2, 'No such file or directory')"
+  ],
+  "python": "3.9.25",
+  "packages": {},
+  "exp": "E8"
+ }
+}

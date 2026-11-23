@@ -1,0 +1,12 @@
+[
+ {"type": "function", "function": {"name": "search_text", "description": "Search the text extracted from the pages. Returns page identifiers and scores.",
+  "parameters": {"type": "object", "properties": {"query": {"type": "string"}, "k": {"type": "integer", "default": 5}}, "required": ["query"]}}},
+ {"type": "function", "function": {"name": "search_pages", "description": "Search the page images by visual and textual content. Returns page identifiers and scores.",
+  "parameters": {"type": "object", "properties": {"query": {"type": "string"}, "k": {"type": "integer", "default": 5}}, "required": ["query"]}}},
+ {"type": "function", "function": {"name": "view_page", "description": "Show the image of a page. crop is [x0, y0, x1, y1] as fractions of the page width and height.",
+  "parameters": {"type": "object", "properties": {"page_id": {"type": "string"}, "crop": {"type": "array", "items": {"type": "number"}, "minItems": 4, "maxItems": 4}}, "required": ["page_id"]}}},
+ {"type": "function", "function": {"name": "calculate", "description": "Evaluate an arithmetic expression with + - * / and **.",
+  "parameters": {"type": "object", "properties": {"expression": {"type": "string"}}, "required": ["expression"]}}},
+ {"type": "function", "function": {"name": "answer", "description": "Give the final answer and the page identifiers it is based on.",
+  "parameters": {"type": "object", "properties": {"text": {"type": "string"}, "pages": {"type": "array", "items": {"type": "string"}}}, "required": ["text", "pages"]}}}
+]

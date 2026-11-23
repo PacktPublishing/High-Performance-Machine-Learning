@@ -30,13 +30,37 @@ train_image = (modal.Image.debian_slim(python_version="3.11")
                             "requests", "huggingface_hub")
                .env({"CH10_VOL": "/vol", "TOKENIZERS_PARALLELISM": "false"})
                .add_local_dir(HERE, "/root/chapter10"))
-serve_image = (modal.Image.debian_slim(python_version="3.11")
+# CUDA devel base: vLLM 0.33 JIT-compiles FlashInfer kernels on the A100 and needs nvcc (debian_slim has none:
+# "Could not find nvcc and default cuda_home=/usr/local/cuda"). CUDA 13.0 matches the vLLM 0.33 wheel (torch cu130).
+serve_image = (modal.Image.from_registry("nvidia/cuda:13.0.1-devel-ubuntu22.04", add_python="3.11")
                .pip_install("vllm==0.33.0", "lm-eval[api,ifeval]==0.4.13", "httpx", "datasets>=4", "requests")
                .env({"CH10_VOL": "/vol", "VLLM_ALLOW_RUNTIME_LORA_UPDATING": "False"})
                .add_local_dir(HERE, "/root/chapter10"))
 
 
+def gpu_record(tag):
+    """Write the GPU (nvidia-smi), driver and package versions of this container to /vol/results/env/<tag>.json."""
+    import datetime, importlib.metadata as md, json, re
+    q = "name,memory.total,driver_version,power.limit"
+    smi = subprocess.run(["nvidia-smi", f"--query-gpu={q}", "--format=csv,noheader"], capture_output=True, text=True).stdout
+    pk = {}
+    for p in ("vllm", "torch", "transformers", "peft", "trl", "bitsandbytes", "accelerate", "lm_eval"):
+        try:
+            pk[p] = md.version(p)
+        except Exception:
+            pass
+    rec = {"platform": "Modal", "gpus_nvidia_smi": smi.strip().splitlines(), "packages": pk, "tag": tag,
+           "utc": datetime.datetime.utcnow().isoformat(timespec="seconds") + "Z"}
+    os.makedirs("/vol/results/env", exist_ok=True)
+    name = re.sub(r"[^A-Za-z0-9._-]+", "_", tag)[:120] + "_" + rec["utc"].replace(":", "")
+    json.dump(rec, open(f"/vol/results/env/{name}.json", "w"), indent=1)
+    print("gpu:", rec["gpus_nvidia_smi"], pk)
+    if any("A100" in g and "PCIe" in g for g in rec["gpus_nvidia_smi"]):   # timing runs use the SXM card only
+        raise RuntimeError("A100 PCIe rejected: " + rec["gpus_nvidia_smi"][0])
+
+
 def sh(cmd):
+    gpu_record(cmd)
     print("+", cmd)
     subprocess.run(cmd, shell=True, check=True, cwd="/root/chapter10")
     vol.commit()
@@ -45,12 +69,12 @@ def sh(cmd):
 GPUS = {"H100": "H100", "A100": "A100-80GB", "A100-80GB": "A100-80GB", "T4": "T4", "H100:2": "H100:2"}
 
 
-@app.function(image=serve_image, gpu="H100", volumes=MOUNTS, secrets=[secret], timeout=3600)
 def smoke_gpu(gpu_name: str = "H100"):
     """vLLM 0.33 smoke test: each model loads, LoRA works on Llama and on Qwen3-VL's language model, FP8 KV cache."""
     import json
     from vllm import LLM, SamplingParams
     from vllm.lora.request import LoRARequest
+    gpu_record(f"smoke_{gpu_name}")
     report = {"gpu": gpu_name}
     sp = SamplingParams(max_tokens=8, temperature=0)
     for key, mid, kw in (("llama-3.1-8b", "meta-llama/Llama-3.1-8B-Instruct", {}),
@@ -98,7 +122,6 @@ def prep_remote():
     sh("python prep_data.py")
 
 
-@app.function(image=train_image, gpu="H100", volumes=MOUNTS, secrets=[secret], timeout=12 * 3600)
 def train_remote(args: str, n_gpus: int = 1):
     if n_gpus > 1:
         sh(f"accelerate launch --num_processes {n_gpus} --use_fsdp --fsdp_sharding_strategy FULL_SHARD "
@@ -118,9 +141,20 @@ def distill_remote(args: str):
     sh(f"python distill.py {args}")
 
 
-@app.function(image=serve_image, gpu="H100", volumes=MOUNTS, secrets=[secret], timeout=6 * 3600)
 def serve_remote(script: str, args: str):
     sh(f"python {script} {args}")
+
+
+# One Modal function per GPU type (the Modal client in use has no Function.with_options); same pattern as chapter09.
+def _per_gpu(fn, image, timeout):
+    return {g: app.function(name=f"{fn.__name__}_{g.replace('-', '_').replace(':', 'x')}", image=image, gpu=g,
+                            volumes=MOUNTS, secrets=[secret], timeout=timeout)(fn)
+            for g in ("H100", "A100-80GB", "T4", "H100:2")}
+
+
+SMOKE = _per_gpu(smoke_gpu, serve_image, 3600)
+TRAIN = _per_gpu(train_remote, train_image, 12 * 3600)
+SERVE = _per_gpu(serve_remote, serve_image, 6 * 3600)
 
 
 @app.function(image=train_image, gpu="H100", volumes=MOUNTS, secrets=[secret], timeout=3600)
@@ -133,11 +167,22 @@ def collect_remote():
     sh("python collect_results.py")
 
 
+def _retry_pcie(call, tries=6):
+    """Modal's A100-80GB can be an SXM4 or a PCIe card; a PCIe container stops at once and the call is retried."""
+    for i in range(tries):
+        try:
+            return call()
+        except Exception as e:
+            if "A100 PCIe rejected" not in str(e) or i == tries - 1:
+                raise
+            print(f"retry {i + 1}: {e}")
+
+
 @app.local_entrypoint()
 def smoke():
     smoke_adapters.remote()
     for g in ("H100", "A100-80GB", "T4"):
-        smoke_gpu.with_options(gpu=g).remote(g)
+        SMOKE[g].remote(g)
 
 
 @app.local_entrypoint()
@@ -145,7 +190,7 @@ def smoke_gpus(gpus: str = "A100-80GB,T4"):
     """Smoke test on the listed GPUs only (the H100 was run separately). Builds the tiny adapters first."""
     smoke_adapters.remote()
     for g in gpus.split(","):
-        smoke_gpu.with_options(gpu=g).remote(g)
+        SMOKE[g].remote(g)
 
 
 @app.local_entrypoint()
@@ -159,7 +204,7 @@ def train(model: str = "gemma-2b", method: str = "lora", rank: int = 16, gpu: st
     n = 2 if gpu == "H100:2" else 1
     g = GPUS[gpu]
     args = f"--model {model} --method {method} --rank {rank} --seed {seed} --gpu {g.split(':')[0]} {extra}"
-    train_remote.with_options(gpu=g).remote(args, n)
+    _retry_pcie(lambda: TRAIN[g].remote(args, n))
 
 
 @app.local_entrypoint()
@@ -170,7 +215,7 @@ def merge(model: str, run: str):
 @app.local_entrypoint()
 def evaluate(model: str, task: str, run: str = "", merged: bool = False, gpu: str = "H100"):
     args = f"--model {model} --task {task}" + (f" --run {run}" if run else "") + (" --merged" if merged else "")
-    serve_remote.with_options(gpu=GPUS[gpu]).remote("eval_quality.py", args)
+    SERVE[GPUS[gpu]].remote("eval_quality.py", args)
 
 
 @app.local_entrypoint()
@@ -178,13 +223,13 @@ def serve_bench(model: str = "llama-3.1-8b", run: str = "", mode: str = "base", 
                 gpu: str = "H100", rates: str = ""):
     args = (f"--model {model} --mode {mode} --adapters {adapters} --gpu {gpu}" + (f" --run {run}" if run else "")
             + (f" --rates {rates}" if rates else ""))
-    serve_remote.with_options(gpu=GPUS[gpu]).remote("serve_bench.py", args)
+    _retry_pcie(lambda: SERVE[GPUS[gpu]].remote("serve_bench.py", args))
 
 
 @app.local_entrypoint()
 def distill(arm: str, student: str = "llama-3.2-1b", make_teacher_data: bool = False):
     if make_teacher_data:
-        serve_remote.remote("distill.py", "--arm sft --make-teacher-data")
+        SERVE["H100"].remote("distill.py", "--arm sft --make-teacher-data")
     else:
         distill_remote.remote(f"--arm {arm} --student {student}")
 

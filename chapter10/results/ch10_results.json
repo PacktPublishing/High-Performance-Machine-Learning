@@ -55,13 +55,17 @@
     -5.175600739371535,
     1.9801751728323325
    ],
+   "mmlu": [
+    1.0468594217347957,
+    0.40446635512320056
+   ],
    "arc_c": [
     -2.0,
     1.9181654562197854
    ],
    "forget_avg": [
-    -2.4585335797905117,
-    1.0437529023167114
+    -1.5821853294091848,
+    0.7893183024878838
    ],
    "kl": 0.9203513401382121
   },
@@ -82,13 +86,17 @@
     -4.621072088724584,
     1.8671266265184971
    ],
+   "mmlu": [
+    -0.6409343398376299,
+    0.41523037001492547
+   ],
    "arc_c": [
     -1.6,
     1.9396919367825374
    ],
    "forget_avg": [
-    -1.6070240295748615,
-    1.037600253411755
+    -1.3655016071405535,
+    0.7850933397176405
    ],
    "kl": 0.8705357015074346
   },
@@ -109,13 +117,17 @@
     -4.436229205175601,
     1.7642931640418464
    ],
+   "mmlu": [
+    1.8302236148696767,
+    0.4267284942291324
+   ],
    "arc_c": [
     1.0,
     1.8233620865306013
    ],
    "forget_avg": [
-    -0.9454097350585337,
-    0.9707240368090071
+    -0.25150139757648104,
+    0.7358177257538052
    ],
    "kl": 0.9379359081740267
   },
@@ -136,13 +148,17 @@
     -13.123844731977819,
     2.057585356967767
    ],
+   "mmlu": [
+    -1.6593077909129752,
+    0.2895612884657892
+   ],
    "arc_c": [
     -2.4,
     1.8534699084157749
    ],
    "forget_avg": [
-    -7.974614910659272,
-    1.1162924819089877
+    -6.395788130722698,
+    0.840343154843481
    ],
    "kl": 0.8769671135978377
   },
@@ -163,13 +179,17 @@
     -8.872458410351202,
     1.9204165141897136
    ],
+   "mmlu": [
+    -1.6593077909129752,
+    0.2753762792222593
+   ],
    "arc_c": [
     -1.7999999999999998,
     1.7549015239372978
    ],
    "forget_avg": [
-    -5.690819470117067,
-    1.0441289449617994
+    -4.682941550316045,
+    0.7861170149269152
    ],
    "kl": 0.6947397101774954
   },
@@ -190,13 +210,17 @@
     -21.626617375231053,
     2.1867433080503416
    ],
+   "mmlu": [
+    -2.0438683948155534,
+    0.3092129117722241
+   ],
    "arc_c": [
     -2.4,
     1.718833551439784
    ],
    "forget_avg": [
-    -12.742205791743684,
-    1.155735727867287
+    -10.067621442511651,
+    0.8702420022193182
    ],
    "kl": 0.8188219791812001
   }
@@ -1922,12 +1946,41 @@
    0.0014806484105065465,
    0.001479976810514927,
    0.001479241531342268
-  ]
+  ],
+  "env": {
+   "utc": "2026-11-20T04:27:31Z",
+   "gpus_nvidia_smi": [
+    "NVIDIA H100 80GB HBM3, 81559 MiB, 590.48.01, 700.00 W, 00000000:BB:00.0"
+   ],
+   "python": "3.11.18",
+   "packages": {
+    "torch": "2.14.0",
+    "transformers": "5.23.0",
+    "peft": "0.21.2",
+    "trl": "1.17.1",
+    "bitsandbytes": "0.50.2",
+    "accelerate": "1.16.0",
+    "datasets": "5.2.0",
+    "huggingface_hub": "2.4.0"
+   },
+   "torch_cuda": "13.0",
+   "cudnn": 92400,
+   "nccl": "2.30.7",
+   "ch10_cmd": [
+    "raw",
+    "--",
+    "python",
+    "-c",
+    "import json; d=json.load(open('$CH10_VOL/results/spectrum.json')); print({k: [round(x,3) for x in v[:5]] for k, v in d.items() if isinstance(v, list)})"
+   ],
+   "returncode": 0,
+   "wall_s": 0.0
+  }
  },
  "_notes": {
-  "platform": "NVIDIA H100 80GB HBM3 (SXM), driver 590.48.01, 2026-11-20",
-  "eval_sizes": "HotpotQA 1,000; abstention 500; KL 200 prompts; GSM8K CoT 8-shot 250; IFEval 541; ARC-C 0-shot 500; MMLU not run",
-  "forgetting": "forget_avg and rank forgetting = mean paired difference over GSM8K, IFEval, ARC-C (ARC-C in place of MMLU)",
+  "platform": "NVIDIA H100 80GB HBM3 (SXM), driver 590.48.01",
+  "eval_sizes": "HotpotQA 1,000; abstention 500; KL 200 prompts; GSM8K CoT 8-shot 250; IFEval 541; ARC-C 0-shot 500; MMLU 5-shot 14,042",
+  "forgetting": "quality forget_avg = mean paired difference over GSM8K, IFEval, ARC-C and MMLU (5-shot, 14,042 items); rank-sweep forgetting = mean over GSM8K, IFEval and ARC-C (MMLU not run for the rank sweep)",
   "gemma_decoding": "Gemma-2B: system text in the user turn; generation stops at <end_of_turn>",
   "tpot": "distill tpot_ms_h100 is the H100 single-request TPOT; the A100 column of the distillation table is still pending",
   "not_measured_here": "T4 and A100 rows (training table), A100 TPOT (distillation): see BRANCH_D_MODAL_PLAN.md"

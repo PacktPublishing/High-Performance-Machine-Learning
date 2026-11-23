@@ -1,0 +1,430 @@
+{
+ "E0": {
+  "accuracy": 56.203007518796994,
+  "task_p50_s": 4.646140098571777,
+  "task_p95_s": 11.667754888534546,
+  "steps": 1.0,
+  "hit_rate": 5.218020949862708,
+  "goodput": 1.0,
+  "visual_tokens": null,
+  "images_per_task": 3,
+  "cost_per_task": 0.0010972222222222223
+ },
+ "E1": {
+  "accuracy": 43.984962406015036,
+  "task_p50_s": 4.430120825767517,
+  "task_p95_s": 11.224971961975102,
+  "steps": 3.968283582089552,
+  "hit_rate": 0.50655615124843,
+  "goodput": 1.0,
+  "visual_tokens": null,
+  "images_per_task": 1.896421845574388,
+  "cost_per_task": 0.0010972222222222223
+ },
+ "E2": {
+  "accuracy": 45.65619223659889,
+  "task_p50_s": 4.876166820526123,
+  "task_p95_s": 11.468618595600132,
+  "steps": 3.978240302743614,
+  "hit_rate": 60.9264536843661,
+  "goodput": 2.0,
+  "visual_tokens": null,
+  "images_per_task": 1.8135593220338984,
+  "cost_per_task": 0.0005486111111111112
+ },
+ "E3": {
+  "accuracy": 41.437728937728934,
+  "task_p50_s": 3.9456653594970703,
+  "task_p95_s": 8.179524016380308,
+  "steps": 4.176279069767442,
+  "hit_rate": 70.46655316705092,
+  "goodput": 4.0,
+  "visual_tokens": null,
+  "images_per_task": 2.1011904761904763,
+  "cost_per_task": 0.0002743055555555556
+ },
+ "E4": {
+  "accuracy": 41.58139534883721,
+  "task_p50_s": 3.9447563886642456,
+  "task_p95_s": 8.216564965248107,
+  "steps": 4.173488372093023,
+  "hit_rate": 70.59948826667329,
+  "goodput": 4.0,
+  "visual_tokens": null,
+  "images_per_task": 2.092032967032967,
+  "cost_per_task": 0.0002743055555555556
+ },
+ "E5": {
+  "accuracy": 43.26274144752153,
+  "task_p50_s": 8.204482078552246,
+  "task_p95_s": 17.252585744857786,
+  "steps": 4.220615671641791,
+  "hit_rate": 71.82413210654602,
+  "goodput": 8.0,
+  "visual_tokens": null,
+  "images_per_task": 2.029505220154335,
+  "cost_per_task": 0.0001371527777777778
+ },
+ "E6": {
+  "accuracy": 44.54887218045113,
+  "task_p50_s": 1.4074530601501465,
+  "task_p95_s": 2.8155823349952698,
+  "steps": 4.219924812030075,
+  "hit_rate": 72.51562259916308,
+  "goodput": 1.0,
+  "visual_tokens": null,
+  "images_per_task": 2.013157894736842,
+  "cost_per_task": 0.0010972222222222223
+ },
+ "E7": {
+  "accuracy": 42.72685818513452,
+  "task_p50_s": 3.0088298320770264,
+  "task_p95_s": 6.003766632080078,
+  "steps": 4.226046511627907,
+  "hit_rate": 71.00685628410449,
+  "goodput": 4.0,
+  "visual_tokens": null,
+  "images_per_task": 2.0548837209302326,
+  "cost_per_task": 0.0002743055555555556
+ },
+ "R0": {
+  "text_ndcg10": 48.26899979527572,
+  "page_ndcg10": 69.52153872331296,
+  "hybrid_ndcg10": 60.2817199953424,
+  "page4bit_ndcg10": 69.34328846985585,
+  "text_recall5": 40.70106227517633,
+  "page_recall5": 60.23083889434453,
+  "hybrid_recall5": 51.95141219246794,
+  "page4bit_recall5": 60.116601615461676,
+  "hybrid4bit_ndcg10": 60.01099439197243,
+  "n_queries": 842,
+  "pages": 5412,
+  "env": {
+   "utc": "2026-11-23T03:34:10Z",
+   "gpus_nvidia_smi": [
+    "nvidia-smi failed: FileNotFoundError(2, 'No such file or directory')"
+   ],
+   "python": "3.11.18",
+   "packages": {
+    "vllm": "0.33.0",
+    "torch": "2.14.0",
+    "transformers": "5.20.2",
+    "huggingface_hub": "2.4.0",
+    "openai": "3.56.0",
+    "flashinfer-python": "0.7.2.post1"
+   },
+   "torch_cuda": "13.0",
+   "cudnn": 92400,
+   "nccl": null,
+   "exp": "R0"
+  }
+ },
+ "E8": {
+  "rr_hit_rate": 53.1,
+  "affinity_hit_rate": 70.7,
+  "prefix_hit_rate": 82.6,
+  "rr_p95_s": 4.76,
+  "affinity_p95_s": 4.49,
+  "prefix_p95_s": 4.18,
+  "headline_rate_tasks_per_s": 8.0,
+  "replicas": 4,
+  "note": "Headline values: 4 replicas at 8 tasks/s, the highest tested load at which every policy met the task objective (>= 90% within 20 s). At 16 tasks/s all policies met it for 68-70% of tasks; 32 tasks/s is overload. Single replica (E7) hit rate 71%. One retriever on GPU 0 serves all replicas.",
+  "grid": {
+   "4": {
+    "round_robin": {
+     "8.0": {
+      "tasks": 4289,
+      "hit": 53.1,
+      "p50": 2.54,
+      "p95": 4.76,
+      "met": 1.0
+     },
+     "16.0": {
+      "tasks": 8654,
+      "hit": 52.6,
+      "p50": 15.72,
+      "p95": 34.78,
+      "met": 0.682
+     },
+     "32.0": {
+      "tasks": 17426,
+      "hit": 51.1,
+      "p50": 199.35,
+      "p95": 325.74,
+      "met": 0.017
+     }
+    },
+    "affinity": {
+     "8.0": {
+      "tasks": 4289,
+      "hit": 70.7,
+      "p50": 2.49,
+      "p95": 4.49,
+      "met": 1.0
+     },
+     "16.0": {
+      "tasks": 8654,
+      "hit": 70.9,
+      "p50": 15.83,
+      "p95": 29.98,
+      "met": 0.692
+     },
+     "32.0": {
+      "tasks": 17426,
+      "hit": 60.2,
+      "p50": 181.4,
+      "p95": 310.38,
+      "met": 0.018
+     }
+    },
+    "prefix": {
+     "8.0": {
+      "tasks": 4289,
+      "hit": 82.6,
+      "p50": 2.37,
+      "p95": 4.18,
+      "met": 1.0
+     },
+     "16.0": {
+      "tasks": 8654,
+      "hit": 82.5,
+      "p50": 16.22,
+      "p95": 33.14,
+      "met": 0.699
+     },
+     "32.0": {
+      "tasks": 17426,
+      "hit": 79.3,
+      "p50": 168.14,
+      "p95": 306.96,
+      "met": 0.01
+     }
+    }
+   },
+   "2": {
+    "round_robin": {
+     "4.0": {
+      "tasks": 2193,
+      "hit": 59.5,
+      "p50": 2.26,
+      "p95": 4.23,
+      "met": 1.0
+     },
+     "8.0": {
+      "tasks": 4289,
+      "hit": 59.6,
+      "p50": 3.65,
+      "p95": 7.43,
+      "met": 1.0
+     },
+     "16.0": {
+      "tasks": 8654,
+      "hit": 48.4,
+      "p50": 149.53,
+      "p95": 415.47,
+      "met": 0.082
+     }
+    },
+    "affinity": {
+     "4.0": {
+      "tasks": 2193,
+      "hit": 70.6,
+      "p50": 2.16,
+      "p95": 3.93,
+      "met": 1.0
+     },
+     "8.0": {
+      "tasks": 4289,
+      "hit": 70.5,
+      "p50": 3.0,
+      "p95": 5.74,
+      "met": 1.0
+     },
+     "16.0": {
+      "tasks": 8654,
+      "hit": 45.8,
+      "p50": 161.3,
+      "p95": 325.12,
+      "met": 0.011
+     }
+    },
+    "prefix": {
+     "4.0": {
+      "tasks": 2193,
+      "hit": 74.4,
+      "p50": 2.12,
+      "p95": 3.8,
+      "met": 1.0
+     },
+     "8.0": {
+      "tasks": 4289,
+      "hit": 74.8,
+      "p50": 2.86,
+      "p95": 5.58,
+      "met": 1.0
+     },
+     "16.0": {
+      "tasks": 8654,
+      "hit": 66.0,
+      "p50": 34.87,
+      "p95": 73.98,
+      "met": 0.127
+     }
+    }
+   }
+  },
+  "repeats": 1,
+  "duration_s": 600,
+  "env": {
+   "utc": "2026-11-22T16:52:34Z",
+   "gpus_nvidia_smi": [
+    "nvidia-smi failed: FileNotFoundError(2, 'No such file or directory')"
+   ],
+   "python": "3.9.25",
+   "packages": {},
+   "exp": "E8"
+  }
+ },
+ "E9": {
+  "H100": 0.0002743055555555556,
+  "H100_goodput_tasks_per_s": 4.0,
+  "note": "H100 from E7 (goodput 4 tasks/s, Modal list price 3.95 USD/h, utilization 1.0). L40S and A100-80GB rows are not run yet (Modal)."
+ },
+ "R1": {
+  "baseline_cv_pct": 1.5,
+  "upgrade_verdict": "PASS",
+  "gate_exit_code": 0,
+  "baseline_vllm_0.32": {
+   "task_p50_s": [
+    2.91,
+    3.055,
+    2.993
+   ],
+   "task_p95_s": [
+    5.788,
+    5.936,
+    5.761
+   ],
+   "cost_per_task": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "accuracy": [
+    42.043,
+    41.438,
+    41.581
+   ],
+   "met": [
+    1.0,
+    1.0,
+    1.0
+   ]
+  },
+  "candidate_vllm_0.33": {
+   "task_p50_s": [
+    3.009,
+    3.035,
+    2.947
+   ],
+   "task_p95_s": [
+    5.999,
+    6.004,
+    6.077
+   ],
+   "cost_per_task": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "accuracy": [
+    42.727,
+    43.269,
+    42.233
+   ],
+   "met": [
+    1.0,
+    1.0,
+    1.0
+   ]
+  },
+  "cv_note": "coefficient of variation of p50 task time over the 3 repeats of the E7 configuration at 4 tasks/s (vLLM 0.33.0)",
+  "ch8_sweep_goodput_change_pct_0.32_to_0.33": {
+   "1": -0.02,
+   "2": -0.04,
+   "4": -0.02,
+   "8": -0.03,
+   "16": -0.03,
+   "32": -0.06,
+   "48": -0.17
+  },
+  "note": "Gate on the full 842-question set at 4 tasks/s (E7 goodput), 3 repeats per version; no separate 120-question golden set was built.",
+  "env": {
+   "utc": "2026-11-23T04:42:47Z",
+   "gpus_nvidia_smi": [
+    "nvidia-smi failed: FileNotFoundError(2, 'No such file or directory')"
+   ],
+   "python": "3.11.18",
+   "packages": {
+    "vllm": "0.33.0",
+    "torch": "2.14.0",
+    "transformers": "5.20.2",
+    "huggingface_hub": "2.4.0",
+    "openai": "3.56.0",
+    "flashinfer-python": "0.7.2.post1"
+   },
+   "torch_cuda": "13.0",
+   "cudnn": 92400,
+   "nccl": null,
+   "exp": "R1"
+  }
+ },
+ "R2": {
+  "goodput_change_pct": 0.0,
+  "goodput_tasks_per_s": {
+   "E7": 4.0,
+   "R2": 4.0
+  },
+  "task_p50_s_at_goodput": {
+   "E7": 3.01,
+   "R2": 3.43
+  },
+  "task_p95_s_at_goodput": {
+   "E7": 6.0,
+   "R2": 6.74
+  },
+  "p50_change_pct_at_goodput": 14.0,
+  "identical_answers_across_load_pct": {
+   "R2": 18.8,
+   "E7": 17.9,
+   "note": "4,226 queries answered at both 0.5 and 4 tasks/s; answer identical to one of its answers at 0.5"
+  },
+  "identical_answers_between_repeats_pct_at_0.5": {
+   "E2": 52.6,
+   "E3": 59.4,
+   "E4": 58.3,
+   "E5": 24.5,
+   "E7": 20.3,
+   "R2": 26.0
+  },
+  "rates_tested": [
+   0.5,
+   1,
+   2,
+   4,
+   8
+  ],
+  "repeats": 3,
+  "agent": "require_tool_first: true (ladder v2)",
+  "note": "Goodput resolved to the rate grid (4 vs 8). Batch invariance leaves goodput unchanged, adds 14% to p50 at goodput, and does not make E7 outputs reproducible; reproducibility drops at E5 (FP8 weights and FP8 KV cache).",
+  "env": {
+   "utc": "2026-11-22T12:53:28Z",
+   "gpus_nvidia_smi": [
+    "nvidia-smi failed: FileNotFoundError(2, 'No such file or directory')"
+   ],
+   "python": "3.9.25",
+   "packages": {},
+   "exp": "R2"
+  }
+ }
+}

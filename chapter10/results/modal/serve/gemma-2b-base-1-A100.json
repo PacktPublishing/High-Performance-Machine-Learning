@@ -1,0 +1,17 @@
+{
+ "model": "gemma-2b",
+ "run": null,
+ "mode": "base",
+ "adapters": 1,
+ "gpu": "A100",
+ "tpot_ms": 4.403740546874868,
+ "capacity_rps": 8.0,
+ "ttft_p90_ms": 36.53653799995027,
+ "sweep": {
+  "8.0": {
+   "goodput_share": 1.0,
+   "ttft_p90_ms": 36.53653799995027
+  }
+ },
+ "vllm": "0.33.0\n"
+}

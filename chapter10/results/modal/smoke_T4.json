@@ -1,0 +1,17 @@
+{
+ "gpu": "T4",
+ "gemma-2b": {
+  "load": true,
+  "text": "Sure, I am ready to say OK",
+  "lora": "Sure, I am ready to say OK"
+ },
+ "llama-3.2-1b": {
+  "load": true,
+  "text": "OK.",
+  "lora": "OK."
+ },
+ "gemma-4-e2b": {
+  "load": false,
+  "error": "RuntimeError('Engine core initialization failed. See root cause above. Failed core proc(s): {}')"
+ }
+}

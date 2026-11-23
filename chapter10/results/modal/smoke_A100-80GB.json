@@ -1,0 +1,29 @@
+{
+ "gpu": "A100-80GB",
+ "llama-3.1-8b": {
+  "load": true,
+  "text": "OK.",
+  "lora": "OK."
+ },
+ "gemma-2b": {
+  "load": true,
+  "text": "Sure, I am ready to say OK",
+  "lora": "Sure, I am ready to say OK"
+ },
+ "llama-3.2-1b": {
+  "load": true,
+  "text": "OK.",
+  "lora": "OK."
+ },
+ "qwen3-vl-8b": {
+  "load": true,
+  "text": "OK.",
+  "lora": "OK."
+ },
+ "gemma-4-e2b": {
+  "load": true,
+  "text": "OK",
+  "lora": "OK"
+ },
+ "fp8_kv": "OK."
+}

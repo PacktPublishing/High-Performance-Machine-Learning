@@ -1,0 +1,17 @@
+{
+ "model": "llama-3.2-1b",
+ "run": null,
+ "mode": "base",
+ "adapters": 1,
+ "gpu": "A100",
+ "tpot_ms": 2.559817132812503,
+ "capacity_rps": 8.0,
+ "ttft_p90_ms": 23.909411999994745,
+ "sweep": {
+  "8.0": {
+   "goodput_share": 1.0,
+   "ttft_p90_ms": 23.909411999994745
+  }
+ },
+ "vllm": "0.33.0\n"
+}

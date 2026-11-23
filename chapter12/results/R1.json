@@ -1,0 +1,89 @@
+{
+ "baseline_cv_pct": 1.5,
+ "upgrade_verdict": "PASS",
+ "gate_exit_code": 0,
+ "baseline_vllm_0.32": {
+  "task_p50_s": [
+   2.91,
+   3.055,
+   2.993
+  ],
+  "task_p95_s": [
+   5.788,
+   5.936,
+   5.761
+  ],
+  "cost_per_task": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "accuracy": [
+   42.043,
+   41.438,
+   41.581
+  ],
+  "met": [
+   1.0,
+   1.0,
+   1.0
+  ]
+ },
+ "candidate_vllm_0.33": {
+  "task_p50_s": [
+   3.009,
+   3.035,
+   2.947
+  ],
+  "task_p95_s": [
+   5.999,
+   6.004,
+   6.077
+  ],
+  "cost_per_task": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "accuracy": [
+   42.727,
+   43.269,
+   42.233
+  ],
+  "met": [
+   1.0,
+   1.0,
+   1.0
+  ]
+ },
+ "cv_note": "coefficient of variation of p50 task time over the 3 repeats of the E7 configuration at 4 tasks/s (vLLM 0.33.0)",
+ "ch8_sweep_goodput_change_pct_0.32_to_0.33": {
+  "1": -0.02,
+  "2": -0.04,
+  "4": -0.02,
+  "8": -0.03,
+  "16": -0.03,
+  "32": -0.06,
+  "48": -0.17
+ },
+ "note": "Gate on the full 842-question set at 4 tasks/s (E7 goodput), 3 repeats per version; no separate 120-question golden set was built.",
+ "env": {
+  "utc": "2026-11-23T04:42:47Z",
+  "gpus_nvidia_smi": [
+   "nvidia-smi failed: FileNotFoundError(2, 'No such file or directory')"
+  ],
+  "python": "3.11.18",
+  "packages": {
+   "vllm": "0.33.0",
+   "torch": "2.14.0",
+   "transformers": "5.20.2",
+   "huggingface_hub": "2.4.0",
+   "openai": "3.56.0",
+   "flashinfer-python": "0.7.2.post1"
+  },
+  "torch_cuda": "13.0",
+  "cudnn": 92400,
+  "nccl": null,
+  "exp": "R1"
+ }
+}

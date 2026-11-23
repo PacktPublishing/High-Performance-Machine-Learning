@@ -1,0 +1,41 @@
+{
+ "model": "gemma-2b",
+ "run": "gemma-2b-lora-r16-s0-H100",
+ "mode": "merged",
+ "adapters": 1,
+ "gpu": "T4",
+ "tpot_ms": 21.191209796874944,
+ "capacity_rps": 0,
+ "ttft_p90_ms": null,
+ "sweep": {
+  "4.0": {
+   "goodput_share": 0.015384615384615385,
+   "ttft_p90_ms": 971.3275839999937
+  },
+  "8.0": {
+   "goodput_share": 0.13980582524271845,
+   "ttft_p90_ms": 1100.7176870000421
+  },
+  "16.0": {
+   "goodput_share": 0.011542497376705142,
+   "ttft_p90_ms": 24456.951860999994
+  },
+  "24.0": {
+   "goodput_share": 0.0,
+   "ttft_p90_ms": 48311.44152700005
+  },
+  "32.0": {
+   "goodput_share": 0.0,
+   "ttft_p90_ms": 100603.80464900004
+  },
+  "48.0": {
+   "goodput_share": 0.0,
+   "ttft_p90_ms": 122363.95319500002
+  },
+  "64.0": {
+   "goodput_share": 0.0,
+   "ttft_p90_ms": 134254.3695630002
+  }
+ },
+ "vllm": "0.33.0\n"
+}

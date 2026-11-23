@@ -1,0 +1,884 @@
+{
+ "second_judge": "google/gemma-3-27b-it",
+ "second_judge_revision": "005ad3404e59d6023443cb575daa05336842228a",
+ "first_judge": "Qwen/Qwen3-32B-FP8@aa55da1e (thinking off, re-judged 2026-11-23)",
+ "sample": "99 E7 answers at 4 tasks/s, stratified by verdict and type",
+ "overall": {
+  "n": 99,
+  "agreement_pct": 84.8,
+  "cohen_kappa": 0.604,
+  "system_correct_pct": 75.8,
+  "second_correct_pct": 72.7
+ },
+ "by_decided_by": {
+  "judge": {
+   "n": 50,
+   "agreement_pct": 86.0,
+   "cohen_kappa": 0.717,
+   "system_correct_pct": 52.0,
+   "second_correct_pct": 62.0
+  },
+  "exact/numeric": {
+   "n": 49,
+   "agreement_pct": 83.7,
+   "cohen_kappa": 0.0,
+   "system_correct_pct": 100.0,
+   "second_correct_pct": 83.7
+  }
+ },
+ "by_type": {
+  "multi-hop": {
+   "n": 8,
+   "agreement_pct": 100.0,
+   "cohen_kappa": 1.0,
+   "system_correct_pct": 87.5,
+   "second_correct_pct": 87.5
+  },
+  "numerical": {
+   "n": 12,
+   "agreement_pct": 83.3,
+   "cohen_kappa": 0.0,
+   "system_correct_pct": 100.0,
+   "second_correct_pct": 83.3
+  },
+  "other": {
+   "n": 79,
+   "agreement_pct": 83.5,
+   "cohen_kappa": 0.606,
+   "system_correct_pct": 70.9,
+   "second_correct_pct": 69.6
+  }
+ },
+ "items": [
+  {
+   "n": "1",
+   "query_id": "hr:31",
+   "type": "multi-hop",
+   "decided_by": "exact/numeric",
+   "system": 1,
+   "second_judge": 1
+  },
+  {
+   "n": "2",
+   "query_id": "hr:1818",
+   "type": "multi-hop",
+   "decided_by": "exact/numeric",
+   "system": 1,
+   "second_judge": 1
+  },
+  {
+   "n": "3",
+   "query_id": "hr:184",
+   "type": "multi-hop",
+   "decided_by": "exact/numeric",
+   "system": 1,
+   "second_judge": 1
+  },
+  {
+   "n": "4",
+   "query_id": "hr:1821",
+   "type": "multi-hop",
+   "decided_by": "exact/numeric",
+   "system": 1,
+   "second_judge": 1
+  },
+  {
+   "n": "5",
+   "query_id": "hr:158",
+   "type": "numerical",
+   "decided_by": "exact/numeric",
+   "system": 1,
+   "second_judge": 1
+  },
+  {
+   "n": "6",
+   "query_id": "finance_en:153",
+   "type": "numerical",
+   "decided_by": "exact/numeric",
+   "system": 1,
+   "second_judge": 1
+  },
+  {
+   "n": "7",
+   "query_id": "finance_en:167",
+   "type": "numerical",
+   "decided_by": "exact/numeric",
+   "system": 1,
+   "second_judge": 1
+  },
+  {
+   "n": "8",
+   "query_id": "hr:58",
+   "type": "numerical",
+   "decided_by": "exact/numeric",
+   "system": 1,
+   "second_judge": 1
+  },
+  {
+   "n": "9",
+   "query_id": "finance_en:168",
+   "type": "numerical",
+   "decided_by": "exact/numeric",
+   "system": 1,
+   "second_judge": 1
+  },
+  {
+   "n": "10",
+   "query_id": "hr:283",
+   "type": "numerical",
+   "decided_by": "exact/numeric",
+   "system": 1,
+   "second_judge": 1
+  },
+  {
+   "n": "11",
+   "query_id": "finance_en:74",
+   "type": "numerical",
+   "decided_by": "exact/numeric",
+   "system": 1,
+   "second_judge": 0
+  },
+  {
+   "n": "12",
+   "query_id": "hr:150",
+   "type": "numerical",
+   "decided_by": "exact/numeric",
+   "system": 1,
+   "second_judge": 1
+  },
+  {
+   "n": "13",
+   "query_id": "hr:92",
+   "type": "numerical",
+   "decided_by": "exact/numeric",
+   "system": 1,
+   "second_judge": 1
+  },
+  {
+   "n": "14",
+   "query_id": "finance_en:106",
+   "type": "numerical",
+   "decided_by": "exact/numeric",
+   "system": 1,
+   "second_judge": 0
+  },
+  {
+   "n": "15",
+   "query_id": "hr:277",
+   "type": "numerical",
+   "decided_by": "exact/numeric",
+   "system": 1,
+   "second_judge": 1
+  },
+  {
+   "n": "16",
+   "query_id": "cs:93",
+   "type": "other",
+   "decided_by": "exact/numeric",
+   "system": 1,
+   "second_judge": 1
+  },
+  {
+   "n": "17",
+   "query_id": "finance_en:207",
+   "type": "other",
+   "decided_by": "exact/numeric",
+   "system": 1,
+   "second_judge": 1
+  },
+  {
+   "n": "18",
+   "query_id": "cs:185",
+   "type": "other",
+   "decided_by": "exact/numeric",
+   "system": 1,
+   "second_judge": 1
+  },
+  {
+   "n": "19",
+   "query_id": "finance_en:77",
+   "type": "other",
+   "decided_by": "exact/numeric",
+   "system": 1,
+   "second_judge": 1
+  },
+  {
+   "n": "20",
+   "query_id": "cs:186",
+   "type": "other",
+   "decided_by": "exact/numeric",
+   "system": 1,
+   "second_judge": 1
+  },
+  {
+   "n": "21",
+   "query_id": "finance_en:210",
+   "type": "other",
+   "decided_by": "exact/numeric",
+   "system": 1,
+   "second_judge": 0
+  },
+  {
+   "n": "22",
+   "query_id": "cs:159",
+   "type": "other",
+   "decided_by": "exact/numeric",
+   "system": 1,
+   "second_judge": 1
+  },
+  {
+   "n": "23",
+   "query_id": "cs:139",
+   "type": "other",
+   "decided_by": "exact/numeric",
+   "system": 1,
+   "second_judge": 1
+  },
+  {
+   "n": "24",
+   "query_id": "hr:154",
+   "type": "other",
+   "decided_by": "exact/numeric",
+   "system": 1,
+   "second_judge": 0
+  },
+  {
+   "n": "25",
+   "query_id": "finance_en:150",
+   "type": "other",
+   "decided_by": "exact/numeric",
+   "system": 1,
+   "second_judge": 1
+  },
+  {
+   "n": "26",
+   "query_id": "hr:134",
+   "type": "other",
+   "decided_by": "exact/numeric",
+   "system": 1,
+   "second_judge": 1
+  },
+  {
+   "n": "27",
+   "query_id": "hr:138",
+   "type": "other",
+   "decided_by": "exact/numeric",
+   "system": 1,
+   "second_judge": 1
+  },
+  {
+   "n": "28",
+   "query_id": "finance_en:14",
+   "type": "other",
+   "decided_by": "exact/numeric",
+   "system": 1,
+   "second_judge": 0
+  },
+  {
+   "n": "29",
+   "query_id": "cs:120",
+   "type": "other",
+   "decided_by": "exact/numeric",
+   "system": 1,
+   "second_judge": 1
+  },
+  {
+   "n": "30",
+   "query_id": "hr:132",
+   "type": "other",
+   "decided_by": "exact/numeric",
+   "system": 1,
+   "second_judge": 1
+  },
+  {
+   "n": "31",
+   "query_id": "finance_en:148",
+   "type": "other",
+   "decided_by": "exact/numeric",
+   "system": 1,
+   "second_judge": 1
+  },
+  {
+   "n": "32",
+   "query_id": "hr:112",
+   "type": "other",
+   "decided_by": "exact/numeric",
+   "system": 1,
+   "second_judge": 1
+  },
+  {
+   "n": "33",
+   "query_id": "cs:155",
+   "type": "other",
+   "decided_by": "exact/numeric",
+   "system": 1,
+   "second_judge": 0
+  },
+  {
+   "n": "34",
+   "query_id": "finance_en:238",
+   "type": "other",
+   "decided_by": "exact/numeric",
+   "system": 1,
+   "second_judge": 1
+  },
+  {
+   "n": "35",
+   "query_id": "hr:144",
+   "type": "other",
+   "decided_by": "exact/numeric",
+   "system": 1,
+   "second_judge": 1
+  },
+  {
+   "n": "36",
+   "query_id": "cs:158",
+   "type": "other",
+   "decided_by": "exact/numeric",
+   "system": 1,
+   "second_judge": 1
+  },
+  {
+   "n": "37",
+   "query_id": "hr:63",
+   "type": "other",
+   "decided_by": "exact/numeric",
+   "system": 1,
+   "second_judge": 1
+  },
+  {
+   "n": "38",
+   "query_id": "cs:153",
+   "type": "other",
+   "decided_by": "exact/numeric",
+   "system": 1,
+   "second_judge": 1
+  },
+  {
+   "n": "39",
+   "query_id": "finance_en:7",
+   "type": "other",
+   "decided_by": "exact/numeric",
+   "system": 1,
+   "second_judge": 0
+  },
+  {
+   "n": "40",
+   "query_id": "finance_en:73",
+   "type": "other",
+   "decided_by": "exact/numeric",
+   "system": 1,
+   "second_judge": 0
+  },
+  {
+   "n": "41",
+   "query_id": "finance_en:1763",
+   "type": "other",
+   "decided_by": "exact/numeric",
+   "system": 1,
+   "second_judge": 1
+  },
+  {
+   "n": "42",
+   "query_id": "cs:91",
+   "type": "other",
+   "decided_by": "exact/numeric",
+   "system": 1,
+   "second_judge": 1
+  },
+  {
+   "n": "43",
+   "query_id": "hr:173",
+   "type": "other",
+   "decided_by": "exact/numeric",
+   "system": 1,
+   "second_judge": 1
+  },
+  {
+   "n": "44",
+   "query_id": "finance_en:206",
+   "type": "other",
+   "decided_by": "exact/numeric",
+   "system": 1,
+   "second_judge": 1
+  },
+  {
+   "n": "45",
+   "query_id": "cs:142",
+   "type": "other",
+   "decided_by": "exact/numeric",
+   "system": 1,
+   "second_judge": 1
+  },
+  {
+   "n": "46",
+   "query_id": "finance_en:205",
+   "type": "other",
+   "decided_by": "exact/numeric",
+   "system": 1,
+   "second_judge": 1
+  },
+  {
+   "n": "47",
+   "query_id": "cs:0",
+   "type": "other",
+   "decided_by": "exact/numeric",
+   "system": 1,
+   "second_judge": 1
+  },
+  {
+   "n": "48",
+   "query_id": "finance_en:113",
+   "type": "other",
+   "decided_by": "exact/numeric",
+   "system": 1,
+   "second_judge": 1
+  },
+  {
+   "n": "49",
+   "query_id": "finance_en:76",
+   "type": "other",
+   "decided_by": "exact/numeric",
+   "system": 1,
+   "second_judge": 1
+  },
+  {
+   "n": "50",
+   "query_id": "cs:1195",
+   "type": "multi-hop",
+   "decided_by": "judge",
+   "system": 1,
+   "second_judge": 1
+  },
+  {
+   "n": "51",
+   "query_id": "cs:1198",
+   "type": "multi-hop",
+   "decided_by": "judge",
+   "system": 1,
+   "second_judge": 1
+  },
+  {
+   "n": "52",
+   "query_id": "cs:1192",
+   "type": "multi-hop",
+   "decided_by": "judge",
+   "system": 0,
+   "second_judge": 0
+  },
+  {
+   "n": "53",
+   "query_id": "finance_en:193",
+   "type": "multi-hop",
+   "decided_by": "judge",
+   "system": 1,
+   "second_judge": 1
+  },
+  {
+   "n": "54",
+   "query_id": "cs:122",
+   "type": "numerical",
+   "decided_by": "judge",
+   "system": 1,
+   "second_judge": 1
+  },
+  {
+   "n": "55",
+   "query_id": "cs:179",
+   "type": "other",
+   "decided_by": "judge",
+   "system": 0,
+   "second_judge": 1
+  },
+  {
+   "n": "56",
+   "query_id": "cs:76",
+   "type": "other",
+   "decided_by": "judge",
+   "system": 0,
+   "second_judge": 0
+  },
+  {
+   "n": "57",
+   "query_id": "finance_en:30",
+   "type": "other",
+   "decided_by": "judge",
+   "system": 0,
+   "second_judge": 0
+  },
+  {
+   "n": "58",
+   "query_id": "cs:195",
+   "type": "other",
+   "decided_by": "judge",
+   "system": 1,
+   "second_judge": 1
+  },
+  {
+   "n": "59",
+   "query_id": "finance_en:221",
+   "type": "other",
+   "decided_by": "judge",
+   "system": 0,
+   "second_judge": 1
+  },
+  {
+   "n": "60",
+   "query_id": "finance_en:138",
+   "type": "other",
+   "decided_by": "judge",
+   "system": 0,
+   "second_judge": 0
+  },
+  {
+   "n": "61",
+   "query_id": "cs:161",
+   "type": "other",
+   "decided_by": "judge",
+   "system": 1,
+   "second_judge": 1
+  },
+  {
+   "n": "62",
+   "query_id": "cs:21",
+   "type": "other",
+   "decided_by": "judge",
+   "system": 1,
+   "second_judge": 1
+  },
+  {
+   "n": "63",
+   "query_id": "hr:170",
+   "type": "other",
+   "decided_by": "judge",
+   "system": 0,
+   "second_judge": 0
+  },
+  {
+   "n": "64",
+   "query_id": "cs:72",
+   "type": "other",
+   "decided_by": "judge",
+   "system": 1,
+   "second_judge": 1
+  },
+  {
+   "n": "65",
+   "query_id": "cs:7",
+   "type": "other",
+   "decided_by": "judge",
+   "system": 1,
+   "second_judge": 1
+  },
+  {
+   "n": "66",
+   "query_id": "hr:278",
+   "type": "other",
+   "decided_by": "judge",
+   "system": 1,
+   "second_judge": 1
+  },
+  {
+   "n": "67",
+   "query_id": "hr:49",
+   "type": "other",
+   "decided_by": "judge",
+   "system": 0,
+   "second_judge": 0
+  },
+  {
+   "n": "68",
+   "query_id": "hr:237",
+   "type": "other",
+   "decided_by": "judge",
+   "system": 1,
+   "second_judge": 1
+  },
+  {
+   "n": "69",
+   "query_id": "hr:90",
+   "type": "other",
+   "decided_by": "judge",
+   "system": 0,
+   "second_judge": 0
+  },
+  {
+   "n": "70",
+   "query_id": "cs:141",
+   "type": "other",
+   "decided_by": "judge",
+   "system": 0,
+   "second_judge": 0
+  },
+  {
+   "n": "71",
+   "query_id": "hr:258",
+   "type": "other",
+   "decided_by": "judge",
+   "system": 1,
+   "second_judge": 1
+  },
+  {
+   "n": "72",
+   "query_id": "cs:173",
+   "type": "other",
+   "decided_by": "judge",
+   "system": 1,
+   "second_judge": 1
+  },
+  {
+   "n": "73",
+   "query_id": "cs:52",
+   "type": "other",
+   "decided_by": "judge",
+   "system": 1,
+   "second_judge": 1
+  },
+  {
+   "n": "74",
+   "query_id": "finance_en:151",
+   "type": "other",
+   "decided_by": "judge",
+   "system": 0,
+   "second_judge": 1
+  },
+  {
+   "n": "75",
+   "query_id": "cs:156",
+   "type": "other",
+   "decided_by": "judge",
+   "system": 1,
+   "second_judge": 1
+  },
+  {
+   "n": "76",
+   "query_id": "cs:1",
+   "type": "other",
+   "decided_by": "judge",
+   "system": 1,
+   "second_judge": 1
+  },
+  {
+   "n": "77",
+   "query_id": "hr:11",
+   "type": "other",
+   "decided_by": "judge",
+   "system": 0,
+   "second_judge": 1
+  },
+  {
+   "n": "78",
+   "query_id": "hr:142",
+   "type": "other",
+   "decided_by": "judge",
+   "system": 1,
+   "second_judge": 1
+  },
+  {
+   "n": "79",
+   "query_id": "cs:89",
+   "type": "other",
+   "decided_by": "judge",
+   "system": 1,
+   "second_judge": 1
+  },
+  {
+   "n": "80",
+   "query_id": "cs:78",
+   "type": "other",
+   "decided_by": "judge",
+   "system": 1,
+   "second_judge": 1
+  },
+  {
+   "n": "81",
+   "query_id": "finance_en:1764",
+   "type": "other",
+   "decided_by": "judge",
+   "system": 0,
+   "second_judge": 0
+  },
+  {
+   "n": "82",
+   "query_id": "finance_en:4",
+   "type": "other",
+   "decided_by": "judge",
+   "system": 0,
+   "second_judge": 0
+  },
+  {
+   "n": "83",
+   "query_id": "hr:157",
+   "type": "other",
+   "decided_by": "judge",
+   "system": 0,
+   "second_judge": 0
+  },
+  {
+   "n": "84",
+   "query_id": "finance_en:176",
+   "type": "other",
+   "decided_by": "judge",
+   "system": 0,
+   "second_judge": 0
+  },
+  {
+   "n": "85",
+   "query_id": "hr:264",
+   "type": "other",
+   "decided_by": "judge",
+   "system": 0,
+   "second_judge": 0
+  },
+  {
+   "n": "86",
+   "query_id": "cs:132",
+   "type": "other",
+   "decided_by": "judge",
+   "system": 1,
+   "second_judge": 1
+  },
+  {
+   "n": "87",
+   "query_id": "finance_en:208",
+   "type": "other",
+   "decided_by": "judge",
+   "system": 1,
+   "second_judge": 1
+  },
+  {
+   "n": "88",
+   "query_id": "hr:83",
+   "type": "other",
+   "decided_by": "judge",
+   "system": 0,
+   "second_judge": 0
+  },
+  {
+   "n": "89",
+   "query_id": "finance_en:126",
+   "type": "other",
+   "decided_by": "judge",
+   "system": 1,
+   "second_judge": 1
+  },
+  {
+   "n": "90",
+   "query_id": "finance_en:16",
+   "type": "other",
+   "decided_by": "judge",
+   "system": 0,
+   "second_judge": 0
+  },
+  {
+   "n": "91",
+   "query_id": "finance_en:160",
+   "type": "other",
+   "decided_by": "judge",
+   "system": 1,
+   "second_judge": 1
+  },
+  {
+   "n": "92",
+   "query_id": "hr:42",
+   "type": "other",
+   "decided_by": "judge",
+   "system": 0,
+   "second_judge": 1
+  },
+  {
+   "n": "93",
+   "query_id": "hr:127",
+   "type": "other",
+   "decided_by": "judge",
+   "system": 1,
+   "second_judge": 0
+  },
+  {
+   "n": "94",
+   "query_id": "cs:109",
+   "type": "other",
+   "decided_by": "judge",
+   "system": 0,
+   "second_judge": 0
+  },
+  {
+   "n": "95",
+   "query_id": "finance_en:249",
+   "type": "other",
+   "decided_by": "judge",
+   "system": 0,
+   "second_judge": 0
+  },
+  {
+   "n": "96",
+   "query_id": "finance_en:240",
+   "type": "other",
+   "decided_by": "judge",
+   "system": 0,
+   "second_judge": 1
+  },
+  {
+   "n": "97",
+   "query_id": "finance_en:187",
+   "type": "other",
+   "decided_by": "judge",
+   "system": 0,
+   "second_judge": 0
+  },
+  {
+   "n": "98",
+   "query_id": "cs:116",
+   "type": "other",
+   "decided_by": "judge",
+   "system": 1,
+   "second_judge": 1
+  },
+  {
+   "n": "99",
+   "query_id": "cs:64",
+   "type": "other",
+   "decided_by": "judge",
+   "system": 1,
+   "second_judge": 1
+  }
+ ],
+ "env": {
+  "utc": "2026-11-23T04:14:46Z",
+  "gpus_nvidia_smi": [
+   "NVIDIA H100 80GB HBM3, 81559 MiB, 590.48.01, 700.00 W, 00000000:DB:00.0"
+  ],
+  "python": "3.11.18",
+  "packages": {
+   "vllm": "0.33.0",
+   "torch": "2.14.0",
+   "transformers": "5.20.2",
+   "huggingface_hub": "2.4.0",
+   "openai": "3.56.0",
+   "flashinfer-python": "0.7.2.post1"
+  }
+ },
+ "human_review": {
+  "method": "Option B: second LLM judge (google/gemma-3-27b-it) on 99 sampled E7 answers; the 15 answers where it disagreed with the case-study verdict were labelled by the author; where both judges agreed, their verdict is taken as correct",
+  "human_labelled": 15,
+  "human_sided_with_case_study": 5,
+  "human_sided_with_second_judge": 10,
+  "case_study_verdict_correct_pct": 89.9,
+  "second_judge_verdict_correct_pct": 94.9,
+  "precision_of_correct_verdicts_pct": 92.0,
+  "n_correct_verdicts": 75,
+  "precision_of_wrong_verdicts_pct": 83.3,
+  "n_wrong_verdicts": 24,
+  "by_decided_by": {
+   "judge": {
+    "n": 50,
+    "system_verdict_correct_pct": 92.0
+   },
+   "exact/numeric": {
+    "n": 49,
+    "system_verdict_correct_pct": 87.8
+   }
+  },
+  "note": "The sample is stratified (half judged correct, half judged wrong) and is not a random sample of tasks; read the percentages as verdict reliability, not as task accuracy."
+ }
+}

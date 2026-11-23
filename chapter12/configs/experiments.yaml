@@ -1,0 +1,46 @@
+# One entry per experiment of the case study. Each entry is cumulative: it lists the full configuration.
+# vLLM flags were written against vLLM 0.33.0; run smoke_test.py first and adjust any flag it rejects.
+common:
+  model: Qwen/Qwen3-VL-8B-Instruct
+  revision: 0c351dd01ed87e9c1b53cbc748cba10e6187ff3b   # Qwen3-VL-8B-Instruct, resolved 2026-11-20 (smoke test)
+  served_name: qwen3-vl-8b
+  gpu: H100
+  vllm_args:
+    - --max-model-len=32768
+    - --enable-prefix-caching
+    - --enable-prompt-tokens-details
+    - --enable-auto-tool-choice
+    - --tool-call-parser=hermes
+    - --limit-mm-per-prompt={"image":6}
+  agent: {max_calls: 6, stable_prompt: true, image_max_pixels: null, parallel_tools: false, require_tool_first: true}
+  retriever: {page_model: TomoroAI/tomoro-colqwen3-embed-4b, page_dtype: fp16, colocate: false, compile: false}
+
+E0: {mode: single_pass, agent: {stable_prompt: true}}
+E1: {mode: agent, agent: {stable_prompt: false}}
+E2: {mode: agent}
+E3: {mode: agent, agent: {image_max_pixels: 1310720},
+     extra_vllm_args: ['--mm-processor-kwargs={"max_pixels":1310720}']}
+E4: {mode: agent, agent: {image_max_pixels: 1310720, parallel_tools: true},
+     extra_vllm_args: ['--mm-processor-kwargs={"max_pixels":1310720}']}
+E5: {mode: agent, model: Qwen/Qwen3-VL-8B-Instruct-FP8, revision: 9cdc6310a8cb770ce18efaf4e9935334512aee45, agent: {image_max_pixels: 1310720, parallel_tools: true},
+     extra_vllm_args: ['--mm-processor-kwargs={"max_pixels":1310720}', --kv-cache-dtype=fp8]}
+E6: {mode: agent, model: Qwen/Qwen3-VL-8B-Instruct-FP8, revision: 9cdc6310a8cb770ce18efaf4e9935334512aee45, agent: {image_max_pixels: 1310720, parallel_tools: true},
+     extra_vllm_args: ['--mm-processor-kwargs={"max_pixels":1310720}', --kv-cache-dtype=fp8,
+                       '--speculative-config={"method":"ngram","num_speculative_tokens":4,"prompt_lookup_max":4}'],
+     note: run only at the two lowest load points}
+E7: {mode: agent, model: Qwen/Qwen3-VL-8B-Instruct-FP8, revision: 9cdc6310a8cb770ce18efaf4e9935334512aee45, agent: {image_max_pixels: 1310720, parallel_tools: true},
+     extra_vllm_args: ['--mm-processor-kwargs={"max_pixels":1310720}', --kv-cache-dtype=fp8, --gpu-memory-utilization=0.80],
+     retriever: {page_model: TomoroAI/tomoro-ai-colqwen3-embed-4b-awq, page_dtype: awq, colocate: true, compile: true}}
+E8: {base: E7, replicas: [2, 4], policies: [round_robin, affinity, prefix]}
+E9: {base: E7, gpus: [L40S, A100-80GB, H100]}
+R1: {base: E7, compare_vllm: ["0.32.0", "0.33.0"]}
+R2: {base: E7, env: {VLLM_BATCH_INVARIANT: "1"}}
+
+load:
+  rates_tasks_per_s: [0.1, 0.25, 0.5, 1.0, 2.0]   # adjust after the first sweep
+  duration_s: 600
+  warmup_s: 60
+  repeats: 3
+  seed: 1234
+objectives: {ttft_p99_s: 0.5, tpot_p99_s: 0.05, task_p95_single_s: 20, task_p95_multihop_s: 45}
+prices_usd_per_h: {T4: 0.59, L40S: 1.95, A100-80GB: 2.50, H100: 3.95, H200: 4.54}   # Modal list, Nov 2026

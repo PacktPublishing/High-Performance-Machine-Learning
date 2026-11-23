@@ -1,0 +1,22 @@
+{
+ "run": "gemma-2b-qlora-r16-s0-T4",
+ "model": "gemma-2b",
+ "method": "qlora",
+ "rank": 16,
+ "rslora": false,
+ "gpu": "T4",
+ "n_gpus": 1,
+ "seed": 0,
+ "lr": 0.0002,
+ "max_examples": 0,
+ "max_steps": 100,
+ "steps": 100,
+ "peak_mem_gb": 4.73240832,
+ "train_seconds": 1929.336650133133,
+ "tokens": 1638400,
+ "tokens_per_s": 849.2037923433129,
+ "gpu_hours": 0.5359268472592036,
+ "cost_usd": 0.3161968398829301,
+ "final_loss": 2.014358024597168,
+ "trainable_params": 19611648
+}

@@ -56,9 +56,13 @@ def lmeval_samples(tag, task):
     fs = glob.glob(f"{RESULTS}/lmeval/{tag}/{task}/**/samples_*.jsonl", recursive=True)
     if not fs:
         return None
-    rows = [json.loads(l) for l in open(sorted(fs)[-1])]
     key = {"gsm8k_cot": "exact_match", "ifeval": "prompt_level_strict_acc", "mmlu": "acc", "arc_challenge": "acc"}[task]
-    rows.sort(key=lambda r: r["doc_id"])
+    # A group task (MMLU: 57 subtasks) writes one samples file per subtask: use every file of the latest run,
+    # ordered by subtask and doc_id so that a run and its base line up item by item.
+    stamp = sorted(f.rsplit("_", 1)[-1] for f in fs)[-1]
+    rows = [dict(json.loads(l), _f=os.path.basename(f).rsplit("_", 1)[0])
+            for f in sorted(x for x in fs if x.endswith(stamp)) for l in open(f)]
+    rows.sort(key=lambda r: (r["_f"], r["doc_id"]))
     return [float(r.get(key, r.get("acc", 0))) for r in rows]
 
 
@@ -68,7 +72,7 @@ def main():
         t = json.load(open(m))
         if "model" not in t or t.get("seed", 0) != 0 or t.get("rank") != 16 or t.get("rslora"):
             continue
-        if any(x in t.get("run", "") for x in ("-mix-", "-probe", "-lr")):   # not the canonical training-table runs
+        if any(x in t.get("run", "") for x in ("-mix-", "-probe", "-lr", "-p2eval")):   # not the canonical training-table runs
             continue
         meth = METH.get(t["method"])
         if t["method"] == "full" and t["model"] == "llama-3.1-8b":

@@ -1,0 +1,48 @@
+{
+ "goodput_change_pct": 0.0,
+ "goodput_tasks_per_s": {
+  "E7": 4.0,
+  "R2": 4.0
+ },
+ "task_p50_s_at_goodput": {
+  "E7": 3.01,
+  "R2": 3.43
+ },
+ "task_p95_s_at_goodput": {
+  "E7": 6.0,
+  "R2": 6.74
+ },
+ "p50_change_pct_at_goodput": 14.0,
+ "identical_answers_across_load_pct": {
+  "R2": 18.8,
+  "E7": 17.9,
+  "note": "4,226 queries answered at both 0.5 and 4 tasks/s; answer identical to one of its answers at 0.5"
+ },
+ "identical_answers_between_repeats_pct_at_0.5": {
+  "E2": 52.6,
+  "E3": 59.4,
+  "E4": 58.3,
+  "E5": 24.5,
+  "E7": 20.3,
+  "R2": 26.0
+ },
+ "rates_tested": [
+  0.5,
+  1,
+  2,
+  4,
+  8
+ ],
+ "repeats": 3,
+ "agent": "require_tool_first: true (ladder v2)",
+ "note": "Goodput resolved to the rate grid (4 vs 8). Batch invariance leaves goodput unchanged, adds 14% to p50 at goodput, and does not make E7 outputs reproducible; reproducibility drops at E5 (FP8 weights and FP8 KV cache).",
+ "env": {
+  "utc": "2026-11-22T12:53:28Z",
+  "gpus_nvidia_smi": [
+   "nvidia-smi failed: FileNotFoundError(2, 'No such file or directory')"
+  ],
+  "python": "3.9.25",
+  "packages": {},
+  "exp": "R2"
+ }
+}

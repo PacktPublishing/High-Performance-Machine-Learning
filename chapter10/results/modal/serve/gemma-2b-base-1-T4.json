@@ -1,0 +1,41 @@
+{
+ "model": "gemma-2b",
+ "run": null,
+ "mode": "base",
+ "adapters": 1,
+ "gpu": "T4",
+ "tpot_ms": 21.101462320312514,
+ "capacity_rps": 0,
+ "ttft_p90_ms": null,
+ "sweep": {
+  "4.0": {
+   "goodput_share": 0.015384615384615385,
+   "ttft_p90_ms": 950.4144169999904
+  },
+  "8.0": {
+   "goodput_share": 0.1650485436893204,
+   "ttft_p90_ms": 999.2688809999777
+  },
+  "16.0": {
+   "goodput_share": 0.013641133263378805,
+   "ttft_p90_ms": 22903.64027700002
+  },
+  "24.0": {
+   "goodput_share": 0.0,
+   "ttft_p90_ms": 46719.28342100006
+  },
+  "32.0": {
+   "goodput_share": 0.0,
+   "ttft_p90_ms": 97749.174542
+  },
+  "48.0": {
+   "goodput_share": 0.0,
+   "ttft_p90_ms": 119609.41410700002
+  },
+  "64.0": {
+   "goodput_share": 0.0,
+   "ttft_p90_ms": 123517.55669999988
+  }
+ },
+ "vllm": "0.33.0\n"
+}

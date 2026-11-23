@@ -1,0 +1,22 @@
+{
+ "run": "llama-3.1-8b-lora-r16-s0-A100",
+ "model": "llama-3.1-8b",
+ "method": "lora",
+ "rank": 16,
+ "rslora": false,
+ "gpu": "A100-80GB",
+ "n_gpus": 1,
+ "seed": 0,
+ "lr": 0.0001,
+ "max_examples": 0,
+ "max_steps": 200,
+ "steps": 200,
+ "peak_mem_gb": 21.439919616,
+ "train_seconds": 1365.6119689941406,
+ "tokens": 3276800,
+ "tokens_per_s": 2399.5103106877204,
+ "gpu_hours": 0.37933665805392797,
+ "cost_usd": 0.9483416451348199,
+ "final_loss": 1.3958255767822265,
+ "trainable_params": 41943040
+}

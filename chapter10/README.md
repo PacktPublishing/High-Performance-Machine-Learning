@@ -1,8 +1,7 @@
 # Chapter 10: Efficient Model Adaptation and Maintenance
 
-**Status: case study run on 2026-11-20 (H100 rows).** Results are in `results/ch10_results.json`, the file the chapter
-build reads. The T4 and A100 rows of the training table and the A100 TPOT of the distilled students are still to run
-(they need GPUs other than the H100).
+**Status: case study run on 2026-11-20 to 2026-11-23.** H100 results are in `results/ch10_results.json`, the file the
+chapter build reads; T4 and A100 results (Modal) are in `results/modal/` and listed below.
 
 Companion code for Chapter 10. The case study adapts the RAG pipeline's generators (Gemma-2B-IT and
 Llama-3.1-8B-Instruct) to the HotpotQA multi-hop task and measures what each adaptation method costs and changes:
@@ -40,7 +39,7 @@ Llama-3.2-1B and re-bases the same LoRA recipe onto the next generator, Qwen3-VL
 | Training recipe | 2 epochs, sequence length 1,024 with packing, batch 8 x 2 accumulation, cosine schedule, 3% warm-up, seed 0. Learning rate 2e-4 (Gemma-2B LoRA/QLoRA), 1e-4 (Llama-3.1-8B and Qwen3-VL-8B LoRA/QLoRA), 2e-5 (full fine-tuning). LoRA r = 16, alpha = 2r, all linear layers (language model only for Qwen3-VL) |
 | HotpotQA | exact match on the first 1,000 items of the evaluation split, greedy decoding |
 | Abstention | F1 of "not in context" on 500 SQuAD 2.0 items (answerable and unanswerable) |
-| Forgetting | lm-evaluation-harness through vLLM: GSM8K chain of thought 8-shot (250 items), IFEval (541, prompt-level strict), ARC-Challenge 0-shot (500). MMLU is not run |
+| Forgetting | lm-evaluation-harness through vLLM: GSM8K chain of thought 8-shot (250 items), IFEval (541, prompt-level strict), ARC-Challenge 0-shot (500), MMLU 5-shot (14,042) |
 | KL | per-token KL from the base model on the base model's top-20 tokens, 200 RAG prompts (rows 800-999 of the Chapter 8 workload) |
 | Serving | `vllm serve`, 500 HotpotQA prompts, Poisson arrivals at 4-192 req/s for 60 s each; objective TTFT <= 0.5 s and TPOT <= 50 ms; capacity = highest rate with >= 90% of requests within the objective |
 | Knowledge probe | 200 QA pairs about 60 Wikipedia articles created after 2024-01-01, closed book and with the article; LoRA trained 3 epochs on the article text |
@@ -54,8 +53,7 @@ Notes:
   because gemma-2b-it's generation config lists only `<eos>` as a stop token and a fine-tuned model otherwise starts
   a new turn after its answer. Llama and Qwen use their templates unchanged.
 - `train_peft.py` appends each example's `answer` as the assistant turn before training.
-- Evaluation sizes are smaller than the full splits (see the table above); ARC-Challenge takes the place of MMLU in
-  the forgetting average.
+- Evaluation sizes are smaller than the full splits for HotpotQA, abstention, GSM8K and ARC-C (see the table above).
 - A QLoRA adapter is evaluated unmerged on the BF16 base; merged into BF16 it gives a KL of 0.696 against 0.695
   unmerged and HotpotQA EM 62.2 against 62.1 (Llama-3.1-8B).
 - The student TPOT in the distillation table is measured on the H100. TPOT depends on the architecture and size of
@@ -80,7 +78,8 @@ The run on 2026-11-20 used the same scripts on a GPU cluster (batch jobs, one jo
 ## Results
 
 Base models (H100, vLLM 0.33.0): HotpotQA EM 35.7 (Llama-3.1-8B) and 0.1 (Gemma-2B, which answers in sentences
-without fine-tuning); abstention F1 74.9 and 40.3; GSM8K 80.8 and 5.6; IFEval 74.1 and 23.7; ARC-C 51.2 and 35.2.
+without fine-tuning); abstention F1 74.9 and 40.3; GSM8K 80.8 and 5.6; IFEval 74.1 and 23.7; ARC-C 51.2 and 35.2;
+MMLU 68.7 and 34.3.
 
 ### Training cost (H100)
 
@@ -95,14 +94,16 @@ without fine-tuning); abstention F1 74.9 and 40.3; GSM8K 80.8 and 5.6; IFEval 74
 
 ### Quality, paired differences against the base model (points)
 
-| Model | Variant | HotpotQA EM | Abstention F1 | GSM8K | IFEval | ARC-C | Forgetting (mean) | KL vs base |
-|---|---|---|---|---|---|---|---|---|
-| Llama-3.1-8B | LoRA r=16 | +26.4 ± 1.7 | -8.4 | -8.4 ± 1.9 | -13.1 ± 2.1 | -2.4 ± 1.9 | -8.0 ± 1.1 | 0.877 |
-| Llama-3.1-8B | LoRA r=16 + 10% general data | +26.0 ± 1.7 | -8.9 | -14.2 ± 2.1 | -21.6 ± 2.2 | -2.4 ± 1.7 | -12.7 ± 1.2 | 0.819 |
-| Llama-3.1-8B | QLoRA r=16 | +26.4 ± 1.7 | -12.0 | -6.4 ± 1.7 | -8.9 ± 1.9 | -1.8 ± 1.8 | -5.7 ± 1.0 | 0.695 |
-| Gemma-2B | LoRA r=16 | +52.6 ± 1.6 | +11.8 | -0.2 ± 1.5 | -5.2 ± 2.0 | -2.0 ± 1.9 | -2.5 ± 1.0 | 0.920 |
-| Gemma-2B | QLoRA r=16 | +50.0 ± 1.6 | +20.4 | +1.4 ± 1.6 | -4.6 ± 1.9 | -1.6 ± 1.9 | -1.6 ± 1.0 | 0.871 |
-| Gemma-2B | Full FT | +55.1 ± 1.6 | +22.1 | +0.6 ± 1.4 | -4.4 ± 1.8 | +1.0 ± 1.8 | -0.9 ± 1.0 | 0.938 |
+| Model | Variant | HotpotQA EM | Abstention F1 | GSM8K | IFEval | ARC-C | MMLU | Forgetting (mean) | KL vs base |
+|---|---|---|---|---|---|---|---|---|---|
+| Llama-3.1-8B | LoRA r=16 | +26.4 ± 1.7 | -8.4 | -8.4 ± 1.9 | -13.1 ± 2.1 | -2.4 ± 1.9 | -1.7 ± 0.3 | -6.4 ± 0.8 | 0.877 |
+| Llama-3.1-8B | LoRA r=16 + 10% general data | +26.0 ± 1.7 | -8.9 | -14.2 ± 2.1 | -21.6 ± 2.2 | -2.4 ± 1.7 | -2.0 ± 0.3 | -10.1 ± 0.9 | 0.819 |
+| Llama-3.1-8B | QLoRA r=16 | +26.4 ± 1.7 | -12.0 | -6.4 ± 1.7 | -8.9 ± 1.9 | -1.8 ± 1.8 | -1.7 ± 0.3 | -4.7 ± 0.8 | 0.695 |
+| Gemma-2B | LoRA r=16 | +52.6 ± 1.6 | +11.8 | -0.2 ± 1.5 | -5.2 ± 2.0 | -2.0 ± 1.9 | +1.0 ± 0.4 | -1.6 ± 0.8 | 0.920 |
+| Gemma-2B | QLoRA r=16 | +50.0 ± 1.6 | +20.4 | +1.4 ± 1.6 | -4.6 ± 1.9 | -1.6 ± 1.9 | -0.6 ± 0.4 | -1.4 ± 0.8 | 0.871 |
+| Gemma-2B | Full FT | +55.1 ± 1.6 | +22.1 | +0.6 ± 1.4 | -4.4 ± 1.8 | +1.0 ± 1.8 | +1.8 ± 0.4 | -0.3 ± 0.7 | 0.938 |
+
+Forgetting (mean) averages GSM8K, IFEval, ARC-C and MMLU (5-shot, 14,042 items). In the rank sweep below it averages GSM8K, IFEval and ARC-C.
 
 ### Rank sweep (Gemma-2B LoRA, differences against the base model)
 
@@ -156,16 +157,63 @@ rsLoRA at rank 256 diverged at the shared learning rate of 2e-4 (its scale facto
 Figure 10.12 data (singular values of the weight change of layer 9's MLP down projection of Gemma-2B for full
 fine-tuning, LoRA r = 16 and LoRA r = 256) is in `results/spectrum.json`.
 
+### Additional runs
+
+Seeds (H100, same recipe):
+
+| Model | Method | HotpotQA EM, seeds 0 / 1 / 2 | Mean ± SD |
+|---|---|---|---|
+| gemma-2b | Lora | 52.7 / 52.4 / 52.6 | 52.6 ± 0.2 |
+| gemma-2b | QLORA | 50.1 / 51.8 / 50.9 | 50.9 ± 0.9 |
+| llama-3.1-8b | Lora | 62.1 / 62.0 / 62.7 | 62.3 ± 0.4 |
+| llama-3.1-8b | QLORA | 62.1 / 62.3 / 61.5 | 62.0 ± 0.4 |
+
+Learning rate (Gemma-2B LoRA r = 16, 2 epochs):
+
+| Learning rate | HotpotQA EM | Final training loss |
+|---|---|---|
+| 5e-5 | 47.5 | 1.81 |
+| 1e-4 | 50.1 | 1.76 |
+| 2e-4 | 52.9 | 1.71 |
+
+LoRA variants (differences against the base model; DoRA is evaluated after merging, because vLLM does not serve DoRA
+adapters; PiSSA is converted to a rank-32 LoRA on the original weights with PEFT's PiSSA conversion):
+
+| Method (Gemma-2B, r = 16) | HotpotQA EM | Abstention F1 | GSM8K | IFEval | ARC-C | KL | Peak memory (GB) | Tokens/s |
+|---|---|---|---|---|---|---|---|---|
+| LoRA r=16 | +52.6 ± 1.6 | +11.8 | -0.2 ± 1.5 | -5.2 ± 2.0 | -2.0 ± 1.9 | 0.920 | 8.4 | 10,694 |
+| DoRA r=16 (merged) | +52.6 ± 1.6 | +13.0 | -1.0 ± 1.4 | -2.8 ± 2.0 | -2.6 ± 1.9 | 0.928 | 11.0 | 6,085 |
+| PiSSA r=16 (converted to LoRA r=32) | +53.0 ± 1.6 | +24.2 | -3.6 ± 1.4 | -7.4 ± 2.0 | -4.4 ± 2.0 | 1.011 | 8.4 | 10,719 |
+
+Llama-3.1-8B full fine-tuning (2 H100, FSDP): HotpotQA EM 65.6 (+29.9 ± 1.8), abstention F1 -2.6,
+GSM8K -13.8 ± 2.0, IFEval -44.7 ± 2.5, ARC-C -3.0 ± 2.0, KL 1.12.
+
+### T4 and A100 runs (Modal)
+
+| Run | GPU | Result |
+|---|---|---|
+| Gemma-2B QLoRA, 100 steps | Tesla T4 (FP16) | 4.73 GB peak, 849 tokens/s |
+| Llama-3.1-8B LoRA, 200 steps | NVIDIA A100-SXM4-80GB | 21.4 GB peak, 2,400 tokens/s |
+| Llama-3.1-8B QLoRA, 200 steps | NVIDIA A100-SXM4-80GB | 9.9 GB peak, 2,443 tokens/s |
+| Student TPOT, Llama-3.2-1B architecture | NVIDIA A100-SXM4-80GB | 2.56 ms |
+| Student TPOT, Gemma-2B architecture | NVIDIA A100-SXM4-80GB | 4.40 ms |
+| Gemma-2B serving, base and merged adapter | Tesla T4 (FP16) | TPOT 21.2 ms; capacity 3 req/s; TTFT p90 about 300 ms |
+
+Files: `results/modal/` (training metrics, serving benchmarks, smoke tests, GPU records). The student TPOT is measured on
+the base model of each student's architecture; TPOT depends on the architecture and size, not on the weight values.
+On the T4, `train_peft.py` trains in FP16 (BF16 matmuls need compute capability 8.0) with FP32 trainable weights.
+
 ### Result files
 
 | Path | Contents |
 |---|---|
 | `results/ch10_results.json` | all tables above, in the schema of `collect_results.py` |
+| `results/ch10_phase2.json` | seeds, learning rates, DoRA, PiSSA, Llama full fine-tuning |
 | `results/eval/` | per-item HotpotQA, abstention and probe results for each run |
 | `results/lmeval/<run>/` | lm-evaluation-harness results and per-sample logs (GSM8K, IFEval, ARC-C) |
 | `results/serve/` | serving benchmarks, including the TPOT of each student |
 | `results/spectrum.json`, `results/smoke_H100.json` | Figure 10.12 data; vLLM 0.33 smoke test |
 
 Every result file carries an `env` block with the GPU name from `nvidia-smi`, the driver and the package
-versions. The per-token KL files (about 70 MB each) are not in the repository; their values are in
-`ch10_results.json`.
+versions. The per-token KL files (about 70 MB each) and the MMLU per-sample logs (1.4 GB) are not in the repository; their
+values are in `ch10_results.json`.

@@ -1,0 +1,5 @@
+{
+ "H100": 0.0002743055555555556,
+ "H100_goodput_tasks_per_s": 4.0,
+ "note": "H100 from E7 (goodput 4 tasks/s, Modal list price 3.95 USD/h, utilization 1.0). L40S and A100-80GB rows are not run yet (Modal)."
+}
