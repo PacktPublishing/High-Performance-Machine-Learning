@@ -286,9 +286,51 @@
   }
  },
  "E9": {
+  "L40S": 0.0005416666666666666,
+  "A100": 0.0006944444444444445,
   "H100": 0.0002743055555555556,
-  "H100_goodput_tasks_per_s": 4.0,
-  "note": "H100 from E7 (goodput 4 tasks/s, Modal list price 3.95 USD/h, utilization 1.0). L40S and A100-80GB rows are not run yet (Modal)."
+  "goodput_tasks_per_s": {
+   "L40S": 1.0,
+   "A100": 1.0,
+   "H100": 4.0
+  },
+  "price_usd_per_h": {
+   "L40S": 1.95,
+   "A100": 2.5,
+   "H100": 3.95
+  },
+  "gpus": {
+   "L40S": "NVIDIA L40S (46,068 MiB, 350 W), Modal",
+   "A100": "NVIDIA A100-SXM4-80GB (400 W), Modal",
+   "H100": "NVIDIA H100 80GB HBM3 (SXM, 700 W)"
+  },
+  "share_met_by_rate": {
+   "L40S": {
+    "0.5": 1.0,
+    "1.0": 0.985,
+    "2.0": 0.084
+   },
+   "A100": {
+    "0.5": 1.0,
+    "1.0": 0.988,
+    "2.0": 0.528
+   }
+  },
+  "p50_p95_s_at_goodput": {
+   "L40S": [
+    7.48,
+    15.29
+   ],
+   "A100": [
+    5.36,
+    13.52
+   ],
+   "H100": [
+    3.01,
+    6.0
+   ]
+  },
+  "note": "E7 configuration (FP8 generator, 4-bit page retriever on the same GPU). L40S: the E7 setting gpu-memory-utilization 0.80 does not fit next to the retriever (36.2 of 47.4 GiB free; 37.9 needed), so it runs at 0.70. L40S and A100: 1 repeat per rate (0.5, 1, 2 tasks/s); H100: 3 repeats (from E7). Cost per task at goodput, Modal list prices, utilization 1.0."
  },
  "R1": {
   "baseline_cv_pct": 1.5,

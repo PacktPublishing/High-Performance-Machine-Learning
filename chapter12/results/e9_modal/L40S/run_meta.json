@@ -1,0 +1,6 @@
+{
+ "gpu_nvidia_smi": "NVIDIA L40S, 46068 MiB, 620.70.06, 350.00 W",
+ "returncode": 0,
+ "rates": "0.5,1,2,4",
+ "set_arg": "--gpu-memory-utilization=0.70"
+}

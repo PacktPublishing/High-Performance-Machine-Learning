@@ -1,0 +1,6 @@
+{
+ "gpu_nvidia_smi": "NVIDIA A100-SXM4-80GB, 81920 MiB, 610.57.04, 400.00 W",
+ "returncode": 0,
+ "rates": "0.5,1,2,4",
+ "set_arg": ""
+}

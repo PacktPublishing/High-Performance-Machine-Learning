@@ -1,0 +1,133 @@
+{
+ "utc": "2026-11-23T05:25:52Z",
+ "gpus_nvidia_smi": [
+  "NVIDIA L40S, 46068 MiB, 620.70.06, 350.00 W, 00000000:3E:00.0"
+ ],
+ "python": "3.11.5",
+ "packages": {
+  "vllm": "0.33.0",
+  "torch": "2.14.0",
+  "transformers": "5.20.2",
+  "huggingface_hub": "2.4.0",
+  "openai": "3.56.0",
+  "flashinfer-python": "0.7.2.post1"
+ },
+ "torch_cuda": "13.0",
+ "cudnn": 92400,
+ "nccl": "2.30.7",
+ "exp": "E7",
+ "tag": "E9_L40S",
+ "port": 64025,
+ "set_arg": [
+  "--gpu-memory-utilization=0.70"
+ ],
+ "model": "Qwen/Qwen3-VL-8B-Instruct-FP8",
+ "model_revision_resolved": "9cdc6310a8cb770ce18efaf4e9935334512aee45",
+ "vllm_cmd": [
+  "vllm",
+  "serve",
+  "Qwen/Qwen3-VL-8B-Instruct-FP8",
+  "--served-model-name",
+  "qwen3-vl-8b",
+  "--port",
+  "64025",
+  "--revision",
+  "9cdc6310a8cb770ce18efaf4e9935334512aee45",
+  "--max-model-len=32768",
+  "--enable-prefix-caching",
+  "--enable-prompt-tokens-details",
+  "--enable-auto-tool-choice",
+  "--tool-call-parser=hermes",
+  "--limit-mm-per-prompt={\"image\":6}",
+  "--mm-processor-kwargs={\"max_pixels\":1310720}",
+  "--kv-cache-dtype=fp8",
+  "--gpu-memory-utilization=0.70"
+ ],
+ "server_env": {},
+ "client_cmd": [
+  "python",
+  "loadgen_agent.py",
+  "--exp",
+  "E7",
+  "--gpu",
+  "L40S",
+  "--rates",
+  "0.5,1,2,4",
+  "--repeats",
+  "1",
+  "--stop-after-fail"
+ ],
+ "vllm_known_env": {},
+ "server_healthy": true,
+ "server_startup_s": 275.6,
+ "client_returncode": 0,
+ "server_log_errors": [],
+ "wall_s": 2142.4,
+ "env": {
+  "utc": "2026-11-23T05:25:52Z",
+  "gpus_nvidia_smi": [
+   "NVIDIA L40S, 46068 MiB, 620.70.06, 350.00 W, 00000000:3E:00.0"
+  ],
+  "python": "3.11.5",
+  "packages": {
+   "vllm": "0.33.0",
+   "torch": "2.14.0",
+   "transformers": "5.20.2",
+   "huggingface_hub": "2.4.0",
+   "openai": "3.56.0",
+   "flashinfer-python": "0.7.2.post1"
+  },
+  "torch_cuda": "13.0",
+  "cudnn": 92400,
+  "nccl": "2.30.7",
+  "exp": "E7",
+  "tag": "E9_L40S",
+  "port": 64025,
+  "set_arg": [
+   "--gpu-memory-utilization=0.70"
+  ],
+  "model": "Qwen/Qwen3-VL-8B-Instruct-FP8",
+  "model_revision_resolved": "9cdc6310a8cb770ce18efaf4e9935334512aee45",
+  "vllm_cmd": [
+   "vllm",
+   "serve",
+   "Qwen/Qwen3-VL-8B-Instruct-FP8",
+   "--served-model-name",
+   "qwen3-vl-8b",
+   "--port",
+   "64025",
+   "--revision",
+   "9cdc6310a8cb770ce18efaf4e9935334512aee45",
+   "--max-model-len=32768",
+   "--enable-prefix-caching",
+   "--enable-prompt-tokens-details",
+   "--enable-auto-tool-choice",
+   "--tool-call-parser=hermes",
+   "--limit-mm-per-prompt={\"image\":6}",
+   "--mm-processor-kwargs={\"max_pixels\":1310720}",
+   "--kv-cache-dtype=fp8",
+   "--gpu-memory-utilization=0.70"
+  ],
+  "server_env": {},
+  "client_cmd": [
+   "python",
+   "loadgen_agent.py",
+   "--exp",
+   "E7",
+   "--gpu",
+   "L40S",
+   "--rates",
+   "0.5,1,2,4",
+   "--repeats",
+   "1",
+   "--stop-after-fail"
+  ],
+  "vllm_known_env": {},
+  "server_healthy": true,
+  "server_startup_s": 275.6,
+  "client_returncode": 0,
+  "server_log_errors": [],
+  "wall_s": 2142.4
+ },
+ "platform": "Modal"
+}

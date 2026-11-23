@@ -1,8 +1,8 @@
 # Chapter 12: The Mature ML System
 
 **Status: case study run on 2026-11-19 to 2026-11-23 (H100).** Results are in `results/case_study.json`, the file the
-chapter build reads. The L40S and A100 rows of E9 (cost per task by GPU) are still to run; the optional llm-d run on
-Kubernetes (`k8s/`) was not run.
+chapter build reads. E9 (cost per task by GPU) ran the final configuration on an L40S and an A100 on Modal; the
+optional llm-d run on Kubernetes (`k8s/`) was not run.
 
 Companion code for Chapter 12: the mature multimodal, agentic RAG system. The case study serves Qwen3-VL-8B-Instruct
 with vLLM 0.33.0 behind an agent that retrieves from a BGE-M3 + FAISS text index and a ColQwen3 page-image index over
@@ -103,6 +103,18 @@ E6 was run at the two lowest rates only, so its goodput is not comparable with t
 | 4 | 32 | affinity | 60 | 310.4 | 2% |
 | 4 | 32 | prefix | 79 | 307.0 | 1% |
 
+### Choosing the GPU (E9, E7 configuration)
+
+| GPU | Goodput (tasks/s) | p50 / p95 at goodput (s) | Price (USD/h, Modal list) | Cost per task (USD) |
+|---|---|---|---|---|
+| NVIDIA L40S (48 GB) | 1 | 7.5 / 15.3 | 1.95 | 0.00054 |
+| NVIDIA A100-SXM4-80GB | 1 | 5.4 / 13.5 | 2.50 | 0.00069 |
+| NVIDIA H100 80GB HBM3 (SXM) | 4 | 3.0 / 6.0 | 3.95 | 0.00027 |
+
+The E7 setting `--gpu-memory-utilization=0.80` does not fit on one L40S next to the 4-bit retriever (36.2 of 47.4 GiB
+free at vLLM start-up, 37.9 GiB requested), so the L40S row uses 0.70. L40S and A100: one repeat per rate (0.5, 1 and
+2 tasks/s; at 2 tasks/s 8% and 53% of tasks met the objective); H100: three repeats (E7). Files: `results/e9_modal/`.
+
 ### Regression gate and batch invariance
 
 | Test | Result |
@@ -123,5 +135,7 @@ KV cache), with or without batch invariance.
 | `results/E*_H100_single_<rate>_<repeat>.jsonl` | one line per task: arrival, task time, steps, tokens, cached tokens, images, answer |
 | `results/*.judged.json` | per-task accuracy verdicts at goodput |
 | `results/E8_*`, `results/R1_*`, `results/R2.json`, `results/R0*.json` | scale-out, regression gate, batch invariance, retrieval |
+| `results/e9_modal/`, `results/E9.json` | GPU choice (L40S and A100 on Modal) |
+| `results/judge_agreement.json` | second-judge and human check of the verdicts |
 
 Traces (`*_trace.jsonl`) are not in the repository.
