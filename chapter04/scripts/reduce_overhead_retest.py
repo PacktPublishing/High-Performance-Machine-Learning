@@ -65,8 +65,8 @@ def env_info():
         name, mem, drv, pmax, _bus = [x.strip() for x in q[0].split(",")]
         ff = "SXM" if "SXM" in name or "HBM3" in name else ("PCIe" if "PCIe" in name else "unknown from name")
         out.update(gpu_name=name, gpu_memory=mem, gpu_form_factor=ff, gpu_power_max_limit=pmax, driver=drv)
-    head = subprocess.getoutput("nvidia-smi | grep -o 'CUDA Version: [0-9.]*'")
-    out["driver_cuda_version"] = head.replace("CUDA Version:", "").strip()
+    head = subprocess.getoutput("nvidia-smi | grep -oE 'CUDA (UMD )?Version: [0-9.]+'")   # newer drivers: "CUDA UMD Version"
+    out["driver_cuda_version"] = head.split(":")[-1].strip()
     out["host_cpu"] = cpu_model()
     out["cpu_count_visible"] = os.cpu_count()
     try:

@@ -115,8 +115,8 @@ def env_info(device, cmd):
         q = subprocess.getoutput("nvidia-smi --query-gpu=name,memory.total,driver_version --format=csv,noheader")
         e["gpu_name"], e["gpu_memory"], e["driver"] = [x.strip() for x in q.split(",")]
         e["gpu_form_factor"] = "PCIe" if "T4" in e["gpu_name"] else "see name"
-        e["driver_cuda_version"] = subprocess.getoutput("nvidia-smi | grep -o 'CUDA Version: [0-9.]*'") \
-            .replace("CUDA Version:", "").strip()
+        e["driver_cuda_version"] = subprocess.getoutput("nvidia-smi | grep -oE 'CUDA (UMD )?Version: [0-9.]+'") \
+            .split(":")[-1].strip()   # newer drivers print "CUDA UMD Version" 
     return e
 
 
