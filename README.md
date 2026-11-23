@@ -4,6 +4,8 @@ Companion code for *High-Performance Machine Learning* (Packt) by **Dr. Kaoutar 
 
 A model that is accurate but too slow does not ship. Neither does one that is accurate but too expensive to serve, or one that crashes when traffic doubles. The book is built around that observation. It treats performance as a design concern from the first commit, and it walks through the techniques that actually move the needle: compilation, custom kernels, quantization, continuous batching, KV cache management, distributed training, accelerator portability.
 
+The companion site, <https://kaoutar55.github.io/High-Performance-Machine-Learning/>, shows each chapter's notes and notebooks as readable pages, with an experiment map of the whole book and links back to the code here.
+
 This repo holds runnable notebooks for every chapter. The same RAG case study runs through all of them: a Gemma-2B-IT generator in FP16, a BGE-M3 embedder and a FAISS index. The book measures it on an NVIDIA A100 80GB (the reference platform), an H100 and a T4, and sets every performance target relative to the measured baseline on the same GPU. On the A100 the naïve pipeline answers a query in about 380 ms at the median, and token-by-token decode takes almost 90% of that time.
 
 ## Platforms

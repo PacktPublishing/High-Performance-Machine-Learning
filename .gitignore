@@ -48,3 +48,6 @@ case_study/results/*
 case_study/reference_results/*/traces/*/chapter02_lab/rag_decode_trace.json.gz
 # Nsight Systems reports record the process environment (including tokens); never commit them
 *.nsys-rep
+
+# Documentation site build output
+site/

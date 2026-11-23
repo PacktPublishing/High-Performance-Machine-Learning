@@ -1,0 +1,89 @@
+site_name: High-Performance Machine Learning
+site_description: Companion site for the Packt book High-Performance Machine Learning by Dr. Kaoutar El Maghraoui
+site_author: Kaoutar El Maghraoui
+site_url: https://kaoutar55.github.io/High-Performance-Machine-Learning/
+repo_url: https://github.com/kaoutar55/High-Performance-Machine-Learning
+repo_name: kaoutar55/High-Performance-Machine-Learning
+edit_uri: ""
+copyright: Code is MIT-licensed. Book text and figures © Kaoutar El Maghraoui / Packt Publishing.
+
+theme:
+  name: material
+  features:
+    - navigation.sections
+    - navigation.top
+    - navigation.footer
+    - search.highlight
+    - content.code.copy
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: custom
+      accent: custom
+      toggle:
+        icon: material/weather-night
+        name: Dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: custom
+      accent: custom
+      toggle:
+        icon: material/weather-sunny
+        name: Light mode
+  icon:
+    repo: fontawesome/brands/github
+
+extra_css:
+  - stylesheets/extra.css
+
+plugins:
+  - search
+  - mkdocs-jupyter:
+      include: ["notebooks/**/*.ipynb"]
+      execute: false
+      allow_errors: true
+      include_source: true
+      ignore_h1_titles: true
+
+markdown_extensions:
+  - admonition
+  - attr_list
+  - md_in_html
+  - tables
+  - toc:
+      permalink: true
+  - pymdownx.highlight
+  - pymdownx.superfences
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+
+nav:
+  - Home: index.md
+  - Experiment map: experiment-map.md
+  - Running the code: running.md
+  - Chapters:
+      - 1. The imperative of performance: book/chapter01.md
+      - 2. Performance engineering method: book/chapter02.md
+      - 3. PyTorch internals: book/chapter03.md
+      - 4. torch.compile and kernel fusion: book/chapter04.md
+      - 5. GPU architecture: book/chapter05.md
+      - 6. Triton kernels: book/chapter06.md
+      - 7. Distributed training: book/chapter07.md
+      - 8. Inference and serving: book/chapter08.md
+      - 9. Quantization and sparsity: book/chapter09.md
+      - 10. Model adaptation and maintenance: book/chapter10.md
+      - 11. Accelerators and compilers: book/chapter11.md
+      - 12. The mature ML system: book/chapter12.md
+  - Case study and principles: book/case_study.md
+  - Notebooks:
+      - Chapter 1 lab: notebooks/chapter01/chapter01_lab.ipynb
+      - Chapter 2 lab: notebooks/chapter02/chapter02_lab.ipynb
+      - Chapter 3 exercises: notebooks/chapter03/chapter03_exercises.ipynb
+      - Chapter 3 solutions: notebooks/chapter03/chapter03_solutions.ipynb
+      - Chapter 4 companion: notebooks/chapter04/chapter04_companion.ipynb
+      - Chapter 5 companion: notebooks/chapter05/chapter05_companion.ipynb
+      - Chapter 6 companion: notebooks/chapter06/chapter06_companion.ipynb
+      - Chapter 6 companion (executed): notebooks/chapter06/chapter06_companion_executed.ipynb
+      - Chapter 7 companion: notebooks/chapter07/chapter07_companion.ipynb
+      - Chapter 8 companion: notebooks/chapter08/chapter08_companion.ipynb
