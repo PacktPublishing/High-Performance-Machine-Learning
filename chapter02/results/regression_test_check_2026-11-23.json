@@ -1,0 +1,561 @@
+{
+  "date": "2026-11-23",
+  "notebook": "chapter02/chapter02_lab.ipynb (commit 825c456: THRESHOLD_MARGIN = 1.10, N_TEST_QUERIES = 20)",
+  "platform": "Modal, NVIDIA Tesla T4 (PCIe, 16 GB GDDR6)",
+  "command": "nbclient execution of the notebook top to bottom (in-notebook !pip lines executed), then extra cells that exec the notebook's own regression-test cell source (Book tools/runs_2026-11-23b/itemA_cells.py, modal_nb.py, run_all.py)",
+  "a_top_to_bottom": {
+    "result": "all 42 cells ran without an error",
+    "env": {
+      "date_utc": "2026-11-23T19:29:16+00:00",
+      "platform": "Modal",
+      "kind": "T4",
+      "host_cpu": "model name hidden by the sandbox; GenuineIntel family 6 model 85, 3100.081 MHz, avx512f,avx512_vnni",
+      "cpu_count_visible": 17,
+      "omp_num_threads": "1",
+      "gpu_name": "Tesla T4",
+      "gpu_memory": "15360 MiB",
+      "driver": "620.70.06",
+      "gpu_power_max_limit": "70.00 W",
+      "gpu_form_factor": "PCIe",
+      "driver_cuda_version": "13.5 (CUDA UMD version for this driver, from a separate nvidia-smi probe on Modal the same day)",
+      "versions": {
+        "torch": "2.14.1+cu130",
+        "triton": "3.8.0",
+        "transformers": "5.20.2",
+        "sentence_transformers": "6.2.0",
+        "accelerate": "1.16.0",
+        "datasets": "5.2.0",
+        "faiss": "1.16.0",
+        "bitsandbytes": null,
+        "torch_cuda": "13.0"
+      }
+    },
+    "notebook_first_test_ratio": 0.9974884919218818
+  },
+  "baseline": {
+    "hardware": "Tesla T4",
+    "model": "google/gemma-2b-it",
+    "torch_version": "2.14.1+cu130",
+    "p50_ms": 586.3,
+    "p95_ms": 589.7,
+    "p99_ms": 591.2,
+    "decode_p50_ms": 458.1
+  },
+  "b_15_clean_runs": {
+    "runs": [
+      {
+        "where": "session",
+        "index": 1,
+        "median_decode_ms": 457.7721710205078,
+        "ratio": 0.9992843724525383
+      },
+      {
+        "where": "session",
+        "index": 2,
+        "median_decode_ms": 458.1929473876953,
+        "ratio": 1.0002028975937465
+      },
+      {
+        "where": "session",
+        "index": 3,
+        "median_decode_ms": 458.9411315917969,
+        "ratio": 1.0018361309578625
+      },
+      {
+        "where": "session",
+        "index": 4,
+        "median_decode_ms": 458.9122314453125,
+        "ratio": 1.0017730439757968
+      },
+      {
+        "where": "session",
+        "index": 5,
+        "median_decode_ms": 459.2963104248047,
+        "ratio": 1.0026114613071484
+      },
+      {
+        "where": "session",
+        "index": 6,
+        "median_decode_ms": 459.4599304199219,
+        "ratio": 1.0029686322198688
+      },
+      {
+        "where": "session",
+        "index": 7,
+        "median_decode_ms": 460.2364044189453,
+        "ratio": 1.0046636202116248
+      },
+      {
+        "where": "session",
+        "index": 8,
+        "median_decode_ms": 460.1622009277344,
+        "ratio": 1.0045016392222972
+      },
+      {
+        "where": "session",
+        "index": 9,
+        "median_decode_ms": 467.0963439941406,
+        "ratio": 1.0196383846193857
+      },
+      {
+        "where": "session",
+        "index": 10,
+        "median_decode_ms": 460.79388427734375,
+        "ratio": 1.0058805594353717
+      },
+      {
+        "where": "fresh container",
+        "index": 1,
+        "median_decode_ms": 458.2075653076172,
+        "ratio": 1.0002348074822467
+      },
+      {
+        "where": "fresh container",
+        "index": 2,
+        "median_decode_ms": 456.9839324951172,
+        "ratio": 0.9975637033292233
+      },
+      {
+        "where": "fresh container",
+        "index": 3,
+        "median_decode_ms": 456.7029266357422,
+        "ratio": 0.9969502873515437
+      },
+      {
+        "where": "fresh container",
+        "index": 4,
+        "median_decode_ms": 459.73667907714844,
+        "ratio": 1.0035727550254276
+      },
+      {
+        "where": "fresh container",
+        "index": 5,
+        "median_decode_ms": 456.8104705810547,
+        "ratio": 0.9971850482013854
+      }
+    ],
+    "ratio_range": [
+      0.9969502873515437,
+      1.0196383846193857
+    ],
+    "fail_count_at_margin": {
+      "1.1": 0,
+      "1.15": 0,
+      "1.2": 0
+    },
+    "env_fresh": [
+      {
+        "date_utc": "2026-11-23T19:32:38+00:00",
+        "platform": "Modal",
+        "kind": "T4",
+        "host_cpu": "model name hidden by the sandbox; GenuineIntel family 6 model 85, 3100.081 MHz, avx512f,avx512_vnni",
+        "cpu_count_visible": 17,
+        "omp_num_threads": "1",
+        "gpu_name": "Tesla T4",
+        "gpu_memory": "15360 MiB",
+        "driver": "620.70.06",
+        "gpu_power_max_limit": "70.00 W",
+        "gpu_form_factor": "PCIe",
+        "driver_cuda_version": "13.5 (CUDA UMD version for this driver, from a separate nvidia-smi probe on Modal the same day)",
+        "versions": {
+          "torch": "2.14.1+cu130",
+          "triton": "3.8.0",
+          "transformers": "5.20.2",
+          "sentence_transformers": "6.2.0",
+          "accelerate": "1.16.0",
+          "datasets": "5.2.0",
+          "faiss": "1.16.0",
+          "bitsandbytes": null,
+          "torch_cuda": "13.0"
+        }
+      },
+      {
+        "date_utc": "2026-11-23T19:32:47+00:00",
+        "platform": "Modal",
+        "kind": "T4",
+        "host_cpu": "model name hidden by the sandbox; GenuineIntel family 6 model 85, 3099.393 MHz, avx512f,avx512_vnni",
+        "cpu_count_visible": 17,
+        "omp_num_threads": "1",
+        "gpu_name": "Tesla T4",
+        "gpu_memory": "15360 MiB",
+        "driver": "620.70.06",
+        "gpu_power_max_limit": "70.00 W",
+        "gpu_form_factor": "PCIe",
+        "driver_cuda_version": "13.5 (CUDA UMD version for this driver, from a separate nvidia-smi probe on Modal the same day)",
+        "versions": {
+          "torch": "2.14.1+cu130",
+          "triton": "3.8.0",
+          "transformers": "5.20.2",
+          "sentence_transformers": "6.2.0",
+          "accelerate": "1.16.0",
+          "datasets": "5.2.0",
+          "faiss": "1.16.0",
+          "bitsandbytes": null,
+          "torch_cuda": "13.0"
+        }
+      },
+      {
+        "date_utc": "2026-11-23T19:33:32+00:00",
+        "platform": "Modal",
+        "kind": "T4",
+        "host_cpu": "model name hidden by the sandbox; GenuineIntel family 6 model 85, 3099.984 MHz, avx512f,avx512_vnni",
+        "cpu_count_visible": 17,
+        "omp_num_threads": "1",
+        "gpu_name": "Tesla T4",
+        "gpu_memory": "15360 MiB",
+        "driver": "620.70.06",
+        "gpu_power_max_limit": "70.00 W",
+        "gpu_form_factor": "PCIe",
+        "driver_cuda_version": "13.5 (CUDA UMD version for this driver, from a separate nvidia-smi probe on Modal the same day)",
+        "versions": {
+          "torch": "2.14.1+cu130",
+          "triton": "3.8.0",
+          "transformers": "5.20.2",
+          "sentence_transformers": "6.2.0",
+          "accelerate": "1.16.0",
+          "datasets": "5.2.0",
+          "faiss": "1.16.0",
+          "bitsandbytes": null,
+          "torch_cuda": "13.0"
+        }
+      },
+      {
+        "date_utc": "2026-11-23T19:33:38+00:00",
+        "platform": "Modal",
+        "kind": "T4",
+        "host_cpu": "model name hidden by the sandbox; GenuineIntel family 6 model 85, 3100.059 MHz, avx512f,avx512_vnni",
+        "cpu_count_visible": 17,
+        "omp_num_threads": "1",
+        "gpu_name": "Tesla T4",
+        "gpu_memory": "15360 MiB",
+        "driver": "620.70.06",
+        "gpu_power_max_limit": "70.00 W",
+        "gpu_form_factor": "PCIe",
+        "driver_cuda_version": "13.5 (CUDA UMD version for this driver, from a separate nvidia-smi probe on Modal the same day)",
+        "versions": {
+          "torch": "2.14.1+cu130",
+          "triton": "3.8.0",
+          "transformers": "5.20.2",
+          "sentence_transformers": "6.2.0",
+          "accelerate": "1.16.0",
+          "datasets": "5.2.0",
+          "faiss": "1.16.0",
+          "bitsandbytes": null,
+          "torch_cuda": "13.0"
+        }
+      },
+      {
+        "date_utc": "2026-11-23T19:33:29+00:00",
+        "platform": "Modal",
+        "kind": "T4",
+        "host_cpu": "model name hidden by the sandbox; GenuineIntel family 6 model 85, 3106.758 MHz, avx512f,avx512_vnni",
+        "cpu_count_visible": 17,
+        "omp_num_threads": "1",
+        "gpu_name": "Tesla T4",
+        "gpu_memory": "15360 MiB",
+        "driver": "620.70.06",
+        "gpu_power_max_limit": "70.00 W",
+        "gpu_form_factor": "PCIe",
+        "driver_cuda_version": "13.5 (CUDA UMD version for this driver, from a separate nvidia-smi probe on Modal the same day)",
+        "versions": {
+          "torch": "2.14.1+cu130",
+          "triton": "3.8.0",
+          "transformers": "5.20.2",
+          "sentence_transformers": "6.2.0",
+          "accelerate": "1.16.0",
+          "datasets": "5.2.0",
+          "faiss": "1.16.0",
+          "bitsandbytes": null,
+          "torch_cuda": "13.0"
+        }
+      }
+    ]
+  },
+  "c_slowdown": {
+    "time_sleep_in_decode_loop": {
+      "added_per_step_ms": 3.6165789473684207,
+      "median_ms": 462.720947265625,
+      "ratio": 1.0100872020642326,
+      "fails_at_margin": false,
+      "reading": "not detected: the decode time is measured with CUDA events and the GPU keeps executing queued kernels while the CPU sleeps, so a CPU sleep between asynchronous launches adds almost nothing to the measured GPU time"
+    },
+    "gpu_delay_kernel": {
+      "median_ms": 536.0597839355469,
+      "ratio": 1.1701807114943175,
+      "fails_at_1.10": true
+    },
+    "synchronize_then_sleep": {
+      "median_ms": 672.2925415039062,
+      "ratio": 1.4675672156819608,
+      "fails_at_1.10": true
+    },
+    "target": 0.15,
+    "per_step_ms": 3.616578947368421,
+    "after_removal": {
+      "median_ms": 515.0185852050781,
+      "ratio": 1.124249258251644,
+      "fails_at_1.10": true
+    },
+    "env": {
+      "date_utc": "2026-11-23T19:34:32+00:00",
+      "platform": "Modal",
+      "kind": "T4",
+      "host_cpu": "model name hidden by the sandbox; GenuineIntel family 6 model 85, 2000.138 MHz, avx512f",
+      "cpu_count_visible": 14,
+      "omp_num_threads": "1",
+      "gpu_name": "Tesla T4",
+      "gpu_memory": "15360 MiB",
+      "driver": "610.57.04",
+      "gpu_power_max_limit": "70.00 W",
+      "gpu_form_factor": "PCIe",
+      "driver_cuda_version": "13.3 (CUDA UMD version for this driver, from a separate nvidia-smi probe on Modal the same day)",
+      "versions": {
+        "torch": "2.14.1+cu130",
+        "triton": "3.8.0",
+        "transformers": "5.20.2",
+        "sentence_transformers": "6.2.0",
+        "accelerate": "1.16.0",
+        "datasets": "5.2.0",
+        "faiss": "1.16.0",
+        "bitsandbytes": null,
+        "torch_cuda": "13.0"
+      }
+    },
+    "note": "The cell prints [FAIL] and does not raise, so the cell itself completes in every case."
+  },
+  "extra_clean_runs_other_host_type": {
+    "reading": "Containers on the Modal T4 host type with driver 610.57.04 and a 2.0 GHz Xeon ran the T4 at 825-1515 MHz SM clock (max 1590 MHz) and 74-80 C. Clean runs there measured 1.12-1.69x the session baseline (taken on a driver 620.70.06 host) and drifted by up to 1.71x against their own baseline inside one container.",
+    "runs": [
+      {
+        "container": "clocks1",
+        "run": 1,
+        "median_ms": 761.1580810546875,
+        "ratio": 1.6615544227345285,
+        "gpu_before": "870 MHz, 1590 MHz, 78, 39.31 W, 0x0000000000000000",
+        "gpu_after": "870 MHz, 1590 MHz, 75, 60.08 W, 0x0000000000000000"
+      },
+      {
+        "container": "clocks1",
+        "run": 2,
+        "median_ms": 671.1051025390625,
+        "ratio": 1.4649751201463925,
+        "gpu_before": "1065 MHz, 1590 MHz, 74, 36.15 W, 0x0000000000000000",
+        "gpu_after": "915 MHz, 1590 MHz, 74, 66.57 W, 0x0000000000000004"
+      },
+      {
+        "container": "clocks1",
+        "run": 3,
+        "median_ms": 720.6632385253906,
+        "ratio": 1.5731570367286414,
+        "gpu_before": "1200 MHz, 1590 MHz, 74, 38.03 W, 0x0000000000000000",
+        "gpu_after": "840 MHz, 1590 MHz, 76, 63.48 W, 0x0000000000000000"
+      },
+      {
+        "container": "clocks1",
+        "run": 4,
+        "median_ms": 772.54345703125,
+        "ratio": 1.6864078957241868,
+        "gpu_before": "960 MHz, 1590 MHz, 76, 36.74 W, 0x0000000000000000",
+        "gpu_after": "945 MHz, 1590 MHz, 78, 36.76 W, 0x0000000000000000"
+      },
+      {
+        "container": "clocks1",
+        "run": 5,
+        "median_ms": 765.2819213867188,
+        "ratio": 1.670556475413051,
+        "gpu_before": "945 MHz, 1590 MHz, 77, 36.76 W, 0x0000000000000000",
+        "gpu_after": "855 MHz, 1590 MHz, 77, 67.61 W, 0x0000000000000000"
+      },
+      {
+        "container": "clocks1",
+        "run": 6,
+        "median_ms": 760.8379516601562,
+        "ratio": 1.6608556028381494,
+        "gpu_before": "1065 MHz, 1590 MHz, 76, 38.42 W, 0x0000000000000000",
+        "gpu_after": "870 MHz, 1590 MHz, 75, 65.49 W, 0x0000000000000000"
+      },
+      {
+        "container": "clocks1",
+        "run": 7,
+        "median_ms": 742.8830261230469,
+        "ratio": 1.6216612663677075,
+        "gpu_before": "1050 MHz, 1590 MHz, 75, 36.17 W, 0x0000000000000000",
+        "gpu_after": "840 MHz, 1590 MHz, 76, 65.14 W, 0x0000000000000000"
+      },
+      {
+        "container": "clocks1",
+        "run": 8,
+        "median_ms": 760.3148498535156,
+        "ratio": 1.6597137084774407,
+        "gpu_before": "930 MHz, 1590 MHz, 75, 36.45 W, 0x0000000000000000",
+        "gpu_after": "825 MHz, 1590 MHz, 77, 65.75 W, 0x0000000000000000"
+      },
+      {
+        "container": "clocks1",
+        "run": 9,
+        "median_ms": 758.9080810546875,
+        "ratio": 1.6566428313789292,
+        "gpu_before": "1035 MHz, 1590 MHz, 77, 38.42 W, 0x0000000000000000",
+        "gpu_after": "915 MHz, 1590 MHz, 77, 67.35 W, 0x0000000000000000"
+      },
+      {
+        "container": "clocks1",
+        "run": 10,
+        "median_ms": 760.0240783691406,
+        "ratio": 1.659078974828947,
+        "gpu_before": "915 MHz, 1590 MHz, 76, 35.88 W, 0x0000000000000000",
+        "gpu_after": "840 MHz, 1590 MHz, 76, 63.97 W, 0x0000000000000000"
+      },
+      {
+        "container": "clocks2",
+        "run": 1,
+        "median_ms": 704.8985900878906,
+        "ratio": 1.5387439207332254,
+        "gpu_before": "1200 MHz, 1590 MHz, 80, 54.04 W, 0x0000000000000000",
+        "gpu_after": "975 MHz, 1590 MHz, 78, 52.66 W, 0x0000000000000004"
+      },
+      {
+        "container": "clocks2",
+        "run": 2,
+        "median_ms": 555.5155639648438,
+        "ratio": 1.2126513074980216,
+        "gpu_before": "1380 MHz, 1590 MHz, 78, 52.66 W, 0x0000000000000000",
+        "gpu_after": "1080 MHz, 1590 MHz, 75, 66.08 W, 0x0000000000000004"
+      },
+      {
+        "container": "clocks2",
+        "run": 3,
+        "median_ms": 512.225341796875,
+        "ratio": 1.1181518048392818,
+        "gpu_before": "1485 MHz, 1590 MHz, 75, 40.10 W, 0x0000000000000000",
+        "gpu_after": "1275 MHz, 1590 MHz, 74, 66.08 W, 0x0000000000000004"
+      },
+      {
+        "container": "clocks2",
+        "run": 4,
+        "median_ms": 514.6526489257812,
+        "ratio": 1.123450445155602,
+        "gpu_before": "1500 MHz, 1590 MHz, 74, 38.72 W, 0x0000000000000004",
+        "gpu_after": "1095 MHz, 1590 MHz, 75, 65.53 W, 0x0000000000000004"
+      },
+      {
+        "container": "clocks2",
+        "run": 5,
+        "median_ms": 551.9044799804688,
+        "ratio": 1.2047685657726888,
+        "gpu_before": "1455 MHz, 1590 MHz, 75, 65.53 W, 0x0000000000000004",
+        "gpu_after": "945 MHz, 1590 MHz, 77, 64.89 W, 0x0000000000000004"
+      },
+      {
+        "container": "clocks2",
+        "run": 6,
+        "median_ms": 591.9999694824219,
+        "ratio": 1.2922941922777162,
+        "gpu_before": "1500 MHz, 1590 MHz, 77, 38.72 W, 0x0000000000000004",
+        "gpu_after": "975 MHz, 1590 MHz, 78, 65.63 W, 0x0000000000000000"
+      },
+      {
+        "container": "clocks2",
+        "run": 7,
+        "median_ms": 585.4445190429688,
+        "ratio": 1.277984106184171,
+        "gpu_before": "1170 MHz, 1590 MHz, 77, 37.26 W, 0x0000000000000000",
+        "gpu_after": "1050 MHz, 1590 MHz, 77, 36.67 W, 0x0000000000000004"
+      },
+      {
+        "container": "clocks2",
+        "run": 8,
+        "median_ms": 552.4142150878906,
+        "ratio": 1.2058812815714703,
+        "gpu_before": "1125 MHz, 1590 MHz, 76, 36.67 W, 0x0000000000000000",
+        "gpu_after": "1095 MHz, 1590 MHz, 76, 46.45 W, 0x0000000000000004"
+      },
+      {
+        "container": "clocks2",
+        "run": 9,
+        "median_ms": 531.2642822265625,
+        "ratio": 1.1597124693878247,
+        "gpu_before": "1350 MHz, 1590 MHz, 75, 46.45 W, 0x0000000000000000",
+        "gpu_after": "1005 MHz, 1590 MHz, 76, 66.22 W, 0x0000000000000004"
+      },
+      {
+        "container": "clocks2",
+        "run": 10,
+        "median_ms": 533.5315551757812,
+        "ratio": 1.1646617663736765,
+        "gpu_before": "1515 MHz, 1590 MHz, 75, 41.45 W, 0x0000000000000004",
+        "gpu_after": "1020 MHz, 1590 MHz, 76, 64.99 W, 0x0000000000000000"
+      }
+    ],
+    "slowdown_container_after_removal_ratio": 1.124249258251644,
+    "fail_count_at_margin": {
+      "1.1": 21,
+      "1.15": 18,
+      "1.2": 16
+    },
+    "n": 21,
+    "own_baselines": {
+      "clocks1": {
+        "own_decode_p50_ms": 613.5,
+        "own_first_test_ms": 1048.3807983398438
+      },
+      "clocks2": {
+        "own_decode_p50_ms": 539.0,
+        "own_first_test_ms": 579.7065124511719
+      }
+    },
+    "env": [
+      {
+        "date_utc": "2026-11-23T22:19:27+00:00",
+        "platform": "Modal",
+        "kind": "T4",
+        "host_cpu": "model name hidden by the sandbox; GenuineIntel family 6 model 85, 2000.142 MHz, avx512f",
+        "cpu_count_visible": 14,
+        "omp_num_threads": "1",
+        "gpu_name": "Tesla T4",
+        "gpu_memory": "15360 MiB",
+        "driver": "610.57.04",
+        "gpu_power_max_limit": "70.00 W",
+        "gpu_form_factor": "PCIe",
+        "driver_cuda_version": "13.3 (CUDA UMD version for this driver, from a separate nvidia-smi probe on Modal the same day)",
+        "versions": {
+          "torch": "2.14.1+cu130",
+          "triton": "3.8.0",
+          "transformers": "5.20.2",
+          "sentence_transformers": "6.2.0",
+          "accelerate": "1.16.0",
+          "datasets": "5.2.0",
+          "faiss": "1.16.0",
+          "bitsandbytes": null,
+          "torch_cuda": "13.0"
+        }
+      },
+      {
+        "date_utc": "2026-11-23T22:18:29+00:00",
+        "platform": "Modal",
+        "kind": "T4",
+        "host_cpu": "model name hidden by the sandbox; GenuineIntel family 6 model 85, 2000.204 MHz, avx512f",
+        "cpu_count_visible": 17,
+        "omp_num_threads": "1",
+        "gpu_name": "Tesla T4",
+        "gpu_memory": "15360 MiB",
+        "driver": "610.57.04",
+        "gpu_power_max_limit": "70.00 W",
+        "gpu_form_factor": "PCIe",
+        "driver_cuda_version": "13.3 (CUDA UMD version for this driver, from a separate nvidia-smi probe on Modal the same day)",
+        "versions": {
+          "torch": "2.14.1+cu130",
+          "triton": "3.8.0",
+          "transformers": "5.20.2",
+          "sentence_transformers": "6.2.0",
+          "accelerate": "1.16.0",
+          "datasets": "5.2.0",
+          "faiss": "1.16.0",
+          "bitsandbytes": null,
+          "torch_cuda": "13.0"
+        }
+      }
+    ]
+  },
+  "d_rule": "0 of the 15 specified clean runs fail at 1.10, so nothing was changed. The extra runs on the second host type fail at every margin up to 1.20 in most cases; the margin choice is left to the author."
+}
